@@ -11,5 +11,6 @@ package models;
  * @author Renan
  */
 public class Linha {
-
+    int numero;
+    String nome;
 }

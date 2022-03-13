@@ -11,5 +11,8 @@ package models;
  * @author Renan
  */
 public class Onibus {
-
+    String placa;
+    int ano;
+    float quilometragem;
+    String modelo;
 }

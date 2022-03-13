@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 
 import java.awt.event.ActionEvent;
 import telaDesktop.UIDesktop;
-import telaDesktop.UIHistorico;
+import telaDesktop.UIRelatorio;
+import telaMobile.UICorridaFinalizada;
 
 /**
  *
  * @author sergi
  */
-public class controlarHistorico {
-    private UIHistorico view;
+public class ControllerRelatorio {
+    private UIRelatorio view;
     
-    public controlarHistorico(){
+    public ControllerRelatorio(){
         
     }
-    
-    public controlarHistorico(UIHistorico view){
+    public ControllerRelatorio(UIRelatorio view){
         this.view = view;
         this.view.setVisible(true);
     }
@@ -28,7 +28,7 @@ public class controlarHistorico {
     public void controla(){
     view.getFechar().addActionListener((ActionEvent actionEvent) -> {
         view.dispose();
-        new controlarTelaDesktop(new UIDesktop()).controla();
+        new ControllerTelaDesktop(new UIDesktop()).controla();
     });
-    }    
+    }
 }

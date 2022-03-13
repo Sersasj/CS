@@ -9,7 +9,7 @@
  * @author sergi
  */
 import telaDesktop.UIOpcao;
-import controler.controleMain;
+import controllers.ControllerMain;
 
 public class Main {
     /**
@@ -20,7 +20,7 @@ public class Main {
 
     }
       public static void iniciaSistema() {
-        controleMain controller = new controleMain(new UIOpcao());
+        ControllerMain controller = new ControllerMain(new UIOpcao());
         controller.controla();
     }
 

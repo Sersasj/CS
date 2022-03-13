@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -15,15 +15,15 @@ import telaMobile.UIEntrarAplicativo;
  * @author sergi
  */
 import telaMobile.UIApp;
-public class controlarFinalizarCorrida {
+public class ControllerFinalizarCorrida {
     private UICorridaFinalizada view;
     
     
-    public controlarFinalizarCorrida() {
+    public ControllerFinalizarCorrida() {
     
     }
     
-    public controlarFinalizarCorrida(UICorridaFinalizada view){
+    public ControllerFinalizarCorrida(UICorridaFinalizada view){
         this.view = view;
         this.view.setVisible(true);
         
@@ -32,11 +32,11 @@ public class controlarFinalizarCorrida {
     public void controla(){
         view.getContinuar().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarCorrida(new UIApp(view.getPlaca().getText(),view.getLinha().getText())).controla();
+            new ControllerCorrida(new UIApp(view.getPlaca().getText(),view.getLinha().getText())).controla();
         });
         view.getInicio().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarEntrarAplicativo(new UIEntrarAplicativo()).controla();
+            new ControllerEntrarAplicativo(new UIEntrarAplicativo()).controla();
         }); 
         view.getProblemas().addActionListener((ActionEvent actionEvent) -> {
             JOptionPane.showMessageDialog(view,

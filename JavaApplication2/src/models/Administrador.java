@@ -11,5 +11,6 @@ package models;
  * @author Renan
  */
 public class Administrador extends Funcionario{
-
+    int id;
+    String senha;
 }

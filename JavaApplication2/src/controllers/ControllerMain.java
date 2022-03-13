@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 import java.awt.event.ActionEvent;
 import telaDesktop.UIOpcao;
 import telaMobile.UIEntrarAplicativo;
@@ -13,14 +13,14 @@ import telaDesktop.UIDesktop;
  *
  * @author sergi
  */
-public class controleMain {
+public class ControllerMain {
     private UIOpcao view;
     //construtor
-    public controleMain(){
+    public ControllerMain(){
         
     }
     
-    public controleMain(UIOpcao view){
+    public ControllerMain(UIOpcao view){
         this.view = view;
         this.view.setVisible(true);
         
@@ -29,12 +29,12 @@ public class controleMain {
     public void controla() {
         view.getMobile().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarEntrarAplicativo(new UIEntrarAplicativo()).controla();
+            new ControllerEntrarAplicativo(new UIEntrarAplicativo()).controla();
         });
         
         view.getDesktop().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarTelaDesktop(new UIDesktop()).controla();
+            new ControllerTelaDesktop(new UIDesktop()).controla();
         });
 
     }    

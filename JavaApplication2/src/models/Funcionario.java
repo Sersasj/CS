@@ -11,5 +11,9 @@ package models;
  * @author Renan
  */
 public class Funcionario {
-
+    String cpf;
+    String rg;
+    String nome;
+    String telefone;
+    String endereco;
 }

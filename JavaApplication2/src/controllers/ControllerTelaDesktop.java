@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -18,10 +18,10 @@ import telaDesktop.UIRelatorio;
  *
  * @author sergi
  */
-public class controlarTelaDesktop {
+public class ControllerTelaDesktop {
     private UIDesktop view;
     
-    public controlarTelaDesktop(UIDesktop view){
+    public ControllerTelaDesktop(UIDesktop view){
         this.view = view;
         this.view.setVisible(true);
         
@@ -32,25 +32,25 @@ public class controlarTelaDesktop {
         view.getCadastrar().addActionListener((ActionEvent actionEvent) -> {
             if(valor.getSelectedItem().toString().equals("Motorista")){
             view.dispose();
-            new controlarCadastroMotorista(new UICadastroMotorista()).controla();                
+            new ControllerCadastroMotorista(new UICadastroMotorista()).controla();                
             }
             if(valor.getSelectedItem().toString().equals("Ônibus")){
             view.dispose();
-            new controlarCadastroOnibus(new UICadastroOnibus()).controla();                
+            new ControllerCadastroOnibus(new UICadastroOnibus()).controla();                
             }
             if(valor.getSelectedItem().toString().equals("Rota")){
             view.dispose();
-            new controlarCadastroRota(new UICadastroRota()).controla();              
+            new ControllerCadastroRota(new UICadastroRota()).controla();              
             }
         });
         
         view.getRelatorio().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarRelatorio(new UIRelatorio()).controla();
+            new ControllerRelatorio(new UIRelatorio()).controla();
         });
         view.getHistorico().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarHistorico(new UIHistorico()).controla();
+            new ControllerHistorico(new UIHistorico()).controla();
         });        
     } 
     /**

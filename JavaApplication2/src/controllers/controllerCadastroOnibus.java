@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -14,14 +14,14 @@ import telaDesktop.UIDesktop;
  *
  * @author sergi
  */
-public class controlarCadastroOnibus {
+public class ControllerCadastroOnibus {
     private UICadastroOnibus view;
     
-    public controlarCadastroOnibus(){
+    public ControllerCadastroOnibus(){
         
     }
     
-    public controlarCadastroOnibus(UICadastroOnibus view){
+    public ControllerCadastroOnibus(UICadastroOnibus view){
         this.view = view;
         this.view.setVisible(true);
     }
@@ -29,13 +29,13 @@ public class controlarCadastroOnibus {
         
         view.getFechar().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarTelaDesktop(new UIDesktop()).controla();
+            new ControllerTelaDesktop(new UIDesktop()).controla();
         });  
         view.getSalvar().addActionListener((ActionEvent actionEvent) -> {
             JOptionPane.showMessageDialog(view,
         "Onibus cadastrado com sucesso");            
             view.dispose();
-            new controlarTelaDesktop(new UIDesktop()).controla();
+            new ControllerTelaDesktop(new UIDesktop()).controla();
         });         
     
     }

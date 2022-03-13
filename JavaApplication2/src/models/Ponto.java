@@ -11,5 +11,6 @@ package models;
  * @author Renan
  */
 public class Ponto {
-
+    int id;
+    float latitude, longitude;
 }

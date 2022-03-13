@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controler;
+package controllers;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -14,13 +14,13 @@ import telaDesktop.UIDesktop;
  *
  * @author sergi
  */
-public class controlarCadastroRota {
+public class ControllerCadastroRota {
     private UICadastroRota view;
     
-    public controlarCadastroRota(){
+    public ControllerCadastroRota(){
         
     }
-    public controlarCadastroRota(UICadastroRota view){
+    public ControllerCadastroRota(UICadastroRota view){
     this.view = view;
     this.view.setVisible(true);
         
@@ -29,13 +29,13 @@ public class controlarCadastroRota {
         
         view.getFechar().addActionListener((ActionEvent actionEvent) -> {
             view.dispose();
-            new controlarTelaDesktop(new UIDesktop()).controla();
+            new ControllerTelaDesktop(new UIDesktop()).controla();
         });  
         view.getSalvar().addActionListener((ActionEvent actionEvent) -> {
             JOptionPane.showMessageDialog(view,
         "Rota cadastrada com sucesso");            
             view.dispose();
-            new controlarTelaDesktop(new UIDesktop()).controla();
+            new ControllerTelaDesktop(new UIDesktop()).controla();
         });          
         
     }    
