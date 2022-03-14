@@ -1,7 +1,8 @@
-module com.trabcs.sistemagerenciamentoonibus {
+module com.sistema {
     requires javafx.controls;
     requires javafx.fxml;
-
-    opens com.trabcs.sistemagerenciamentoonibus to javafx.fxml;
-    exports com.trabcs.sistema;
+    requires java.sql;
+    
+    opens com.sistema to javafx.fxml;
+    exports com.sistema;
 }

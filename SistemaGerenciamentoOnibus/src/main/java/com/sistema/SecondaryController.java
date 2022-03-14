@@ -1,4 +1,4 @@
-package com.trabcs.sistema;
+package com.sistema;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

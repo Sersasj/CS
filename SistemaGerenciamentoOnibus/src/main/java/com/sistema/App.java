@@ -1,4 +1,4 @@
-package com.trabcs.sistema;
+package com.sistema;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
