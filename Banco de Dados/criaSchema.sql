@@ -67,7 +67,7 @@ CREATE TABLE TipoEmergencia (
 );
     
 CREATE TABLE Corrida (
-    id_corrida INT NOT NULL,
+    id_corrida INT NOT NULL AUTO_INCREMENT,
     cpf_motorista CHAR(14) NOT NULL,
     placa_onibus CHAR(7) NOT NULL,
     num_linha INT NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE Corrida (
 );
         
 CREATE TABLE Problema (
-    id_problema INT NOT NULL,
+    id_problema INT NOT NULL AUTO_INCREMENT,
     id_tipo INT NOT NULL,
     descricao TEXT,
     data_horario DATETIME NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE Problema (
 );
     
 CREATE TABLE Alerta (
-    id_alerta INT NOT NULL,
+    id_alerta INT NOT NULL AUTO_INCREMENT,
     tipo INT NOT NULL,
     id_corrida INT NOT NULL,
     data_horario DATETIME NOT NULL,

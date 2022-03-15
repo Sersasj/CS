@@ -19,6 +19,9 @@ public class Linha {
         this.nome = nome;
     }
 
+    public Linha() {
+    }
+
     public int getNumero() {
         return numero;
     }

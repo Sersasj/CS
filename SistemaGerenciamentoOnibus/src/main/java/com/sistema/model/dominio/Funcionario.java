@@ -25,6 +25,9 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
+    public Funcionario() {
+    }
+
     public String getCpf() {
         return cpf;
     }

@@ -20,6 +20,9 @@ public class Ponto {
         this.longitude = longitude;
     }
 
+    public Ponto() {
+    }
+
     public int getId() {
         return id;
     }

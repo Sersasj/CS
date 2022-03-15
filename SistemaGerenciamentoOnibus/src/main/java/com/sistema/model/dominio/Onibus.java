@@ -23,6 +23,9 @@ public class Onibus {
         this.modelo = modelo;
     }
 
+    public Onibus() {
+    }
+
     public String getPlaca() {
         return placa;
     }

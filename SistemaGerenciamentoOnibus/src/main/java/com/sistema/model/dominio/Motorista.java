@@ -18,6 +18,9 @@ public class Motorista extends Funcionario{
         this.cnh = cnh;
     }
 
+    public Motorista() {
+    }
+
     public String getCnh() {
         return cnh;
     }
