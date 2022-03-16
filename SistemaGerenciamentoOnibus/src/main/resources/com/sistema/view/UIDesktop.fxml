@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Cadastrar">
+            <items>
+                  <MenuItem fx:id="menuItemCadastrarAdministrador" mnemonicParsing="false" text="Administrador" />
+              <MenuItem fx:id="menuItemCadastrarMotorista" mnemonicParsing="false" text="Motorista" />
+                  <MenuItem fx:id="menuItemCadastrarOnibus" mnemonicParsing="false" text="Onibus" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Relatório">
+            <items>
+              <MenuItem fx:id="aaaa" mnemonicParsing="false" text="aaaa" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Histórico">
+            <items>
+              <MenuItem fx:id="bbbb" mnemonicParsing="false" text="bbbb" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="anchorPane" prefHeight="374.0" prefWidth="600.0" />
+   </children>
+</VBox>
