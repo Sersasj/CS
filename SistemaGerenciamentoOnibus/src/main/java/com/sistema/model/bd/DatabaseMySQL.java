@@ -14,8 +14,8 @@ public class DatabaseMySQL implements Database {
     @Override
     public Connection conectar() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/javafxmvc", "usuario","senha");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemaonibus", "usuarioAdmin","senhaAdmin");
             return this.connection;
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);

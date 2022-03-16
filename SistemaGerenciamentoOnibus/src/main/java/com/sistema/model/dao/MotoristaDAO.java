@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 public class MotoristaDAO {
     private Connection connection;
 
+    public MotoristaDAO() {
+    }
+
     public Connection getConnection() {
         return connection;
     }
