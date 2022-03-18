@@ -1,5 +1,6 @@
 package com.sistema;
 
+import com.sistema.util.ValidadorString;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,8 +31,39 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+    
+    private static void testesREGEX(){
+        ValidadorString vs = new ValidadorString();
+        String nome, email, telefone, rg, cpf;
+        
+        email = "ra115672@uem.br";
+        if (vs.validarEmail(email) == true){
+            System.out.println(email);
+        }
+        
+        telefone = "44 999515530";
+        if (vs.validarTelefone(telefone) == true){
+            System.out.println(vs.formatarTelefone(telefone));
+        }
+        
+        nome = "Stany Helberth";
+        if (vs.validarNome(nome) == true){
+            System.out.println(nome);
+        }
+        
+        cpf = "111.222.333-44";
+        if (vs.validarCPF(cpf) == true){
+            System.out.println(vs.formatarCPF(cpf));
+        }
+        
+        rg = "112223334";
+        if (vs.validarRG(rg) == true){
+            System.out.println(vs.formatarRG(rg));
+        }
+    } 
 
     public static void main(String[] args) {
+        testesREGEX();
         launch();
     }
 
