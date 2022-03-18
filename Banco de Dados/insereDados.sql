@@ -27,52 +27,63 @@ insert into Linha values(789, "Zona Leste");
 insert into Linha values(987, "Zona Oeste");
 
 
-insert into ponto values(1, -23.418595, -51.938139);
-insert into ponto values(2, -23.399186, -51.926940);
-insert into ponto values(3, -23.389879, -51.929730);
-insert into ponto values(4, -23.403575, -51.934491);
-insert into ponto values(5, -23.380627, -51.934024);
-insert into ponto values(6, -23.432784, -51.928067);
-insert into ponto values(7, -23.410662, -51.938222);
+insert into Ponto values(1, -23.418595, -51.938139);
+insert into Ponto values(2, -23.399186, -51.926940);
+insert into Ponto values(3, -23.389879, -51.929730);
+insert into Ponto values(4, -23.403575, -51.934491);
+insert into Ponto values(5, -23.380627, -51.934024);
+insert into Ponto values(6, -23.432784, -51.928067);
+insert into Ponto values(7, -23.410662, -51.938222);
 
 
-insert into tipoProblema values(1, "Motor");
-insert into tipoProblema values(2, "Cambio de Marcha");
-insert into tipoProblema values(3, "Eletrico");
-insert into tipoProblema values(4, "Pneus");
-insert into tipoProblema values(5, "Bateria");
-insert into tipoProblema values(6, "Outros");
+insert into TipoProblema values(1, "Motor");
+insert into TipoProblema values(2, "Cambio de Marcha");
+insert into TipoProblema values(3, "Eletrico");
+insert into TipoProblema values(4, "Pneus");
+insert into TipoProblema values(5, "Bateria");
+insert into TipoProblema values(6, "Outros");
 
 
-insert into tipoEmergencia values(1, "Assalto");
-insert into tipoEmergencia values(2, "Emergencia Mecanica");
-insert into tipoEmergencia values(3, "Outros");
+insert into TipoEmergencia values(1, "Assalto");
+insert into TipoEmergencia values(2, "Emergencia Mecanica");
+insert into TipoEmergencia values(3, "Outros");
 
+insert into LinhaPonto values(0001, 001, 1);
+insert into HorarioEsperado values(null, 0001, '09:00:00');
+insert into HorarioEsperado values(null, 0001, '17:00:00');
+insert into LinhaPonto values(0002, 001, 4);
+insert into HorarioEsperado values(null, 0002, '09:20:00');
+insert into HorarioEsperado values(null, 0002, '17:20:00');
+insert into LinhaPonto values(0003, 001, 7);
+insert into HorarioEsperado values(null, 0003, '09:45:00');
+insert into HorarioEsperado values(null, 0003, '17:45:00');
 
-insert into HorarioEsperado values(001, 1, '09:00:00');
-insert into HorarioEsperado values(001, 1, '17:00:00');
-insert into HorarioEsperado values(001, 4, '09:20:00');
-insert into HorarioEsperado values(001, 4, '17:20:00');
-insert into HorarioEsperado values(001, 7, '09:45:00');
-insert into HorarioEsperado values(001, 7, '17:45:00');
+insert into LinhaPonto values(0004, 123, 1);
+insert into HorarioEsperado values(null, 0004, '07:30:00');
+insert into HorarioEsperado values(null, 0004, '18:00:00');
+insert into LinhaPonto values(0005, 123, 2);
+insert into HorarioEsperado values(null, 0005, '08:15:00');
+insert into HorarioEsperado values(null, 0005, '18:45:00');
+insert into LinhaPonto values(0006, 123, 3);
+insert into HorarioEsperado values(null, 0006, '08:30:00');
+insert into HorarioEsperado values(null, 0006, '19:00:00');
 
-insert into HorarioEsperado values(123, 1, '07:30:00');
-insert into HorarioEsperado values(123, 1, '18:00:00');
-insert into HorarioEsperado values(123, 2, '08:15:00');
-insert into HorarioEsperado values(123, 2, '18:45:00');
-insert into HorarioEsperado values(123, 3, '08:30:00');
-insert into HorarioEsperado values(123, 3, '19:00:00');
+insert into LinhaPonto values(0007, 321, 1);
+insert into HorarioEsperado values(null, 0007, '12:00:00');
+insert into LinhaPonto values(0008, 321, 6);
+insert into HorarioEsperado values(null, 0008, '12:50:00');
 
-insert into HorarioEsperado values(321, 1, '12:00:00');
-insert into HorarioEsperado values(321, 6, '12:50:00');
+insert into LinhaPonto values(0009, 789, 1);
+insert into HorarioEsperado values(null, 0009, '18:30:00');
+insert into LinhaPonto values(0010, 789, 5);
+insert into HorarioEsperado values(null, 0010, '19:00:00');
 
-insert into HorarioEsperado values(789, 1, '18:30:00');
-insert into HorarioEsperado values(789, 5, '19:00:00');
-
-insert into HorarioEsperado values(987, 1, '07:45:00');
-insert into HorarioEsperado values(987, 1, '18:00:00');
-insert into HorarioEsperado values(987, 7, '08:15:00');
-insert into HorarioEsperado values(987, 7, '18:30:00');
+insert into LinhaPonto values(0011, 987, 1);
+insert into HorarioEsperado values(null, 0011, '07:45:00');
+insert into HorarioEsperado values(null, 0011, '18:00:00');
+insert into LinhaPonto values(0012, 987, 7);
+insert into HorarioEsperado values(null, 0012, '08:15:00');
+insert into HorarioEsperado values(null, 0012, '18:30:00');
 
 
 insert into Corrida values(1003, "111.111.111-11", "AAA1111", 1, '2021-01-01 09:02:20', '2021-01-01 09:48:10', 30, 60, 1.28, 7.15);

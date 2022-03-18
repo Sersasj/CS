@@ -6,6 +6,8 @@
 
 package com.sistema.model.dominio;
 
+import java.util.List;
+
 /**
  *
  * @author Renan
@@ -13,6 +15,7 @@ package com.sistema.model.dominio;
 public class Linha {
     private int numero;
     private String nome;
+    private List<Ponto> pontos;
 
     public Linha(int numero, String nome) {
         this.numero = numero;
@@ -36,5 +39,13 @@ public class Linha {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Ponto> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(List<Ponto> pontos) {
+        this.pontos = pontos;
     }
 }

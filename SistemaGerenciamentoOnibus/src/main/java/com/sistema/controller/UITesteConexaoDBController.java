@@ -6,8 +6,8 @@ package com.sistema.controller;
 
 import com.sistema.model.bd.Database;
 import com.sistema.model.bd.DatabaseFactory;
-import com.sistema.model.dao.MotoristaDAO;
-import com.sistema.model.dominio.Motorista;
+import com.sistema.model.dao.OnibusDAO;
+import com.sistema.model.dominio.Onibus;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
@@ -29,11 +29,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class UITesteConexaoDBController implements Initializable {
 
     @FXML
-    private TableView<Motorista> tableViewTesteBD;
+    private TableView<Onibus> tableViewTesteBD;
     @FXML
-    private TableColumn<Motorista, String> tableColumnPrimaria;
+    private TableColumn<Onibus, String> tableColumnPrimaria;
     @FXML
-    private TableColumn<Motorista, String> tableColumnInfo;
+    private TableColumn<Onibus, String> tableColumnInfo;
     @FXML
     private Label labelInfo1;
     @FXML
@@ -49,12 +49,12 @@ public class UITesteConexaoDBController implements Initializable {
     @FXML
     private Label labelInfo7;
     
-    private List<Motorista> listObjetos;
-    private ObservableList<Motorista> observableListObjetos;
+    private List<Onibus> listObjetos;
+    private ObservableList<Onibus> observableListObjetos;
     
     private final Database database = DatabaseFactory.getDatabase("mysql");
     private final Connection connection = database.conectar();
-    private final MotoristaDAO motoristaDAO = new MotoristaDAO();
+    private final OnibusDAO motoristaDAO = new OnibusDAO();
     
     /**
      * Initializes the controller class.
@@ -66,8 +66,8 @@ public class UITesteConexaoDBController implements Initializable {
     }    
     
     public void carregarTableView(){
-        tableColumnPrimaria.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        tableColumnInfo.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnPrimaria.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        tableColumnInfo.setCellValueFactory(new PropertyValueFactory<>("ano"));
         
         listObjetos = motoristaDAO.listar();
         

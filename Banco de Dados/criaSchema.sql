@@ -55,6 +55,26 @@ CREATE TABLE Ponto (
     PRIMARY KEY (id_ponto)
 );
 
+CREATE TABLE LinhaPonto (
+	id_linha_ponto INT NOT NULL AUTO_INCREMENT,
+    num_linha INT NOT NULL,
+    id_ponto INT NOT NULL,
+    FOREIGN KEY (num_linha)
+        REFERENCES Linha (numero) ON DELETE CASCADE,
+    FOREIGN KEY (id_ponto)
+        REFERENCES Ponto (id_ponto) ON DELETE CASCADE,
+    PRIMARY KEY (id_linha_ponto)
+);
+
+CREATE TABLE HorarioEsperado (
+    id_horario_esperado INT NOT NULL AUTO_INCREMENT,
+    id_linha_ponto INT NOT NULL,
+    horario TIME NOT NULL,
+    FOREIGN KEY (id_linha_ponto)
+        REFERENCES LinhaPonto (id_linha_ponto) ON DELETE CASCADE,
+    PRIMARY KEY (id_horario_esperado)
+);
+
 CREATE TABLE TipoProblema (
     id_tipo INT NOT NULL,
     tipo VARCHAR(50) NOT NULL,
@@ -117,15 +137,4 @@ CREATE TABLE Alerta (
     FOREIGN KEY (tipo)
         REFERENCES TipoEmergencia (id_tipo),
     PRIMARY KEY (id_alerta)
-);
-        
-CREATE TABLE HorarioEsperado (
-    num_linha INT NOT NULL,
-    id_ponto INT NOT NULL,
-    horario TIME NOT NULL,
-    FOREIGN KEY (num_linha)
-        REFERENCES Linha (numero),
-    FOREIGN KEY (id_ponto)
-        REFERENCES Ponto (id_ponto),
-    PRIMARY KEY (num_linha , id_ponto , horario)
 );
