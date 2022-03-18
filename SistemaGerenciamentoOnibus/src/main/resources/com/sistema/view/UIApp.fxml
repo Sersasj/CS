@@ -30,7 +30,7 @@
       </AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="92.0" prefWidth="390.0" style="-fx-background-color: #3486eb;">
          <children>
-            <TextField fx:id="placaOnibus" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="390.0" />
+            <TextField fx:id="placaOnibus" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="390.0" text="teste" />
             <Text fill="WHITE" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa do Ônibus">
                <font>
                   <Font name="Calibri" size="24.0" />
