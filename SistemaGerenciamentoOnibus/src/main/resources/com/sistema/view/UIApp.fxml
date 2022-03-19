@@ -20,7 +20,7 @@
       </AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="173.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="92.0" prefWidth="390.0" style="-fx-background-color: #3486eb;">
          <children>
-            <ComboBox fx:id="linhasOnibus" layoutY="50.0" prefHeight="46.0" prefWidth="390.0" promptText="linha ---" />
+            <ComboBox fx:id="linhasOnibus" layoutY="50.0" prefHeight="46.0" prefWidth="390.0" promptText="Selecione a Linha" />
             <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Linha do Ônibus">
                <font>
                   <Font name="Calibri" size="24.0" />

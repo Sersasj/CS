@@ -68,7 +68,6 @@ public class UITesteConexaoDBController implements Initializable {
     public void carregarTableView(){
         tableColumnPrimaria.setCellValueFactory(new PropertyValueFactory<>("placa"));
         tableColumnInfo.setCellValueFactory(new PropertyValueFactory<>("ano"));
-        
         listObjetos = motoristaDAO.listar();
         
         observableListObjetos = FXCollections.observableArrayList(listObjetos);
