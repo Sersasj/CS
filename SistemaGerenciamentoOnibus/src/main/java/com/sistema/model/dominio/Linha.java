@@ -48,4 +48,10 @@ public class Linha {
     public void setPontos(List<Ponto> pontos) {
         this.pontos = pontos;
     }
+
+    @Override
+    public String toString() {
+        return "" + numero + " - " + nome;
+    }
+    
 }
