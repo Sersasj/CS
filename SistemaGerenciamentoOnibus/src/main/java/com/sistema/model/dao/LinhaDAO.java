@@ -5,6 +5,7 @@
 package com.sistema.model.dao;
 
 import com.sistema.model.dominio.Linha;
+import com.sistema.model.dominio.Ponto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,6 +84,7 @@ public class LinhaDAO {
                 Linha linha = new Linha();
                 linha.setNumero(resultado.getInt("numero"));
                 linha.setNome(resultado.getString("nome"));
+                linha.setPontos(buscarPontos(linha));
                 retorno.add(linha);
             }
         } catch (SQLException ex) {
@@ -92,21 +94,41 @@ public class LinhaDAO {
     }
 
     public Linha buscar(Linha linha) {
-        String sql = "SELECT * FROM linha WHERE id_linha=?";
+        String sql = "SELECT * FROM linha WHERE numero=?";
         Linha retorno = new Linha();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, linha.getNumero());
             ResultSet resultado = stmt.executeQuery();
             if (resultado.next()) {
-                linha.setNumero(resultado.getInt("numero"));
                 linha.setNome(resultado.getString("nome"));
+                linha.setPontos(buscarPontos(linha));
                 retorno = linha;
             }
         } catch (SQLException ex) {
             Logger.getLogger(LinhaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return retorno;
+    }
+    
+    public List<Ponto> buscarPontos(Linha linha) throws SQLException{
+        List<Ponto> listaPontos = new ArrayList<>();
+        // vvv PODE DAR PROBLEMAS vvv
+        PontoDAO pontoDAO = new PontoDAO();
+        
+        pontoDAO.setConnection(connection);
+
+        String sql = "SELECT * FROM linhaponto WHERE num_linha=?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, linha.getNumero());
+        ResultSet resultado = stmt.executeQuery();
+        while (resultado.next()) {
+            Ponto ponto = new Ponto();
+            ponto.setId(resultado.getInt("id_ponto"));
+            ponto = pontoDAO.buscar(ponto);
+            listaPontos.add(ponto);
+        }
+        return listaPontos;
     }
 
 }
