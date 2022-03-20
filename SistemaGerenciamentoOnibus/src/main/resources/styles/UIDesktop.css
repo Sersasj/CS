@@ -1,0 +1,56 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.menuBar{
+    -fx-background-color: #3a3b3c;
+}
+
+.btnMinimizar{
+    -fx-background-radius: 3px;
+    -fx-background-color: transparent;
+}
+.btnMinimizar:hover 
+{
+    -fx-background-color: #808080;
+}
+
+.btnFechar{
+    -fx-background-radius: 3px;
+    -fx-background-color: transparent;
+}
+.btnFechar:hover 
+{
+    -fx-background-color: red;
+} 
+
+.btnMenu{
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-border-radius: 7px;
+    -fx-border-color: lightgray;
+    
+    -fx-background-radius: 10px;
+    -fx-background-color: lightgray;
+}
+.btnMenu:hover 
+{
+    -fx-border-color: gray;
+    -fx-cursor: hand;
+} 
+
+.anchorPaneConteudo{
+    -fx-background-color: green;
+}
+
+.anchorPaneOpacidade{
+    -fx-background-color: black;
+}
+
+.anchorPaneMenu{
+    -fx-background-color: lightgray;
+}

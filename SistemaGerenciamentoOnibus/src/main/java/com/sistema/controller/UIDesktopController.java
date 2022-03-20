@@ -6,10 +6,13 @@ package com.sistema.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,18 +26,34 @@ public class UIDesktopController implements Initializable {
      */
     
     @FXML
-    private MenuItem menuCadastroAdministrador;
+    private Button buttonFechar, buttonMinimizar, buttonToggleMenu;
     @FXML
-    private MenuItem menuCadastroMotorista;   
+    private AnchorPane anchorPaneMapa;
     @FXML
-    private MenuItem menuCadastroOnibus;
-    @FXML
-    private AnchorPane anchorPane;     
+    private HBox hBoxMenu;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        hBoxMenu.setDisable(true);
+        hBoxMenu.setVisible(false);
     }    
     
+    @FXML
+    public void handleButtonFechar(ActionEvent event) {
+        Stage stage = (Stage) buttonFechar.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    public void handleButtonMinimizar(ActionEvent event) {
+        Stage stage = (Stage) buttonMinimizar.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
+    @FXML
+    public void handleButtonToggleMenu(ActionEvent event) {
+        hBoxMenu.setDisable(!hBoxMenu.isDisable());
+        hBoxMenu.setVisible(!hBoxMenu.isVisible());
+    }
 }

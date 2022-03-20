@@ -26,7 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author sergi
  */
-public class UIAppController implements Initializable {
+public class UIMobileController implements Initializable {
     
     
     @FXML
