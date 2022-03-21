@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.sistema.model.dominio;
+package com.sistema.model.pojo;
 
 /**
  *

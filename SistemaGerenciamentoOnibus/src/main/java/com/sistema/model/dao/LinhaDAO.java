@@ -4,8 +4,8 @@
  */
 package com.sistema.model.dao;
 
-import com.sistema.model.dominio.Linha;
-import com.sistema.model.dominio.Ponto;
+import com.sistema.model.pojo.Linha;
+import com.sistema.model.pojo.Ponto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

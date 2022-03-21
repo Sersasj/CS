@@ -7,12 +7,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIInicialController">
    <children>
-      <Button fx:id="btnAbrirDesktop" layoutX="150.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleButtonAbrirDesktop" text="Desktop">
+      <Button fx:id="btnAbrirDesktop" layoutX="150.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleButtonAbrirDesktop" text="Desktop">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnAbrirMobile" layoutX="344.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleButtonAbrirMobile" text="Mobile">
+      <Button fx:id="btnAbrirMobile" layoutX="344.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleButtonAbrirMobile" text="Mobile">
          <font>
             <Font size="24.0" />
          </font>
@@ -27,5 +27,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnAbrirTeste" layoutX="273.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleButtonAbrirTeste" text="testes">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

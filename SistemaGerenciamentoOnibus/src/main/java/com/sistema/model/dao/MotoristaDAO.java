@@ -5,7 +5,7 @@
  */
 package com.sistema.model.dao;
 
-import com.sistema.model.dominio.Motorista;
+import com.sistema.model.pojo.Motorista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

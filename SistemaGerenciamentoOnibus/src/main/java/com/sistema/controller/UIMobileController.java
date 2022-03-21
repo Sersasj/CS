@@ -7,7 +7,7 @@ package com.sistema.controller;
 import com.sistema.model.bd.Database;
 import com.sistema.model.bd.DatabaseFactory;
 import com.sistema.model.dao.LinhaDAO;
-import com.sistema.model.dominio.Linha;
+import com.sistema.model.pojo.Linha;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.List;

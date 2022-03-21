@@ -31,7 +31,7 @@ public class UIInicialController implements Initializable {
      */
     
     @FXML
-    private Button btnAbrirMobile, btnAbrirDesktop;
+    private Button btnAbrirMobile, btnAbrirDesktop, btnAbrirTeste;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,6 +55,19 @@ public class UIInicialController implements Initializable {
     public void handleButtonAbrirMobile(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobile.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+    @FXML
+    public void handleButtonAbrirTeste(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UITesteConexaoDB.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
