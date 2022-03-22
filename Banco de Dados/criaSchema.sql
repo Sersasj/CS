@@ -26,9 +26,9 @@ CREATE TABLE Motorista (
 
 CREATE TABLE Administrador (
     cpf CHAR(14) NOT NULL,
-    id_administrador INT NOT NULL,
+    id INT NOT NULL,
     senha VARCHAR(20) NOT NULL,
-    UNIQUE KEY (id_administrador),
+    UNIQUE KEY (id),
     FOREIGN KEY (cpf)
         REFERENCES Funcionario (cpf),
     PRIMARY KEY (cpf)
@@ -49,48 +49,48 @@ CREATE TABLE Linha (
 );
 
 CREATE TABLE Ponto (
-    id_ponto INT NOT NULL,
+    id INT NOT NULL,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
-    PRIMARY KEY (id_ponto)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE LinhaPonto (
-	id_linha_ponto INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
     num_linha INT NOT NULL,
     id_ponto INT NOT NULL,
     FOREIGN KEY (num_linha)
         REFERENCES Linha (numero) ON DELETE CASCADE,
     FOREIGN KEY (id_ponto)
-        REFERENCES Ponto (id_ponto) ON DELETE CASCADE,
-    PRIMARY KEY (id_linha_ponto)
+        REFERENCES Ponto (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE HorarioEsperado (
-    id_horario_esperado INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     id_linha_ponto INT NOT NULL,
     horario TIME NOT NULL,
     FOREIGN KEY (id_linha_ponto)
-        REFERENCES LinhaPonto (id_linha_ponto) ON DELETE CASCADE,
-    PRIMARY KEY (id_horario_esperado)
+        REFERENCES LinhaPonto (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE TipoProblema (
-    id_tipo INT NOT NULL,
+    id INT NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     UNIQUE KEY (tipo),
-    PRIMARY KEY (id_tipo)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE TipoEmergencia (
-    id_tipo INT NOT NULL,
+    id INT NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     UNIQUE KEY (tipo),
-    PRIMARY KEY (id_tipo)
+    PRIMARY KEY (id)
 );
     
 CREATE TABLE Corrida (
-    id_corrida INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     cpf_motorista CHAR(14) NOT NULL,
     placa_onibus CHAR(7) NOT NULL,
     num_linha INT NOT NULL,
@@ -106,35 +106,35 @@ CREATE TABLE Corrida (
         REFERENCES Onibus (placa),
     FOREIGN KEY (num_linha)
         REFERENCES Linha (numero),
-    PRIMARY KEY (id_corrida)
+    PRIMARY KEY (id)
 );
         
 CREATE TABLE Problema (
-    id_problema INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     id_tipo INT NOT NULL,
     descricao TEXT,
     data_horario DATETIME NOT NULL,
     placa_onibus CHAR(7) NOT NULL,
     cpf_motorista VARCHAR(14) NOT NULL,
     FOREIGN KEY (id_tipo)
-        REFERENCES TipoProblema (id_tipo),
+        REFERENCES TipoProblema (id),
     FOREIGN KEY (placa_onibus)
         REFERENCES Onibus (placa),
     FOREIGN KEY (cpf_motorista)
         REFERENCES Motorista (cpf),
-    PRIMARY KEY (id_problema)
+    PRIMARY KEY (id)
 );
     
 CREATE TABLE Alerta (
-    id_alerta INT NOT NULL AUTO_INCREMENT,
-    tipo INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    id_tipo INT NOT NULL,
     id_corrida INT NOT NULL,
     data_horario DATETIME NOT NULL,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     FOREIGN KEY (id_corrida)
-        REFERENCES Corrida (id_corrida),
-    FOREIGN KEY (tipo)
-        REFERENCES TipoEmergencia (id_tipo),
-    PRIMARY KEY (id_alerta)
+        REFERENCES Corrida (id),
+    FOREIGN KEY (id_tipo)
+        REFERENCES TipoEmergencia (id),
+    PRIMARY KEY (id)
 );
