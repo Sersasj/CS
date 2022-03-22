@@ -6,15 +6,22 @@ package com.sistema.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author sergi
  */
-public class UIAppController implements Initializable {
-
+public class UIMobileCorridaController implements Initializable {
+    
+    
+    @FXML 
+    private TextField linhaOnibus, placaOnibus;
+    
+    
     /**
      * Initializes the controller class.
      */

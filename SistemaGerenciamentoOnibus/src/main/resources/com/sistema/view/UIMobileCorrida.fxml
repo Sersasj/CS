@@ -4,8 +4,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: #34d8eb;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.sistema.controller.UIAppController">
+<AnchorPane id="AnchorPane" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: #34d8eb;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIMobileCorridaController">
    <children>
       <AnchorPane prefHeight="146.0" prefWidth="394.0" style="-fx-background-color: #3486eb;">
          <children>
@@ -14,8 +13,8 @@
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Text>
-            <Text layoutX="43.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text layoutX="23.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="linhaOnibus" layoutX="43.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="placaOnibus" layoutX="23.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children>
       </AnchorPane>
    </children>

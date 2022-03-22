@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 de mar. de 2022, 22:46:04
+    Author     : sergi
+*/
+
+.mainFxmlClass {
+
+}
+
+.anchorPaneBackground{
+    -fx-background-color: #3a3b3c;
+}
