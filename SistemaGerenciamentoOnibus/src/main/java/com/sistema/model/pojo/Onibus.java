@@ -6,10 +6,7 @@
 
 package com.sistema.model.pojo;
 
-/**
- *
- * @author Renan
- */
+
 public class Onibus {
     private String placa;
     private int ano;

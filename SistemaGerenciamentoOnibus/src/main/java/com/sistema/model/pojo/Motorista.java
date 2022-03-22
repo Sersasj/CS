@@ -6,10 +6,7 @@
 
 package com.sistema.model.pojo;
 
-/**
- *
- * @author Renan
- */
+
 public class Motorista extends Funcionario{
     private String cnh;
 

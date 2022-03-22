@@ -8,10 +8,7 @@ package com.sistema.model.pojo;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Renan
- */
+
 public class Emergencia {
     private int id, idTipo;
     private LocalDateTime dataHorario;

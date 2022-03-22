@@ -8,10 +8,7 @@ package com.sistema.model.pojo;
 
 import java.util.List;
 
-/**
- *
- * @author Renan
- */
+
 public class Linha {
     private int numero;
     private String nome;

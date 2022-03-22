@@ -7,10 +7,7 @@
 package com.sistema.model.pojo;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Renan
- */
+
 public class Corrida {
     private int id, passageirosPagantes, passageirosNaoPagantes;
     private float consumoCombustivel, distanciaPercorrida;

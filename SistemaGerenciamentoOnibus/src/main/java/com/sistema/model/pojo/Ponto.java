@@ -6,10 +6,7 @@
 
 package com.sistema.model.pojo;
 
-/**
- *
- * @author Renan
- */
+
 public class Ponto {
     private int id;
     private float latitude, longitude;

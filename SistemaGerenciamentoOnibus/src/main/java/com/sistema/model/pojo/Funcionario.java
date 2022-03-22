@@ -6,10 +6,7 @@
 
 package com.sistema.model.pojo;
 
-/**
- *
- * @author Renan
- */
+
 public class Funcionario {
     private String cpf;
     private String rg;

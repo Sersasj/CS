@@ -6,10 +6,7 @@
 
 package com.sistema.model.pojo;
 
-/**
- *
- * @author Renan
- */
+
 public class Administrador extends Funcionario{
     private int id;
     private String senha;
