@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -44,7 +45,21 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private TableColumn<Motorista, String> tableColumnTelefone;
     @FXML
     private TableColumn<Motorista, String> tableColumnEndereco;
-   
+    @FXML
+    private TextField textBuscaNome;
+    
+    @FXML 
+    private TextField textCPF;
+    @FXML 
+    private TextField textRG;
+    @FXML 
+    private TextField textNome;
+    @FXML 
+    private TextField textTelefone;
+    @FXML 
+    private TextField textEndereco;    
+    
+    
     private List<Motorista> listMotorista;
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
