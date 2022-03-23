@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -10,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UITesteConexaoDBController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UITesteConexaoDBController">
    <children>
       <GridPane layoutX="187.0" layoutY="261.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -26,7 +29,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TableView fx:id="tableViewTesteBD" layoutX="28.0" layoutY="29.0" prefHeight="358.0" prefWidth="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tableViewTesteBD" layoutX="28.0" layoutY="29.0" prefHeight="358.0" prefWidth="255.0" style="-fx-background-color: #F0F8FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="tableColumnPrimaria" prefWidth="75.0" text="Chave Primária" />
                             <TableColumn fx:id="tableColumnInfo" prefWidth="75.0" text="Outra Info" />
@@ -80,7 +83,7 @@
                   <Label layoutX="104.0" layoutY="38.0" text="teste rotas" />
                   <ComboBox fx:id="comboBoxTesteLinha" layoutX="57.0" layoutY="122.0" prefWidth="150.0" />
                   <Label layoutX="121.0" layoutY="85.0" text="rota" />
-                  <TableView fx:id="tableViewTestePontos" layoutX="265.0" prefHeight="360.0" prefWidth="375.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewTestePontos" layoutX="265.0" prefHeight="360.0" prefWidth="375.0" style="-fx-background-color: #F0F8FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="tableColumnIdPonto" prefWidth="75.0" text="id" />
                         <TableColumn fx:id="tableColumnLatPonto" prefWidth="75.0" text="lat" />
