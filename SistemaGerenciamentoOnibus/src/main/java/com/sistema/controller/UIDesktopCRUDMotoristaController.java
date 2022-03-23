@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -64,14 +65,22 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
     
+    @FXML
+    public void handleMouseAction(MouseEvent event){
+        Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
+        textCPF.setText(motorista.getCpf());
+        textRG.setText(motorista.getRg());
+        textNome.setText(motorista.getNome());
+        textTelefone.setText(motorista.getTelefone());
+        textEndereco.setText(motorista.getEndereco());
+    }   
     public void carregarTableView(){
         
         tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-        //tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        //endereço quebra tudo
+        tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         
         listMotorista = motoristaDAO.list();
         System.out.println(listMotorista);
