@@ -5,115 +5,131 @@
 package com.sistema.model.dao;
 
 import com.sistema.model.pojo.Onibus;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import org.hibernate.cfg.Configuration;
+import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class OnibusDAO {
-    private Connection connection;
-
-    public OnibusDAO() {
+    public static SessionFactory getSessionFactory() {
+        Configuration configObj = new Configuration();
+        configObj.configure("hibernate.cfg.xml");
+ 
+        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
+ 
+        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
+        return factoryObj;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
+    public Integer add(Onibus onibus) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer onibusID = null;
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean inserir(Onibus onibus) {
-        String sql = "INSERT INTO onibus(placa, ano, quilometragem, modelo) VALUES(?,?,?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, onibus.getPlaca());
-            stmt.setInt(2, onibus.getAno());
-            stmt.setFloat(3, onibus.getQuilometragem());
-            stmt.setString(4, onibus.getModelo());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(OnibusDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean alterar(Onibus onibus) {
-        String sql = "UPDATE onibus SET ano=?, quilometragem=?, modelo=? WHERE placa=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, onibus.getAno());
-            stmt.setFloat(2, onibus.getQuilometragem());
-            stmt.setString(3, onibus.getModelo());
-            stmt.setString(4, onibus.getPlaca());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(OnibusDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean remover(Onibus onibus) {
-        String sql = "DELETE FROM onibus WHERE placa=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, onibus.getPlaca());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(OnibusDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public List<Onibus> listar() {
-        String sql = "SELECT * FROM onibus";
-        List<Onibus> retorno = new ArrayList<>();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
-            while (resultado.next()) {
-                Onibus onibus = new Onibus();
-                onibus.setPlaca(resultado.getString("placa"));
-                onibus.setAno(resultado.getInt("ano"));
-                onibus.setQuilometragem(resultado.getFloat("quilometragem"));
-                onibus.setModelo(resultado.getString("modelo"));
-                retorno.add(onibus);
+            tx = session.beginTransaction();
+            onibusID = (Integer) session.save(onibus);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(OnibusDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
+        return onibusID;
+    }
+    
+    public void update(Onibus onibus) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Onibus onibusAntigo = (Onibus) session.get(Onibus.class, onibus.getPlaca());
+            onibusAntigo.setAno(onibus.getAno());
+            onibusAntigo.setQuilometragem(onibus.getQuilometragem());
+            onibusAntigo.setModelo(onibus.getModelo());
+            session.update(onibusAntigo);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public List<Onibus> list() {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Onibus> listaRetorno = new ArrayList<>();
+
+        try {
+            tx = session.beginTransaction();
+            listaRetorno = session.createQuery("FROM " + Onibus.class.getName() + "").list();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listaRetorno;
+    }
+    
+
+    public Onibus getById(Integer onibusId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Onibus onibus = new Onibus();
+
+        try {
+            tx = session.beginTransaction();
+            onibus = (Onibus) session.load(Onibus.class, onibusId);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return onibus;
     }
 
-    public Onibus buscar(Onibus onibus) {
-        String sql = "SELECT * FROM motorista WHERE placa=?";
-        Onibus retorno = new Onibus();
+    public void delete(Integer onibusId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, onibus.getPlaca());
-            ResultSet resultado = stmt.executeQuery();
-            if (resultado.next()) {
-                onibus.setPlaca(resultado.getString("placa"));
-                onibus.setAno(resultado.getInt("ano"));
-                onibus.setQuilometragem(resultado.getFloat("quilometragem"));
-                onibus.setModelo(resultado.getString("modelo"));
-                retorno = onibus;
+            tx = session.beginTransaction();
+            Onibus onibus = (Onibus) session.get(Onibus.class, onibusId);
+            session.delete(onibus);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(OnibusDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
     }
 }

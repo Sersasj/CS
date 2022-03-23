@@ -50,12 +50,11 @@ public class UIMobileEntrarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        linhaDAO.setConnection(connection);
         carregarLinhaView();
     }
 
     public void carregarLinhaView(){
-        listLinhas = linhaDAO.listar();
+        listLinhas = linhaDAO.list();
         observableListLinhas = FXCollections.observableArrayList(listLinhas);
         linhasOnibus.setItems(observableListLinhas);
         //mostrar nome

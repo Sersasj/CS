@@ -36,7 +36,7 @@ CREATE TABLE Administrador (
     
 CREATE TABLE Onibus (
     placa CHAR(7) NOT NULL,
-    ano YEAR,
+    ano INT,
     quilometragem FLOAT,
     modelo VARCHAR(50),
     PRIMARY KEY (placa)
@@ -125,7 +125,7 @@ CREATE TABLE Problema (
     PRIMARY KEY (id)
 );
     
-CREATE TABLE Alerta (
+CREATE TABLE Emergencia (
     id INT NOT NULL AUTO_INCREMENT,
     id_tipo INT NOT NULL,
     id_corrida INT NOT NULL,

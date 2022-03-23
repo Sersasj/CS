@@ -5,111 +5,131 @@
 package com.sistema.model.dao;
 
 import com.sistema.model.pojo.Ponto;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
+import org.hibernate.cfg.Configuration;
+import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class PontoDAO {
-    private Connection connection;
-
-    public PontoDAO() {
+    public static SessionFactory getSessionFactory() {
+        Configuration configObj = new Configuration();
+        configObj.configure("hibernate.cfg.xml");
+ 
+        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
+ 
+        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
+        return factoryObj;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
+    public Integer add(Ponto ponto) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer pontoID = null;
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean inserir(Ponto ponto) {
-        String sql = "INSERT INTO ponto(id_ponto, latitude, longitude) VALUES(?,?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setNull(1, Types.INTEGER);
-            stmt.setFloat(2, ponto.getLatitude());
-            stmt.setFloat(3, ponto.getLongitude());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(PontoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean alterar(Ponto ponto) {
-        String sql = "UPDATE ponto SET latitude=?, longitude=? WHERE id_ponto=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setFloat(1, ponto.getLatitude());
-            stmt.setFloat(2, ponto.getLongitude());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(PontoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean remover(Ponto ponto) {
-        String sql = "DELETE FROM ponto WHERE id_ponto=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, ponto.getId());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(PontoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public List<Ponto> listar() {
-        String sql = "SELECT * FROM ponto";
-        List<Ponto> retorno = new ArrayList<>();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
-            while (resultado.next()) {
-                Ponto ponto = new Ponto();
-                ponto.setId(resultado.getInt("id_ponto"));
-                ponto.setLatitude(resultado.getFloat("latitude"));
-                ponto.setLongitude(resultado.getFloat("longitude"));
-                retorno.add(ponto);
+            tx = session.beginTransaction();
+            pontoID = (Integer) session.save(ponto);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PontoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
+        return pontoID;
+    }
+    
+    public void update(Ponto ponto) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Ponto pontoAntigo = (Ponto) session.get(Ponto.class, ponto.getId());
+            pontoAntigo.setLatitude(ponto.getLatitude());
+            pontoAntigo.setLongitude(ponto.getLongitude());
+            session.update(pontoAntigo);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public List<Ponto> list() {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Ponto> listaRetorno = new ArrayList<>();
+
+        try {
+            tx = session.beginTransaction();
+            listaRetorno = session.createQuery("FROM " + Ponto.class.getName() + "").list();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listaRetorno;
+    }
+    
+
+    public Ponto getById(Integer pontoId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Ponto ponto = new Ponto();
+
+        try {
+            tx = session.beginTransaction();
+            ponto = (Ponto) session.load(Ponto.class, pontoId);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return ponto;
     }
 
-    public Ponto buscar(Ponto ponto) {
-        String sql = "SELECT * FROM ponto WHERE id_ponto=?";
-        Ponto retorno = new Ponto();
+    public void delete(Integer pontoId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, ponto.getId());
-            ResultSet resultado = stmt.executeQuery();
-            if (resultado.next()) {
-                ponto.setId(resultado.getInt("id_ponto"));
-                ponto.setLatitude(resultado.getFloat("latitude"));
-                ponto.setLongitude(resultado.getFloat("longitude"));
-                retorno = ponto;
+            tx = session.beginTransaction();
+            Ponto ponto = (Ponto) session.get(Ponto.class, pontoId);
+            session.delete(ponto);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PontoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
     }
 }
+

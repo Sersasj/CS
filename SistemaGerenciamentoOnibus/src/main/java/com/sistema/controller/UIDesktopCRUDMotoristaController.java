@@ -73,7 +73,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         //tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         //endereço quebra tudo
         
-        listMotorista = motoristaDAO.listar();
+        listMotorista = motoristaDAO.list();
         System.out.println(listMotorista);
         observableListMotorista = FXCollections.observableArrayList(listMotorista);
         tableViewMotorista.setItems(observableListMotorista);
@@ -81,7 +81,6 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        motoristaDAO.setConnection(connection);
         carregarTableView();
     }    
     
