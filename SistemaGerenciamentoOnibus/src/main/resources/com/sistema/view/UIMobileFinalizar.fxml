@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="844.0" prefWidth="391.0" style="-fx-background-color: #F0F8FF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.sistema.controller.UIMobileFinalizarController">
+   <children>
+      <AnchorPane prefHeight="146.0" prefWidth="394.0" style="-fx-background-color: #3486eb;">
+         <children>
+            <Text fill="WHITE" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile Corrida">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="linhaOnibus" layoutX="23.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Linha:" />
+            <Text fx:id="placaOnibus" layoutX="23.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa do Veículo:" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="77.0" layoutY="762.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="241.0" style="-fx-background-color: #FF0000;" text="Problemas com a corrida?" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="36.0" layoutY="637.0" prefHeight="49.0" prefWidth="323.0" style="-fx-background-color: #3486eb;">
+         <children>
+            <Text fill="WHITE" layoutX="106.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Continuar" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="36.0" layoutY="699.0" prefHeight="49.0" prefWidth="323.0" style="-fx-background-color: #3486eb;">
+         <children>
+            <Text fill="WHITE" layoutX="72.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voltar ao início" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#529ac6" layoutX="81.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Corrida Finalizada!" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri Bold" size="30.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
