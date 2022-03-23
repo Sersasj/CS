@@ -42,12 +42,9 @@ public class UITesteConexaoDBController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TESTE BD 
-        motoristaDAO.setConnection(connection);
         carregarTableView();
         
         // TESTE LINHAS
-        linhaDAO.setConnection(connection);
-        pontoDAO.setConnection(connection);
         inicializarComboBox();
         // quando uma linha e selecionada, a tableview e carregada com os pontos da linha
         comboBoxTesteLinha.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -80,15 +77,13 @@ public class UITesteConexaoDBController implements Initializable {
     private List<Onibus> listObjetos;
     private ObservableList<Onibus> observableListObjetos;
     
-    private final Database database = DatabaseFactory.getDatabase("mysql");
-    private final Connection connection = database.conectar();
-    private final OnibusDAO motoristaDAO = new OnibusDAO(); 
+    private final OnibusDAO testeDAO = new OnibusDAO(); 
     
     // carrega a tableview com os atributos definidos no codigo
     public void carregarTableView(){
         tableColumnPrimaria.setCellValueFactory(new PropertyValueFactory<>("placa"));
         tableColumnInfo.setCellValueFactory(new PropertyValueFactory<>("ano"));
-        listObjetos = motoristaDAO.listar();
+        listObjetos = testeDAO.list();
         
         observableListObjetos = FXCollections.observableArrayList(listObjetos);
         tableViewTesteBD.setItems(observableListObjetos);
@@ -132,7 +127,7 @@ public class UITesteConexaoDBController implements Initializable {
             }
         });
         // busca as linhas no bd e coloca numa lista para o combobox utilizar
-        listLinhas = linhaDAO.listar();
+        listLinhas = linhaDAO.list();
         observableListLinhas = FXCollections.observableArrayList(listLinhas);
         comboBoxTesteLinha.setItems(observableListLinhas);
     }
@@ -148,8 +143,8 @@ public class UITesteConexaoDBController implements Initializable {
         tableColumnLongPonto.setCellValueFactory(new PropertyValueFactory<>("longitude"));
         
         listPontos = new ArrayList<>();
-        for(Ponto p: linha.getPontos()){
-            listPontos.add(pontoDAO.buscar(p));
+        for(Ponto p: linha.getPontoList()){
+            listPontos.add(pontoDAO.getById(p.getId()));
         }
         
         observableListPontos = FXCollections.observableArrayList(listPontos);

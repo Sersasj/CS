@@ -4,9 +4,8 @@
  */
 package com.sistema.model.dao;
 
-import com.sistema.model.pojo.Linha;
+import java.io.Serializable;
 import java.util.ArrayList;
-import org.hibernate.cfg.Configuration;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -14,13 +13,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
-public class LinhaDAO {
+public class GenericDAOIncompleto<Tipo, TipoId extends Serializable>{
+    /*private Class<Tipo> classe;
+    private Class<TipoId> classeId;
+    
+    protected GenericDAOIncompleto(Class<Tipo> classe, Class<TipoId> classeId) {
+        this.classe = classe;
+        this.classe = classeId;
+    }
+    
     public static SessionFactory getSessionFactory() {
         Configuration configObj = new Configuration();
         configObj.configure("hibernate.cfg.xml");
@@ -31,14 +39,14 @@ public class LinhaDAO {
         return factoryObj;
     }
 
-    public Integer add(Linha linha) {
+    public Integer add(Tipo obj) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
-        Integer linhaID = null;
+        Integer objID = null;
 
         try {
             tx = session.beginTransaction();
-            linhaID = (Integer) session.save(linha);
+            objID = (Integer) session.save(obj);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -48,18 +56,19 @@ public class LinhaDAO {
         } finally {
             session.close();
         }
-        return linhaID;
+        return objID;
     }
     
-    public void update(Linha linha) {
+    public void update(Tipo obj) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Linha linhaAntigo = (Linha) session.get(Linha.class, linha.getNumero());
-            linhaAntigo.setNome(linha.getNome());
-            session.update(linhaAntigo);
+            Tipo objAntigo = (Tipo) session.get(classe, obj.getId());
+            objAntigo.setLatitude(obj.getLatitude());
+            objAntigo.setLongitude(obj.getLongitude());
+            session.update(objAntigo);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -71,17 +80,17 @@ public class LinhaDAO {
         }
     }
     
-    public List<Linha> list() {
+    public List<Tipo> list() {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
-        List<Linha> listaRetorno = new ArrayList<>();
+        List<Tipo> listaRetorno = new ArrayList<>();
 
         try {
             tx = session.beginTransaction();
-            List linhas = session.createQuery("FROM " + Linha.class.getName() + "").list();
-            for (Iterator iterator = linhas.iterator(); iterator.hasNext();) {
-                Linha linha = (Linha) iterator.next();
-                listaRetorno.add(linha);
+            List objs = session.createQuery("FROM Tipo").list();
+            for (Iterator iterator = objs.iterator(); iterator.hasNext();) {
+                Tipo obj = (Tipo) iterator.next();
+                listaRetorno.add(obj);
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -96,14 +105,14 @@ public class LinhaDAO {
     }
     
 
-    public Linha getById(Integer linhaId) {
+    public Tipo getById(Integer objId) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
-        Linha linha = new Linha();
+        Tipo obj = new Tipo();
 
         try {
             tx = session.beginTransaction();
-            linha = (Linha) session.load(Linha.class, linhaId);
+            obj = (Tipo) session.load(Tipo.class, objId);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -113,17 +122,17 @@ public class LinhaDAO {
         } finally {
             session.close();
         }
-        return linha;
+        return obj;
     }
 
-    public void delete(Integer linhaId) {
+    public void delete(Integer objId) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Linha linha = (Linha) session.get(Linha.class, linhaId);
-            session.delete(linha);
+            Tipo obj = (Tipo) session.get(Tipo.class, objId);
+            session.delete(obj);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -134,4 +143,5 @@ public class LinhaDAO {
             session.close();
         }
     }
+*/
 }

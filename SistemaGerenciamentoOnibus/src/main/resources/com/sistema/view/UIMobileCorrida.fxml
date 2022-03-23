@@ -17,8 +17,9 @@
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Text>
-            <Text fx:id="linhaOnibus" layoutX="23.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Linha:" />
-            <Text fx:id="placaOnibus" layoutX="23.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa do Veículo:" />
+            <Text fx:id="linhaOnibus" layoutX="23.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="placaOnibus" layoutX="23.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+
          </children>
       </AnchorPane>
       <Button layoutX="215.0" layoutY="745.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="134.0" style="-fx-background-color: #FF0000;" text="EMERGÊNCIA" textFill="WHITE">

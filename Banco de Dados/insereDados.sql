@@ -99,5 +99,5 @@ insert into Problema values(1, 6, "Parachoque amassado", '2021-01-01 13:03:50', 
 insert into Problema values(2, 3, "Farol esquerdo falhando", '2021-01-01 19:04:30', "BBB2222", "111.111.111-11");
 insert into Problema values(3, 4, "Pneus ficando carecas", '2021-01-01 19:05:15', "DDD4444", "222.222.222-22");
 
-insert into Alerta values(1, 2, 1004, '2021-01-01 12:42:14', -23.425808, -51.938264);
-insert into Alerta values(2, 1, 1007, '2021-01-01 18:23:25', -23.405614, -51.936603);
+insert into Emergencia values(1, 2, 1004, '2021-01-01 12:42:14', -23.425808, -51.938264);
+insert into Emergencia values(2, 1, 1007, '2021-01-01 18:23:25', -23.405614, -51.936603);

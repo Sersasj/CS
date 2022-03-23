@@ -1,116 +1,204 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package com.sistema.model.pojo;
-import java.time.LocalDateTime;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Corrida {
-    private int id, passageirosPagantes, passageirosNaoPagantes;
-    private float consumoCombustivel, distanciaPercorrida;
-    private Motorista Motorista;
-    private Onibus onibus;
-    private Linha linha;
-    private LocalDateTime inicioCorrida, fimCorrida;
+/**
+ *
+ * @author vini
+ */
+@Entity
+@Table(name = "corrida")
+@NamedQueries({
+    @NamedQuery(name = "Corrida.findAll", query = "SELECT c FROM Corrida c"),
+    @NamedQuery(name = "Corrida.findById", query = "SELECT c FROM Corrida c WHERE c.id = :id"),
+    @NamedQuery(name = "Corrida.findByInicioCorrida", query = "SELECT c FROM Corrida c WHERE c.inicioCorrida = :inicioCorrida"),
+    @NamedQuery(name = "Corrida.findByFimCorrida", query = "SELECT c FROM Corrida c WHERE c.fimCorrida = :fimCorrida"),
+    @NamedQuery(name = "Corrida.findByPassNaoPagantes", query = "SELECT c FROM Corrida c WHERE c.passNaoPagantes = :passNaoPagantes"),
+    @NamedQuery(name = "Corrida.findByPassPagantes", query = "SELECT c FROM Corrida c WHERE c.passPagantes = :passPagantes"),
+    @NamedQuery(name = "Corrida.findByConsumoCombustivel", query = "SELECT c FROM Corrida c WHERE c.consumoCombustivel = :consumoCombustivel"),
+    @NamedQuery(name = "Corrida.findByDistanciaPercorrida", query = "SELECT c FROM Corrida c WHERE c.distanciaPercorrida = :distanciaPercorrida")})
+public class Corrida implements Serializable {
 
-    public Corrida(int id, int passageirosPagantes, int passageirosNaoPagantes, float consumoCombustivel, float distanciaPercorrida, Motorista Motorista, Onibus onibus, Linha linha, LocalDateTime inicioCorrida, LocalDateTime fimCorrida) {
-        this.id = id;
-        this.passageirosPagantes = passageirosPagantes;
-        this.passageirosNaoPagantes = passageirosNaoPagantes;
-        this.consumoCombustivel = consumoCombustivel;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.Motorista = Motorista;
-        this.onibus = onibus;
-        this.linha = linha;
-        this.inicioCorrida = inicioCorrida;
-        this.fimCorrida = fimCorrida;
-    }
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "inicio_corrida")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date inicioCorrida;
+    @Basic(optional = false)
+    @Column(name = "fim_corrida")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fimCorrida;
+    @Column(name = "pass_nao_pagantes")
+    private Integer passNaoPagantes;
+    @Column(name = "pass_pagantes")
+    private Integer passPagantes;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "consumo_combustivel")
+    private Float consumoCombustivel;
+    @Column(name = "distancia_percorrida")
+    private Float distanciaPercorrida;
+    @JoinColumn(name = "num_linha", referencedColumnName = "numero")
+    @ManyToOne(optional = false)
+    private Linha numLinha;
+    @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
+    @ManyToOne(optional = false)
+    private Motorista cpfMotorista;
+    @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
+    @ManyToOne(optional = false)
+    private Onibus placaOnibus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCorrida")
+    private List<Emergencia> emergenciaList;
 
     public Corrida() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Corrida(Integer id) {
         this.id = id;
     }
 
-    public int getPassageirosPagantes() {
-        return passageirosPagantes;
+    public Corrida(Integer id, Date inicioCorrida, Date fimCorrida) {
+        this.id = id;
+        this.inicioCorrida = inicioCorrida;
+        this.fimCorrida = fimCorrida;
     }
 
-    public void setPassageirosPagantes(int passageirosPagantes) {
-        this.passageirosPagantes = passageirosPagantes;
+    public Integer getId() {
+        return id;
     }
 
-    public int getPassageirosNaoPagantes() {
-        return passageirosNaoPagantes;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setPassageirosNaoPagantes(int passageirosNaoPagantes) {
-        this.passageirosNaoPagantes = passageirosNaoPagantes;
-    }
-
-    public float getConsumoCombustivel() {
-        return consumoCombustivel;
-    }
-
-    public void setConsumoCombustivel(float consumoCombustivel) {
-        this.consumoCombustivel = consumoCombustivel;
-    }
-
-    public float getDistanciaPercorrida() {
-        return distanciaPercorrida;
-    }
-
-    public void setDistanciaPercorrida(float distanciaPercorrida) {
-        this.distanciaPercorrida = distanciaPercorrida;
-    }
-
-    public Motorista getMotorista() {
-        return Motorista;
-    }
-
-    public void setMotorista(Motorista Motorista) {
-        this.Motorista = Motorista;
-    }
-
-    public Onibus getOnibus() {
-        return onibus;
-    }
-
-    public void setOnibus(Onibus onibus) {
-        this.onibus = onibus;
-    }
-
-    public Linha getLinha() {
-        return linha;
-    }
-
-    public void setLinha(Linha linha) {
-        this.linha = linha;
-    }
-
-    public LocalDateTime getInicioCorrida() {
+    public Date getInicioCorrida() {
         return inicioCorrida;
     }
 
-    public void setInicioCorrida(LocalDateTime inicioCorrida) {
+    public void setInicioCorrida(Date inicioCorrida) {
         this.inicioCorrida = inicioCorrida;
     }
 
-    public LocalDateTime getFimCorrida() {
+    public Date getFimCorrida() {
         return fimCorrida;
     }
 
-    public void setFimCorrida(LocalDateTime fimCorrida) {
+    public void setFimCorrida(Date fimCorrida) {
         this.fimCorrida = fimCorrida;
     }
-    
+
+    public Integer getPassNaoPagantes() {
+        return passNaoPagantes;
+    }
+
+    public void setPassNaoPagantes(Integer passNaoPagantes) {
+        this.passNaoPagantes = passNaoPagantes;
+    }
+
+    public Integer getPassPagantes() {
+        return passPagantes;
+    }
+
+    public void setPassPagantes(Integer passPagantes) {
+        this.passPagantes = passPagantes;
+    }
+
+    public Float getConsumoCombustivel() {
+        return consumoCombustivel;
+    }
+
+    public void setConsumoCombustivel(Float consumoCombustivel) {
+        this.consumoCombustivel = consumoCombustivel;
+    }
+
+    public Float getDistanciaPercorrida() {
+        return distanciaPercorrida;
+    }
+
+    public void setDistanciaPercorrida(Float distanciaPercorrida) {
+        this.distanciaPercorrida = distanciaPercorrida;
+    }
+
+    public Linha getNumLinha() {
+        return numLinha;
+    }
+
+    public void setNumLinha(Linha numLinha) {
+        this.numLinha = numLinha;
+    }
+
+    public Motorista getCpfMotorista() {
+        return cpfMotorista;
+    }
+
+    public void setCpfMotorista(Motorista cpfMotorista) {
+        this.cpfMotorista = cpfMotorista;
+    }
+
+    public Onibus getPlacaOnibus() {
+        return placaOnibus;
+    }
+
+    public void setPlacaOnibus(Onibus placaOnibus) {
+        this.placaOnibus = placaOnibus;
+    }
+
+    public List<Emergencia> getEmergenciaList() {
+        return emergenciaList;
+    }
+
+    public void setEmergenciaList(List<Emergencia> emergenciaList) {
+        this.emergenciaList = emergenciaList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Corrida)) {
+            return false;
+        }
+        Corrida other = (Corrida) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.sistema.model.pojo.Corrida[ id=" + id + " ]";
+    }
     
 }

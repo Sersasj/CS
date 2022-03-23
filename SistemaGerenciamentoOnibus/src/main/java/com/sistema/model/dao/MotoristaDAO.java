@@ -1,140 +1,141 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.sistema.model.dao;
 
 import com.sistema.model.pojo.Motorista;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import org.hibernate.cfg.Configuration;
+import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class MotoristaDAO {
-    private Connection connection;
-
-    public MotoristaDAO() {
+    public static SessionFactory getSessionFactory() {
+        Configuration configObj = new Configuration();
+        configObj.configure("hibernate.cfg.xml");
+ 
+        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
+ 
+        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
+        return factoryObj;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
+    public Integer add(Motorista motorista) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer motoristaID = null;
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean inserir(Motorista motorista) {
-        String sql1 = "INSERT INTO funcionario(cpf, rg, nome, telefone, endereco) VALUES(?,?,?,?,?)";
-        String sql2 = "INSERT INTO motorista(cpf, cnh) VALUES(?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql1);
-            stmt.setString(1, motorista.getCpf());
-            stmt.setString(2, motorista.getRg());
-            stmt.setString(3, motorista.getNome());
-            stmt.setString(4, motorista.getTelefone());
-            stmt.setString(5, motorista.getEndereco());
-            stmt.execute();
-            stmt = connection.prepareStatement(sql2);
-            stmt.setString(1, motorista.getCpf());
-            stmt.setString(2, motorista.getCnh());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean alterar(Motorista motorista) {
-        String sql1 = "UPDATE funcionario SET rg=?, nome=?, telefone=?, endereco=? WHERE cpf=?";
-        String sql2 = "UPDATE motorista SET cnh=? WHERE cpf=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql1);
-            stmt.setString(1, motorista.getRg());
-            stmt.setString(2, motorista.getNome());
-            stmt.setString(3, motorista.getTelefone());
-            stmt.setString(4, motorista.getEndereco());
-            stmt.execute();
-            stmt = connection.prepareStatement(sql2);
-            stmt.setString(1, motorista.getCnh());
-            stmt.setString(2, motorista.getCpf());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    // Remover motorista pode não ser possível, pois tem corridas ligadas a ele
-    public boolean remover(Motorista motorista) {
-        String sql1 = "DELETE FROM motorista WHERE cpf=?";
-        String sql2 = "DELETE FROM funcionario WHERE cpf=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql1);
-            stmt.setString(1, motorista.getCpf());
-            stmt.execute();
-            stmt = connection.prepareStatement(sql2);
-            stmt.setString(1, motorista.getCpf());
-            stmt.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public List<Motorista> listar() {
-        String sql = "SELECT * FROM motorista NATURAL JOIN funcionario";
-        List<Motorista> retorno = new ArrayList<>();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
-            while (resultado.next()) {
-                Motorista motorista = new Motorista();
-                motorista.setCpf(resultado.getString("cpf"));
-                motorista.setRg(resultado.getString("rg"));
-                motorista.setNome(resultado.getString("nome"));
-                motorista.setTelefone(resultado.getString("telefone"));
-                motorista.setEndereco(resultado.getString("endereco"));
-                motorista.setCnh(resultado.getString("cnh"));
-                retorno.add(motorista);
+            tx = session.beginTransaction();
+            motoristaID = (Integer) session.save(motorista);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
+        return motoristaID;
+    }
+    
+    public void update(Motorista motorista) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            Motorista motoristaAntigo = (Motorista) session.get(Motorista.class, motorista.getCpf());
+            motoristaAntigo.setRg(motorista.getRg());
+            motoristaAntigo.setNome(motorista.getNome());
+            motoristaAntigo.setTelefone(motorista.getTelefone());
+            motoristaAntigo.setEndereco(motorista.getEndereco());
+            motoristaAntigo.setCnh(motorista.getCnh());
+            session.update(motoristaAntigo);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public List<Motorista> list() {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Motorista> listaRetorno = new ArrayList<>();
+
+        try {
+            tx = session.beginTransaction();
+            List motoristas = session.createQuery("FROM " + Motorista.class.getName() + "").list();
+            for (Iterator iterator = motoristas.iterator(); iterator.hasNext();) {
+                Motorista motorista = (Motorista) iterator.next();
+                listaRetorno.add(motorista);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listaRetorno;
+    }
+    
+
+    public Motorista getById(Integer motoristaId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        Motorista motorista = new Motorista();
+
+        try {
+            tx = session.beginTransaction();
+            motorista = (Motorista) session.load(Motorista.class, motoristaId);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return motorista;
     }
 
-    public Motorista buscar(Motorista motorista) {
-        String sql = "SELECT * FROM motorista WHERE cpf=?";
-        Motorista retorno = new Motorista();
+    public void delete(Integer motoristaId) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, motorista.getCpf());
-            ResultSet resultado = stmt.executeQuery();
-            if (resultado.next()) {
-                motorista.setCpf(resultado.getString("cpf"));
-                motorista.setRg(resultado.getString("rg"));
-                motorista.setNome(resultado.getString("nome"));
-                motorista.setTelefone(resultado.getString("telefone"));
-                motorista.setEndereco(resultado.getString("endereco"));
-                motorista.setCnh(resultado.getString("cnh"));
-                retorno = motorista;
+            tx = session.beginTransaction();
+            Motorista motorista = (Motorista) session.get(Motorista.class, motoristaId);
+            session.delete(motorista);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return retorno;
     }
 }
