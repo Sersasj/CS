@@ -68,7 +68,6 @@ public class MotoristaDAO {
         List<Motorista> listaRetorno = new ArrayList<>();
         try {
 
-            System.out.println("Deu bom2");
             System.out.println(entityManager.toString());
             transaction.begin();
             listaRetorno = entityManager.createQuery("SELECT e FROM Motorista e").getResultList();
@@ -82,7 +81,6 @@ public class MotoristaDAO {
             entityManager.close();
         }
 
-        System.out.println("Deu bom3");
         return listaRetorno;
     }
 

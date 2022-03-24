@@ -1,5 +1,7 @@
 package com.sistema;
 
+import com.sistema.model.dao.MotoristaDAO;
+import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Ponto;
 import com.sistema.util.ValidadorString;
 import javafx.application.Application;
@@ -37,12 +39,10 @@ public class App extends Application {
     }
     private static void testeBD(){
         Ponto p1 = new Ponto(3, (float)-10.0, (float)10.0);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaGerenciamentoOnibusPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.merge(p1);
-        em.getTransaction().commit();
-        System.out.println("TesteBD feito");
+        MotoristaDAO motoristaDAO = new MotoristaDAO();
+        Motorista m = motoristaDAO.getById("111.111.111-11");
+
+        System.out.println("aaaa" + m.toString());
     }
     private static void testesREGEX(){
         ValidadorString vs = new ValidadorString();
@@ -76,6 +76,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         testesREGEX();
+        testeBD();
         launch();
     }
 

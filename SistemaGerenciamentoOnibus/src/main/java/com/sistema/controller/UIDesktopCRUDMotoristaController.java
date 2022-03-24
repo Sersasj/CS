@@ -83,7 +83,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         
         listMotorista = motoristaDAO.list();
-        System.out.println(listMotorista);
+        //System.out.println(listMotorista);
         observableListMotorista = FXCollections.observableArrayList(listMotorista);
         tableViewMotorista.setItems(observableListMotorista);
     }

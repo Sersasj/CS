@@ -119,7 +119,6 @@ public class OnibusDAO {
         List<Onibus> listaRetorno = new ArrayList<>();
         try {
 
-            System.out.println("Deu bom2");
             System.out.println(entityManager.toString());
             transaction.begin();
             listaRetorno = entityManager.createQuery("SELECT e FROM Onibus e").getResultList();
@@ -133,7 +132,6 @@ public class OnibusDAO {
             entityManager.close();
         }
 
-        System.out.println("Deu bom3");
         return listaRetorno;
 //        Session session = getSessionFactory().openSession();
 //        Transaction tx = null;

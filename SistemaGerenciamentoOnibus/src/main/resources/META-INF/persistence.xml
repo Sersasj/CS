@@ -20,7 +20,7 @@
         <class>com.sistema.model.pojo.TipoEmergencia</class>
         <class>com.sistema.model.pojo.TipoProblema</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistemaonibus"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistemaonibus?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="usuarioAdmin"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="senhaAdmin"/>

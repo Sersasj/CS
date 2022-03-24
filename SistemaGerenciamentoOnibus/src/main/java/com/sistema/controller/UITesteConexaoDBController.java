@@ -135,7 +135,7 @@ public class UITesteConexaoDBController implements Initializable {
     
     private List<Ponto> listPontos;
     private ObservableList<Ponto> observableListPontos;
-    private final PontoDAO pontoDAO = new PontoDAO();
+    //private final PontoDAO pontoDAO = new PontoDAO();
     
     // carrega a tableview com os pontos associados a uma linha
     public void carregarTableViewPontos(Linha linha){

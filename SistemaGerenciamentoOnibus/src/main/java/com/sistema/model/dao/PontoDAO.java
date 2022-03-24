@@ -69,7 +69,6 @@ public class PontoDAO {
         List<Ponto> listaRetorno = new ArrayList<>();
         try {
 
-            System.out.println("Deu bom2");
             System.out.println(entityManager.toString());
             transaction.begin();
             listaRetorno = entityManager.createQuery("SELECT e FROM Ponto e").getResultList();
@@ -83,7 +82,6 @@ public class PontoDAO {
             entityManager.close();
         }
 
-        System.out.println("Deu bom3");
         return listaRetorno;
     }
 
