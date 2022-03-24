@@ -52,6 +52,7 @@ public class MotoristaDAO {
             transaction.begin();
             entityManager.merge(motorista);
             transaction.commit();
+            System.out.println("foi");
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();

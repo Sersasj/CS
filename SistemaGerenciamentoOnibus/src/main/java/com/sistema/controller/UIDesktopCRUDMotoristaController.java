@@ -37,6 +37,8 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML
     private TableView<Motorista> tableViewMotorista;
     @FXML
+    private TableColumn<Motorista, String> tableColumnCNH;    
+    @FXML
     private TableColumn<Motorista, String> tableColumnCPF;
     @FXML
     private TableColumn<Motorista, String> tableColumnRG;
@@ -49,6 +51,8 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML
     private TextField textBuscaNome;
     
+    @FXML
+    private TextField textCNH;
     @FXML 
     private TextField textCPF;
     @FXML 
@@ -68,14 +72,32 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML
     public void handleMouseAction(MouseEvent event){
         Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
+        textCNH.setText(motorista.getCnh());
         textCPF.setText(motorista.getCpf());
         textRG.setText(motorista.getRg());
         textNome.setText(motorista.getNome());
         textTelefone.setText(motorista.getTelefone());
         textEndereco.setText(motorista.getEndereco());
-    }   
+    }
+    @FXML
+    public void handleAdicionarMotorista(MouseEvent event){
+        //adicionar funcionario antes??
+        Motorista motorista = new Motorista();
+        motorista.setCnh(textCNH.getText());
+        motorista.setCpf(textCPF.getText());
+        //motorista.se
+    }
+    @FXML
+    public void handleAlterarMotorista(MouseEvent eventt){
+        //nao ta funcionando ainda,
+        Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
+        motorista.setCnh(textCNH.getText());
+        motorista.setCpf(textCPF.getText());
+        motoristaDAO.update(motorista);
+    }
+    
     public void carregarTableView(){
-        
+        tableColumnCNH.setCellValueFactory(new PropertyValueFactory<>("cnh"));
         tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
