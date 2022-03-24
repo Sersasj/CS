@@ -4,134 +4,123 @@
  */
 package com.sistema.model.dao;
 
+import com.sistema.model.bd.EMFSingleton;
 import com.sistema.model.pojo.Linha;
 import java.util.ArrayList;
-import org.hibernate.cfg.Configuration;
-import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class LinhaDAO {
-    public static SessionFactory getSessionFactory() {
-        Configuration configObj = new Configuration();
-        configObj.configure("hibernate.cfg.xml");
- 
-        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
- 
-        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
-        return factoryObj;
-    }
-
-    public Integer add(Linha linha) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Integer linhaID = null;
-
-        try {
-            tx = session.beginTransaction();
-            linhaID = (Integer) session.save(linha);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return linhaID;
+    public LinhaDAO() {
     }
     
-    public void update(Linha linha) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
+    private EntityManager getEntityManager() {
+        EMFSingleton emfSingleton = EMFSingleton.getInstance();
+        EntityManager entityManager = emfSingleton.getEntityManagerFactory().createEntityManager();
 
-        try {
-            tx = session.beginTransaction();
-            Linha linhaAntigo = (Linha) session.get(Linha.class, linha.getNumero());
-            linhaAntigo.setNome(linha.getNome());
-            session.update(linhaAntigo);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        return entityManager;
     }
-    
-    public List<Linha> list() {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        List<Linha> listaRetorno = new ArrayList<>();
 
+    public Linha add(Linha linha) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            List linhas = session.createQuery("FROM " + Linha.class.getName() + "").list();
-            for (Iterator iterator = linhas.iterator(); iterator.hasNext();) {
-                Linha linha = (Linha) iterator.next();
-                listaRetorno.add(linha);
-            }
-            tx.commit();
+            transaction.begin();
+            entityManager.persist(linha);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
-        }
-        return listaRetorno;
-    }
-    
-
-    public Linha getById(Integer linhaId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Linha linha = new Linha();
-
-        try {
-            tx = session.beginTransaction();
-            linha = (Linha) session.load(Linha.class, linhaId);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
+            entityManager.close();
         }
         return linha;
     }
 
-    public void delete(Integer linhaId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-
+    public void update(Linha linha) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            Linha linha = (Linha) session.get(Linha.class, linhaId);
-            session.delete(linha);
-            tx.commit();
+            transaction.begin();
+            entityManager.merge(linha);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
+            entityManager.close();
         }
+    }
+
+    public List<Linha> list() {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Linha> listaRetorno = new ArrayList<>();
+        try {
+            System.out.println(entityManager.toString());
+            transaction.begin();
+            listaRetorno = entityManager.createQuery("SELECT DISTINCT e FROM Linha e LEFT JOIN FETCH e.pontoList").getResultList();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        return listaRetorno;
+    }
+
+    public Linha getById(Integer linhaId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        Linha linha = null;
+        try {
+            transaction.begin();
+            linha = entityManager.find(Linha.class, linhaId);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return linha;
+    }
+
+    public boolean delete(Integer linhaId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Linha linha = getById(linhaId);
+            if (linha == null) {
+                return false;
+            }
+            entityManager.remove(linha);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return true;
     }
 }

@@ -9,10 +9,10 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +21,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ponto")
-@NamedQueries({
-    @NamedQuery(name = "Ponto.findAll", query = "SELECT p FROM Ponto p"),
-    @NamedQuery(name = "Ponto.findById", query = "SELECT p FROM Ponto p WHERE p.id = :id"),
-    @NamedQuery(name = "Ponto.findByLatitude", query = "SELECT p FROM Ponto p WHERE p.latitude = :latitude"),
-    @NamedQuery(name = "Ponto.findByLongitude", query = "SELECT p FROM Ponto p WHERE p.longitude = :longitude")})
 public class Ponto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;

@@ -29,15 +29,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "corrida")
-@NamedQueries({
-    @NamedQuery(name = "Corrida.findAll", query = "SELECT c FROM Corrida c"),
-    @NamedQuery(name = "Corrida.findById", query = "SELECT c FROM Corrida c WHERE c.id = :id"),
-    @NamedQuery(name = "Corrida.findByInicioCorrida", query = "SELECT c FROM Corrida c WHERE c.inicioCorrida = :inicioCorrida"),
-    @NamedQuery(name = "Corrida.findByFimCorrida", query = "SELECT c FROM Corrida c WHERE c.fimCorrida = :fimCorrida"),
-    @NamedQuery(name = "Corrida.findByPassNaoPagantes", query = "SELECT c FROM Corrida c WHERE c.passNaoPagantes = :passNaoPagantes"),
-    @NamedQuery(name = "Corrida.findByPassPagantes", query = "SELECT c FROM Corrida c WHERE c.passPagantes = :passPagantes"),
-    @NamedQuery(name = "Corrida.findByConsumoCombustivel", query = "SELECT c FROM Corrida c WHERE c.consumoCombustivel = :consumoCombustivel"),
-    @NamedQuery(name = "Corrida.findByDistanciaPercorrida", query = "SELECT c FROM Corrida c WHERE c.distanciaPercorrida = :distanciaPercorrida")})
 public class Corrida implements Serializable {
 
     private static final long serialVersionUID = 1L;

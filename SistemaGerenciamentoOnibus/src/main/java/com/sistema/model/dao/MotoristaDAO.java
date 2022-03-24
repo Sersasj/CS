@@ -4,138 +4,126 @@
  */
 package com.sistema.model.dao;
 
+import com.sistema.model.bd.EMFSingleton;
 import com.sistema.model.pojo.Motorista;
 import java.util.ArrayList;
-import org.hibernate.cfg.Configuration;
-import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class MotoristaDAO {
-    public static SessionFactory getSessionFactory() {
-        Configuration configObj = new Configuration();
-        configObj.configure("hibernate.cfg.xml");
- 
-        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
- 
-        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
-        return factoryObj;
-    }
-
-    public Integer add(Motorista motorista) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Integer motoristaID = null;
-
-        try {
-            tx = session.beginTransaction();
-            motoristaID = (Integer) session.save(motorista);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return motoristaID;
+    public MotoristaDAO() {
     }
     
-    public void update(Motorista motorista) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        
-        try {
-            tx = session.beginTransaction();
-            Motorista motoristaAntigo = (Motorista) session.get(Motorista.class, motorista.getCpf());
-            motoristaAntigo.setRg(motorista.getRg());
-            motoristaAntigo.setNome(motorista.getNome());
-            motoristaAntigo.setTelefone(motorista.getTelefone());
-            motoristaAntigo.setEndereco(motorista.getEndereco());
-            motoristaAntigo.setCnh(motorista.getCnh());
-            session.update(motoristaAntigo);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+    private EntityManager getEntityManager() {
+        EMFSingleton emfSingleton = EMFSingleton.getInstance();
+        EntityManager entityManager = emfSingleton.getEntityManagerFactory().createEntityManager();
+
+        return entityManager;
     }
-    
-    public List<Motorista> list() {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        List<Motorista> listaRetorno = new ArrayList<>();
 
+    public Motorista add(Motorista motorista) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            List motoristas = session.createQuery("FROM " + Motorista.class.getName() + "").list();
-            for (Iterator iterator = motoristas.iterator(); iterator.hasNext();) {
-                Motorista motorista = (Motorista) iterator.next();
-                listaRetorno.add(motorista);
-            }
-            tx.commit();
+            transaction.begin();
+            entityManager.persist(motorista);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
-        }
-        return listaRetorno;
-    }
-    
-
-    public Motorista getById(Integer motoristaId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Motorista motorista = new Motorista();
-
-        try {
-            tx = session.beginTransaction();
-            motorista = (Motorista) session.load(Motorista.class, motoristaId);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
+            entityManager.close();
         }
         return motorista;
     }
 
-    public void delete(Integer motoristaId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-
+    public void update(Motorista motorista) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            Motorista motorista = (Motorista) session.get(Motorista.class, motoristaId);
-            session.delete(motorista);
-            tx.commit();
+            transaction.begin();
+            entityManager.merge(motorista);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
+            entityManager.close();
         }
+    }
+
+    public List<Motorista> list() {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Motorista> listaRetorno = new ArrayList<>();
+        try {
+
+            System.out.println("Deu bom2");
+            System.out.println(entityManager.toString());
+            transaction.begin();
+            listaRetorno = entityManager.createQuery("SELECT e FROM Motorista e").getResultList();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        System.out.println("Deu bom3");
+        return listaRetorno;
+    }
+
+    public Motorista getById(String motoristaId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        Motorista motorista = null;
+        try {
+            transaction.begin();
+            motorista = entityManager.find(Motorista.class, motoristaId);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return motorista;
+    }
+
+    public boolean delete(String motoristaId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Motorista motorista = getById(motoristaId);
+            if (motorista == null) {
+                return false;
+            }
+            entityManager.remove(motorista);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return true;
     }
 }

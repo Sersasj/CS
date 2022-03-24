@@ -24,10 +24,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "motorista")
-@NamedQueries({
-    @NamedQuery(name = "Motorista.findAll", query = "SELECT m FROM Motorista m"),
-    @NamedQuery(name = "Motorista.findByCpf", query = "SELECT m FROM Motorista m WHERE m.cpf = :cpf"),
-    @NamedQuery(name = "Motorista.findByCnh", query = "SELECT m FROM Motorista m WHERE m.cnh = :cnh")})
 public class Motorista extends Funcionario implements Serializable{
 
     private static final long serialVersionUID = 1L;

@@ -1,5 +1,6 @@
 package com.sistema;
 
+import com.sistema.model.pojo.Ponto;
 import com.sistema.util.ValidadorString;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * JavaFX App
@@ -31,7 +35,15 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
+    private static void testeBD(){
+        Ponto p1 = new Ponto(3, (float)-10.0, (float)10.0);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaGerenciamentoOnibusPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(p1);
+        em.getTransaction().commit();
+        System.out.println("TesteBD feito");
+    }
     private static void testesREGEX(){
         ValidadorString vs = new ValidadorString();
         String nome, email, telefone, rg, cpf;

@@ -21,13 +21,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "funcionario")
-@NamedQueries({
-    @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f"),
-    @NamedQuery(name = "Funcionario.findByCpf", query = "SELECT f FROM Funcionario f WHERE f.cpf = :cpf"),
-    @NamedQuery(name = "Funcionario.findByRg", query = "SELECT f FROM Funcionario f WHERE f.rg = :rg"),
-    @NamedQuery(name = "Funcionario.findByNome", query = "SELECT f FROM Funcionario f WHERE f.nome = :nome"),
-    @NamedQuery(name = "Funcionario.findByTelefone", query = "SELECT f FROM Funcionario f WHERE f.telefone = :telefone"),
-    @NamedQuery(name = "Funcionario.findByEndereco", query = "SELECT f FROM Funcionario f WHERE f.endereco = :endereco")})
 public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;

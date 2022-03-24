@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
+import org.hibernate.Hibernate;
 
 /**
  * FXML Controller class
@@ -142,10 +143,7 @@ public class UITesteConexaoDBController implements Initializable {
         tableColumnLatPonto.setCellValueFactory(new PropertyValueFactory<>("latitude"));
         tableColumnLongPonto.setCellValueFactory(new PropertyValueFactory<>("longitude"));
         
-        listPontos = new ArrayList<>();
-        for(Ponto p: linha.getPontoList()){
-            listPontos.add(pontoDAO.getById(p.getId()));
-        }
+        listPontos = linha.getPontoList();
         
         observableListPontos = FXCollections.observableArrayList(listPontos);
         tableViewTestePontos.setItems(observableListPontos);

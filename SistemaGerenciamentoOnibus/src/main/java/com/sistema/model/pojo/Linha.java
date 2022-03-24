@@ -25,10 +25,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "linha")
-@NamedQueries({
-    @NamedQuery(name = "Linha.findAll", query = "SELECT l FROM Linha l"),
-    @NamedQuery(name = "Linha.findByNumero", query = "SELECT l FROM Linha l WHERE l.numero = :numero"),
-    @NamedQuery(name = "Linha.findByNome", query = "SELECT l FROM Linha l WHERE l.nome = :nome")})
 public class Linha implements Serializable {
 
     private static final long serialVersionUID = 1L;

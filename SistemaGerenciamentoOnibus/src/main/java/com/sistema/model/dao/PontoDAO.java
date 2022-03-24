@@ -4,132 +4,128 @@
  */
 package com.sistema.model.dao;
 
+import com.sistema.model.bd.EMFSingleton;
 import com.sistema.model.pojo.Ponto;
 import java.util.ArrayList;
-import org.hibernate.cfg.Configuration;
-import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author vini
  */
 public class PontoDAO {
-    public static SessionFactory getSessionFactory() {
-        Configuration configObj = new Configuration();
-        configObj.configure("hibernate.cfg.xml");
- 
-        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
- 
-        SessionFactory factoryObj = configObj.buildSessionFactory(serviceRegistryObj);      
-        return factoryObj;
-    }
 
-    public Integer add(Ponto ponto) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Integer pontoID = null;
-
-        try {
-            tx = session.beginTransaction();
-            pontoID = (Integer) session.save(ponto);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return pontoID;
+    public PontoDAO() {
     }
     
-    public void update(Ponto ponto) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
+    private EntityManager getEntityManager() {
+        EMFSingleton emfSingleton = EMFSingleton.getInstance();
+        EntityManager entityManager = emfSingleton.getEntityManagerFactory().createEntityManager();
 
-        try {
-            tx = session.beginTransaction();
-            Ponto pontoAntigo = (Ponto) session.get(Ponto.class, ponto.getId());
-            pontoAntigo.setLatitude(ponto.getLatitude());
-            pontoAntigo.setLongitude(ponto.getLongitude());
-            session.update(pontoAntigo);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        return entityManager;
     }
-    
-    public List<Ponto> list() {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        List<Ponto> listaRetorno = new ArrayList<>();
 
+    public Ponto add(Ponto ponto) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            listaRetorno = session.createQuery("FROM " + Ponto.class.getName() + "").list();
-            tx.commit();
+            transaction.begin();
+            entityManager.persist(ponto);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
-        }
-        return listaRetorno;
-    }
-    
-
-    public Ponto getById(Integer pontoId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        Ponto ponto = new Ponto();
-
-        try {
-            tx = session.beginTransaction();
-            ponto = (Ponto) session.load(Ponto.class, pontoId);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
+            entityManager.close();
         }
         return ponto;
     }
 
-    public void delete(Integer pontoId) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-
+    public void update(Ponto ponto) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            tx = session.beginTransaction();
-            Ponto ponto = (Ponto) session.get(Ponto.class, pontoId);
-            session.delete(ponto);
-            tx.commit();
+            transaction.begin();
+            entityManager.merge(ponto);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            session.close();
+            entityManager.close();
         }
+    }
+
+    public List<Ponto> list() {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Ponto> listaRetorno = new ArrayList<>();
+        try {
+
+            System.out.println("Deu bom2");
+            System.out.println(entityManager.toString());
+            transaction.begin();
+            listaRetorno = entityManager.createQuery("SELECT e FROM Ponto e").getResultList();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        System.out.println("Deu bom3");
+        return listaRetorno;
+    }
+
+    public Ponto getById(Integer pontoId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        Ponto ponto = null;
+        try {
+            transaction.begin();
+            ponto = entityManager.find(Ponto.class, pontoId);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return ponto;
+    }
+
+    public boolean delete(Integer pontoId) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Ponto ponto = getById(pontoId);
+            if (ponto == null) {
+                return false;
+            }
+            entityManager.remove(ponto);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return true;
     }
 }
 

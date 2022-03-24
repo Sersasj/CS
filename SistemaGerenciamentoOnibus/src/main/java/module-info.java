@@ -9,6 +9,6 @@ module com.sistema {
     
     opens com.sistema to javafx.fxml;
     opens com.sistema.controller to javafx.fxml ;
-    opens com.sistema.model.pojo to javafx.base ;
+    opens com.sistema.model.pojo to javafx.base, org.hibernate.orm.core;
     exports com.sistema;
 }
