@@ -128,7 +128,7 @@ public class UITesteConexaoDBController implements Initializable {
             }
         });
         // busca as linhas no bd e coloca numa lista para o combobox utilizar
-        listLinhas = linhaDAO.list();
+        listLinhas = linhaDAO.listComPontos();
         observableListLinhas = FXCollections.observableArrayList(listLinhas);
         comboBoxTesteLinha.setItems(observableListLinhas);
     }
