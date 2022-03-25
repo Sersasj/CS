@@ -68,7 +68,8 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private List<Motorista> listMotorista;
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
-    
+   
+
     @FXML
     public void handleMouseAction(MouseEvent event){
         Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
@@ -79,35 +80,56 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         textTelefone.setText(motorista.getTelefone());
         textEndereco.setText(motorista.getEndereco());
     }
+    
+    @FXML
+    public void handleRemoverMotorista(MouseEvent event){
+        System.out.println("aaa");
+        
+    }
     @FXML
     public void handleAdicionarMotorista(MouseEvent event){
         //adicionar funcionario antes??
         Motorista motorista = new Motorista();
         motorista.setCnh(textCNH.getText());
         motorista.setCpf(textCPF.getText());
-        //motorista.se
+        motorista.setNome(textNome.getText());
+        motorista.setTelefone(textTelefone.getText());
+        motorista.setEndereco(textEndereco.getText()); 
+        motorista.setRg(textRG.getText());
+        motoristaDAO.add(motorista);
     }
     @FXML
     public void handleAlterarMotorista(MouseEvent eventt){
-        //nao ta funcionando ainda,
         Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
         motorista.setCnh(textCNH.getText());
-        motorista.setCpf(textCPF.getText());
+        motorista.setNome(textNome.getText());
+        motorista.setTelefone(textTelefone.getText());
+        motorista.setEndereco(textEndereco.getText());
+        // alterar cpf quebra tudo
+        //motorista.setCpf(textCPF.getText());
+        motorista.setRg(textRG.getText());
         motoristaDAO.update(motorista);
+        
+        carregarTableView();
+        tableViewMotorista.getColumns().get(0).setVisible(false);
+        tableViewMotorista.getColumns().get(0).setVisible(true);
+        
     }
     
     public void carregarTableView(){
+        System.out.println("entrouu1");
+        
+        listMotorista = motoristaDAO.list();
+        observableListMotorista = FXCollections.observableArrayList(listMotorista);
+       
         tableColumnCNH.setCellValueFactory(new PropertyValueFactory<>("cnh"));
         tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        
-        listMotorista = motoristaDAO.list();
-        //System.out.println(listMotorista);
-        observableListMotorista = FXCollections.observableArrayList(listMotorista);
-        tableViewMotorista.setItems(observableListMotorista);
+        tableViewMotorista.setItems(observableListMotorista);   
+
     }
     
     @Override
