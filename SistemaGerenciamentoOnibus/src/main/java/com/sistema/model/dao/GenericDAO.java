@@ -117,7 +117,8 @@ public abstract class GenericDAO<T, K extends Serializable> {
             if (obj == null) {
                 return false;
             }
-            entityManager.remove(obj);
+            
+            entityManager.remove(entityManager.merge(obj));
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {

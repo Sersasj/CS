@@ -57,9 +57,9 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="371.0" spacing="10.0">
                            <children>
-                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="45.0" prefWidth="60.0" text="Adicionar" />
-                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="60.0" text="Alterar" />
-                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="45.0" prefWidth="60.0" text="Remover" />
+                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" text="Adicionar" />
+                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="76.0" text="Alterar" />
+                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="46.0" prefWidth="76.0" text="Remover" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
@@ -71,34 +71,34 @@
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RG" />
-                        <TextField fx:id="textRG" prefHeight="30.0" prefWidth="139.0">
+                        <TextField fx:id="textRG" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNH" />
-                        <TextField fx:id="textCNH" prefHeight="30.0" prefWidth="139.0">
+                        <TextField fx:id="textCNH" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                        <TextField fx:id="textNome" prefHeight="30.0" prefWidth="139.0">
+                        <TextField fx:id="textNome" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
-                        <TextField fx:id="textTelefone" prefHeight="30.0" prefWidth="139.0">
+                        <TextField fx:id="textTelefone" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" />
-                        <TextField fx:id="textEndereco" prefHeight="30.0" prefWidth="184.0">
+                        <TextField fx:id="textEndereco" editable="false" prefHeight="30.0" prefWidth="184.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
                         <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="371.0" spacing="15.0">
                            <children>
-                              <Button fx:id="buttonCancelar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="45.0" prefWidth="80.0" text="Cancelar" />
-                              <Button fx:id="buttonConfirmar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="100.0" text="Confirmar" />
+                              <Button fx:id="buttonCancelar" mnemonicParsing="false" onMouseClicked="#handleCancelar" prefHeight="45.0" prefWidth="80.0" text="Cancelar" />
+                              <Button fx:id="buttonConfirmar" mnemonicParsing="false" onMouseClicked="#handleConfirmar" prefHeight="45.0" prefWidth="100.0" text="Confirmar" />
                            </children>
                            <VBox.margin>
                               <Insets top="30.0" />

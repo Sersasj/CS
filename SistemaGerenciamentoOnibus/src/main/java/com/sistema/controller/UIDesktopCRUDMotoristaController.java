@@ -52,7 +52,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private TableColumn<Motorista, String> tableColumnEndereco;
     @FXML
     private TextField textBuscaNome;
-    
+    private int select;
     @FXML
     private TextField textCNH;
     @FXML 
@@ -71,9 +71,12 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-
+    
+    
+     
     @FXML
     public void handleMouseAction(MouseEvent event){
+        
         Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
         textCNH.setText(motorista.getCnh());
         textCPF.setText(motorista.getCpf());
@@ -82,60 +85,97 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         textTelefone.setText(motorista.getTelefone());
         textEndereco.setText(motorista.getEndereco());
     }
-    
+    @FXML 
+    public void handleConfirmar(MouseEvent event){
+        Motorista motorista;
+        switch(select){
+            case 1:
+                motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
+                motorista.setCnh(textCNH.getText());
+                motorista.setNome(textNome.getText());
+                motorista.setTelefone(textTelefone.getText());
+                motorista.setEndereco(textEndereco.getText());
+                // alterar cpf quebra tudo
+                //motorista.setCpf(textCPF.getText());
+                motorista.setRg(textRG.getText());
+                motoristaDAO.update(motorista);
+        
+                carregarTableView();
+                tableViewMotorista.getColumns().get(0).setVisible(false);
+                tableViewMotorista.getColumns().get(0).setVisible(true);
+                break;
+            case 2:
+                motorista = new Motorista();
+                motorista.setCnh(textCNH.getText());
+                motorista.setCpf(textCPF.getText());
+                motorista.setNome(textNome.getText());
+                motorista.setTelefone(textTelefone.getText());
+                motorista.setEndereco(textEndereco.getText()); 
+                motorista.setRg(textRG.getText());
+        
+  
+                motoristaDAO.add(motorista);
+                carregarTableView();
+                tableViewMotorista.getColumns().get(0).setVisible(false);
+                tableViewMotorista.getColumns().get(0).setVisible(true);
+                break;
+                
+            case 3:
+                //motorista = motoristaDAO.getById(textCPF.getText());
+                //motoristaDAO.delete(textCPF.getText());
+                motoristaDAO.delete(textCPF.getText());
+                carregarTableView();
+                System.out.println("aa");
+                tableViewMotorista.getColumns().get(0).setVisible(false);
+                tableViewMotorista.getColumns().get(0).setVisible(true);  
+                break;
+            default:
+                System.out.println("error");
+        }
+       
+        
+
+            
+    }
+    public void setTextVazio(){
+        textCNH.setText("");
+        textCPF.setText("");
+        textNome.setText("");
+        textTelefone.setText("");
+        textEndereco.setText("");
+        textRG.setText("");
+    }
     @FXML
+    public void handleCancelar(MouseEvent event){
+        select = 0;
+    }
     public void handleRemoverMotorista(MouseEvent event){
-        System.out.println("aaa");
+        select = 3;
         
     }
     @FXML
     public void handleAdicionarMotorista(MouseEvent event){
-        //adicionar funcionario antes??
-        Funcionario funcionario = new Funcionario();
-//        funcionario.setCpf(textCPF.getText());
-//        funcionario.setRg(textRG.getText());
-//        funcionario.setNome(textNome.getText());
-//        funcionario.setTelefone(textTelefone.getText());
-//        funcionario.setEndereco(textEndereco.getText());
-//        
-        Motorista motorista = new Motorista();
-        motorista.setCnh(textCNH.getText());
-        motorista.setCpf(textCPF.getText());
-        motorista.setNome(textNome.getText());
-        motorista.setTelefone(textTelefone.getText());
-        motorista.setEndereco(textEndereco.getText()); 
-        motorista.setRg(textRG.getText());
+        setTextVazio();
+        select = 2;
+        textCNH.setEditable(true);
+        textCPF.setEditable(true);
+        textNome.setEditable(true);
+        textTelefone.setEditable(true);
+        textEndereco.setEditable(true);
+        textRG.setEditable(true);
+       
         
-        //
-        //motorista.setFuncionario(funcionario);
-     
-        //funcionario.setMotorista(motorista);
-        //funcionarioDAO.add(funcionario);
-        //System.out.println(motorista.toString());
-        //System.out.println(funcionario.toString());
-        motoristaDAO.add(motorista);
-        //motoristaDAO.add(motorista);
-        carregarTableView();
-        tableViewMotorista.getColumns().get(0).setVisible(false);
-        tableViewMotorista.getColumns().get(0).setVisible(true);
-                
     }
     @FXML
     public void handleAlterarMotorista(MouseEvent eventt){
-        Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
-        motorista.setCnh(textCNH.getText());
-        motorista.setNome(textNome.getText());
-        motorista.setTelefone(textTelefone.getText());
-        motorista.setEndereco(textEndereco.getText());
-        // alterar cpf quebra tudo
-        //motorista.setCpf(textCPF.getText());
-        motorista.setRg(textRG.getText());
-        motoristaDAO.update(motorista);
-        
-        carregarTableView();
-        tableViewMotorista.getColumns().get(0).setVisible(false);
-        tableViewMotorista.getColumns().get(0).setVisible(true);
-        
+        select = 1;
+
+        textCNH.setEditable(true);
+        textCPF.setEditable(false);
+        textNome.setEditable(true);
+        textTelefone.setEditable(true);
+        textEndereco.setEditable(true);
+        textRG.setEditable(true);
     }
     
     public void carregarTableView(){
