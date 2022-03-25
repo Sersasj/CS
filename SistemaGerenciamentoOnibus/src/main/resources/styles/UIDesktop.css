@@ -6,8 +6,8 @@
 
 }
 
-.menuBar{
-    -fx-background-color: #3a3b3c;
+.upperBar{
+    -fx-background-color: #303030;
 }
 
 .btnMinimizar{
@@ -28,16 +28,16 @@
     -fx-background-color: red;
 } 
 
-.btnMenu{
+.btnToggleMenu{
     -fx-border-style: solid;
     -fx-border-width: 3px;
     -fx-border-radius: 7px;
-    -fx-border-color: lightgray;
+    -fx-border-color: #3a3b3c;
     
     -fx-background-radius: 10px;
-    -fx-background-color: lightgray;
+    -fx-background-color: #3a3b3c;
 }
-.btnMenu:hover 
+.btnToggleMenu:hover 
 {
     -fx-border-color: gray;
     -fx-cursor: hand;
@@ -52,5 +52,16 @@
 }
 
 .anchorPaneMenu{
-    -fx-background-color: lightgray;
+    -fx-background-color: #3a3b3c;
+}
+
+.itemMenu{
+    -fx-background-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.itemMenu:hover{
+    -fx-background-color: #444546;
+    -fx-cursor: hand;
 }

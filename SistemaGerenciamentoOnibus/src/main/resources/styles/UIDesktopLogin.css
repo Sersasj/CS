@@ -1,0 +1,37 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #3a3b3c;
+}
+
+.paneLogin{
+    -fx-background-color: #505050;
+    -fx-background-radius: 10px;
+}
+
+.btnLogin{
+    -fx-background-color: #00AAFF;
+    -fx-background-radius: 6px;
+}
+.btnLogin:hover 
+{
+    -fx-cursor: hand;
+} 
+
+.btnRegistrar{
+    -fx-background-color: transparent;
+}
+
+.txtField{
+    -fx-box-sizing: border-box;
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-border-color: darkgray;
+}
+.txtField:hover {
+    -fx-border-color: gainsboro;
+}

@@ -12,7 +12,7 @@
 
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@../../../styles/UIDesktop.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopController">
    <children>
-      <AnchorPane maxHeight="35.0" prefHeight="35.0" prefWidth="1280.0" styleClass="menuBar" stylesheets="@../../../styles/UIDesktop.css" VBox.vgrow="NEVER">
+      <AnchorPane maxHeight="35.0" prefHeight="35.0" prefWidth="1280.0" styleClass="upperBar" stylesheets="@../../../styles/UIDesktop.css" VBox.vgrow="NEVER">
          <children>
             <HBox layoutX="1119.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -38,12 +38,12 @@
                <children>
                   <AnchorPane minWidth="-Infinity" prefHeight="685.0" prefWidth="300.0" styleClass="anchorPaneMenu">
                      <children>
-                        <Label layoutX="130.0" layoutY="39.0" text="Menu">
+                        <Label layoutX="130.0" layoutY="39.0" text="Menu" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <GridPane layoutX="14.0" layoutY="147.0" prefHeight="448.0" prefWidth="300.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="147.0">
+                        <GridPane hgap="5.0" layoutX="14.0" layoutY="147.0" prefHeight="448.0" prefWidth="300.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="147.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -56,20 +56,20 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" />
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" GridPane.rowIndex="4" />
-                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" text="Button" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" />
+                  <AnchorPane fx:id="anchorPaneOpacidade" onMouseClicked="#handleToggleMenu" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" />
                </children>
             </HBox>
-            <Button fx:id="buttonToggleMenu" layoutX="30.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleButtonToggleMenu" prefHeight="70.0" prefWidth="70.0" styleClass="btnMenu" text="imgMenu" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+            <Button fx:id="buttonToggleMenu" layoutX="30.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="70.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
          </children></AnchorPane>
    </children>
 </VBox>

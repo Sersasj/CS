@@ -28,7 +28,7 @@ public class UIDesktopController implements Initializable {
     @FXML
     private Button buttonFechar, buttonMinimizar, buttonToggleMenu;
     @FXML
-    private AnchorPane anchorPaneMapa;
+    private AnchorPane anchorPaneMapa, anchorPaneOpacidade;
     @FXML
     private HBox hBoxMenu;
     
@@ -52,7 +52,7 @@ public class UIDesktopController implements Initializable {
     }
     
     @FXML
-    public void handleButtonToggleMenu(ActionEvent event) {
+    public void handleToggleMenu(ActionEvent event) {
         hBoxMenu.setDisable(!hBoxMenu.isDisable());
         hBoxMenu.setVisible(!hBoxMenu.isVisible());
     }
