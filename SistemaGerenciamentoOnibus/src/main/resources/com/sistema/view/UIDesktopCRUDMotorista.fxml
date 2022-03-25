@@ -57,7 +57,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" GridPane.rowIndex="4" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" GridPane.rowIndex="5" />
                         <TextField fx:id="textCNH" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="textCPF" editable="false" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="textCPF" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" />
                         <TextField fx:id="textRG" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="textNome" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="textTelefone" prefHeight="26.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />

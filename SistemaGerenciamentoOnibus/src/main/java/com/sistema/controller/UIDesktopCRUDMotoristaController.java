@@ -6,7 +6,9 @@ package com.sistema.controller;
 
 import com.sistema.model.bd.Database;
 import com.sistema.model.bd.DatabaseFactory;
+import com.sistema.model.dao.FuncionarioDAO;
 import com.sistema.model.dao.MotoristaDAO;
+import com.sistema.model.pojo.Funcionario;
 import com.sistema.model.pojo.Motorista;
 import java.net.URL;
 import java.sql.Connection;
@@ -68,7 +70,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private List<Motorista> listMotorista;
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
-   
+    private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
     @FXML
     public void handleMouseAction(MouseEvent event){
@@ -89,6 +91,13 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML
     public void handleAdicionarMotorista(MouseEvent event){
         //adicionar funcionario antes??
+        Funcionario funcionario = new Funcionario();
+//        funcionario.setCpf(textCPF.getText());
+//        funcionario.setRg(textRG.getText());
+//        funcionario.setNome(textNome.getText());
+//        funcionario.setTelefone(textTelefone.getText());
+//        funcionario.setEndereco(textEndereco.getText());
+//        
         Motorista motorista = new Motorista();
         motorista.setCnh(textCNH.getText());
         motorista.setCpf(textCPF.getText());
@@ -96,7 +105,20 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         motorista.setTelefone(textTelefone.getText());
         motorista.setEndereco(textEndereco.getText()); 
         motorista.setRg(textRG.getText());
+        
+        //
+        //motorista.setFuncionario(funcionario);
+     
+        //funcionario.setMotorista(motorista);
+        //funcionarioDAO.add(funcionario);
+        //System.out.println(motorista.toString());
+        //System.out.println(funcionario.toString());
         motoristaDAO.add(motorista);
+        //motoristaDAO.add(motorista);
+        carregarTableView();
+        tableViewMotorista.getColumns().get(0).setVisible(false);
+        tableViewMotorista.getColumns().get(0).setVisible(true);
+                
     }
     @FXML
     public void handleAlterarMotorista(MouseEvent eventt){
@@ -117,7 +139,6 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     }
     
     public void carregarTableView(){
-        System.out.println("entrouu1");
         
         listMotorista = motoristaDAO.list();
         observableListMotorista = FXCollections.observableArrayList(listMotorista);

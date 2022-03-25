@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +21,8 @@ import javax.persistence.Table;
  * @author vini
  */
 @Entity
+@PrimaryKeyJoinColumn(name = "cpf")
+
 @Table(name = "administrador")
 public class Administrador extends Funcionario implements Serializable{
 
@@ -35,7 +38,7 @@ public class Administrador extends Funcionario implements Serializable{
     @Column(name = "senha")
     private String senha;
     @JoinColumn(name = "cpf", referencedColumnName = "cpf", insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @OneToOne
     private Funcionario funcionario;
 
     public Administrador() {
