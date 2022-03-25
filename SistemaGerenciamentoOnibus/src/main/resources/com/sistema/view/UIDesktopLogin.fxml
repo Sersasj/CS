@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@../../../styles/UIDesktopLogin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopLoginController">
+<AnchorPane id="AnchorPane" fx:id="paneRoot" maxHeight="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@../../../styles/UIDesktopLogin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopLoginController">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" layoutX="7.0" prefHeight="685.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" fillHeight="false" layoutX="7.0" maxHeight="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="406.0" prefWidth="482.0" styleClass="paneLogin">
                <children>
-                  <VBox alignment="CENTER" layoutY="-57.0" prefHeight="393.0" prefWidth="493.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" layoutY="-57.0" prefHeight="406.0" prefWidth="482.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Bem vindo" textFill="DARKGRAY" />
                         <Label text="Entre com a sua conta" textFill="WHITE">
@@ -28,7 +28,7 @@
                            </font>
                         </Label>
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="Usuário" textFill="WHITE" />
-                        <TextField fx:id="txtFieldUsuario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu CPF" styleClass="txtField">
+                        <TextField fx:id="txtFieldUsuario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu nome de usuário" styleClass="txtField">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
@@ -39,7 +39,7 @@
                               <Insets bottom="50.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Button fx:id="btnLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="413.0" styleClass="btnLogin" text="Entrar" textFill="WHITE">
+                        <Button fx:id="btnLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" prefHeight="39.0" prefWidth="413.0" styleClass="btnLogin" text="Entrar" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
@@ -53,7 +53,8 @@
                         <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
                      </padding>
                   </VBox>
-               </children></AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
    </children>

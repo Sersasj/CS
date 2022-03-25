@@ -26,9 +26,9 @@ CREATE TABLE Motorista (
 
 CREATE TABLE Administrador (
     cpf CHAR(14) NOT NULL,
-    id INT NOT NULL,
+    username VARCHAR(20) NOT NULL,
     senha VARCHAR(20) NOT NULL,
-    UNIQUE KEY (id),
+    UNIQUE KEY (username),
     FOREIGN KEY (cpf)
         REFERENCES Funcionario (cpf),
     PRIMARY KEY (cpf)

@@ -32,8 +32,8 @@ public class Administrador extends Funcionario implements Serializable{
     @Column(name = "cpf")
     private String cpf;
     @Basic(optional = false)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @Column(name = "senha")
     private String senha;
@@ -48,9 +48,9 @@ public class Administrador extends Funcionario implements Serializable{
         this.cpf = cpf;
     }
 
-    public Administrador(String cpf, int id, String senha) {
+    public Administrador(String cpf, String username, String senha) {
         this.cpf = cpf;
-        this.id = id;
+        this.username = username;
         this.senha = senha;
     }
 
@@ -62,12 +62,12 @@ public class Administrador extends Funcionario implements Serializable{
         this.cpf = cpf;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSenha() {
@@ -108,7 +108,7 @@ public class Administrador extends Funcionario implements Serializable{
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Administrador[ cpf=" + cpf + " ]";
+        return "Administrador{" + "cpf=" + cpf + ", username=" + username + ", senha=" + senha + '}';
     }
     
 }

@@ -33,9 +33,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */
-    private final Database database = DatabaseFactory.getDatabase("mysql");
-    private final Connection connection = database.conectar();    
+     */  
     @FXML
     private TableView<Motorista> tableViewMotorista;
     @FXML
