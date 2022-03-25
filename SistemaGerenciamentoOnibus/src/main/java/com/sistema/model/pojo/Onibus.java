@@ -41,7 +41,7 @@ public class Onibus implements Serializable {
     private String modelo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "placaOnibus")
     private List<Problema> problemaList;
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "placaOnibus")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "placaOnibus")
     private List<Corrida> corridaList;
 
     public Onibus() {

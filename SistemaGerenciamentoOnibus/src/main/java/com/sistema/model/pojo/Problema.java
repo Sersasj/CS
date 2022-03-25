@@ -7,7 +7,6 @@ package com.sistema.model.pojo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +43,7 @@ public class Problema implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHorario;
     @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
-    @ManyToOne(cascade = {CascadeType.ALL}, optional = false)
+    @ManyToOne(optional = false)
     private Motorista cpfMotorista;
     @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
     @ManyToOne(optional = false)

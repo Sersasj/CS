@@ -37,10 +37,11 @@ public class Motorista extends Funcionario implements Serializable{
     private String cnh;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
     private List<Problema> problemaList;
-    @OneToMany(cascade = { CascadeType.ALL},mappedBy = "cpfMotorista")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
     private List<Corrida> corridaList;
     @JoinColumn(name = "cpf", referencedColumnName = "cpf", insertable = false, updatable = false)
     @OneToOne
+
     private Funcionario funcionario;
 
     public Motorista() {

@@ -12,10 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-
 
 /**
  *
@@ -46,8 +45,7 @@ public class Funcionario implements Serializable {
     private String endereco;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "funcionario")
     private Administrador administrador;
-
-    @OneToOne(cascade = { CascadeType.ALL}, mappedBy = "funcionario")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "funcionario")
     private Motorista motorista;
 
     public Funcionario() {

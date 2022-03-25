@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -59,12 +58,12 @@ public class Corrida implements Serializable {
     @ManyToOne(optional = false)
     private Linha numLinha;
     @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
-    @ManyToOne(cascade = { CascadeType.ALL}, optional = false)
+    @ManyToOne(optional = false)
     private Motorista cpfMotorista;
     @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
     @ManyToOne(optional = false)
     private Onibus placaOnibus;
-    @OneToMany( mappedBy = "idCorrida")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCorrida")
     private List<Emergencia> emergenciaList;
 
     public Corrida() {
