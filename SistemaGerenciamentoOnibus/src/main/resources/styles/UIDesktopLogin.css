@@ -31,6 +31,7 @@
     -fx-border-width: 1px;
     -fx-border-radius: 3px;
     -fx-border-color: darkgray;
+    -fx-text-fill: white;
 }
 .txtField:hover {
     -fx-border-color: gainsboro;

@@ -1,0 +1,29 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.upperBar{
+    -fx-background-color: #303030;
+}
+
+.btnMinimizar{
+    -fx-background-radius: 3px;
+    -fx-background-color: transparent;
+}
+.btnMinimizar:hover 
+{
+    -fx-background-color: #808080;
+}
+
+.btnFechar{
+    -fx-background-radius: 3px;
+    -fx-background-color: transparent;
+}
+.btnFechar:hover 
+{
+    -fx-background-color: red;
+} 

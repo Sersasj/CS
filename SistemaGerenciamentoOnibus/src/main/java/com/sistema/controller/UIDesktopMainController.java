@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author sergi
  */
-public class UIDesktopController implements Initializable {
+public class UIDesktopMainController implements Initializable {
 
     /**
      * Initializes the controller class.
