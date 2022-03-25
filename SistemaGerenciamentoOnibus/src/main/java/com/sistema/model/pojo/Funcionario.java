@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "funcionario")
 @Inheritance(strategy=InheritanceType.JOINED)  
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
 public class Funcionario implements Serializable {
 
@@ -138,7 +140,8 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Funcionario[ cpf=" + cpf + " ]";
+        return "Funcionario{" + "cpf=" + cpf + ", rg=" + rg + ", nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco + ", administrador=" + administrador + ", motorista=" + motorista + '}';
     }
-    
+
+
 }

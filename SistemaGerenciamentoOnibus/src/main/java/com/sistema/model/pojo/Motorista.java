@@ -12,17 +12,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
  * @author vini
  */
 @Entity
+@PrimaryKeyJoinColumn(name = "cpf")
 @Table(name = "motorista")
 public class Motorista extends Funcionario implements Serializable{
 
@@ -39,7 +40,8 @@ public class Motorista extends Funcionario implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
     private List<Corrida> corridaList;
     @JoinColumn(name = "cpf", referencedColumnName = "cpf", insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @OneToOne
+
     private Funcionario funcionario;
 
     public Motorista() {
@@ -116,7 +118,9 @@ public class Motorista extends Funcionario implements Serializable{
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Motorista[ cpf=" + cpf + " ]";
+        return "Motorista{" + "cpf=" + cpf + ", cnh=" + cnh + ", problemaList=" + problemaList + ", corridaList=" + corridaList + ", funcionario=" + funcionario + '}';
     }
+    
+
     
 }
