@@ -20,7 +20,7 @@
       </AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="96.0" prefWidth="390.0" style="-fx-background-color: #3486eb;">
          <children>
-            <ComboBox fx:id="linhasOnibus" layoutY="50.0" prefHeight="46.0" prefWidth="390.0" promptText="Selecione a Linha" />
+            <ComboBox fx:id="comboBoxLinhas" layoutY="50.0" prefHeight="46.0" prefWidth="390.0" promptText="Selecione a Linha" />
             <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Linha do Ônibus">
                <font>
                   <Font name="Calibri" size="24.0" />
@@ -30,7 +30,7 @@
       </AnchorPane>
       <AnchorPane layoutY="183.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="390.0" style="-fx-background-color: #3486eb;">
          <children>
-            <TextField fx:id="placaOnibus" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="390.0" text="XXXX-XXXX" />
+            <TextField fx:id="txtFieldPlacaOnibus" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="390.0" promptText="___-____" />
             <Text fill="WHITE" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa do Ônibus">
                <font>
                   <Font name="Calibri" size="24.0" />
@@ -45,7 +45,7 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroCpf" layoutY="47.0" prefHeight="46.0" prefWidth="392.0" text=" 123.456.789-00" />
+            <TextField fx:id="txtFieldNumeroCpf" layoutY="47.0" prefHeight="46.0" prefWidth="392.0" promptText="___.___.___-__" />
          </children>
       </AnchorPane>
       <Button fx:id="botaoConfirmar" layoutX="132.0" layoutY="600.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="128.0" style="-fx-background-color: #3486eb;" text="Confirmar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="600.0">

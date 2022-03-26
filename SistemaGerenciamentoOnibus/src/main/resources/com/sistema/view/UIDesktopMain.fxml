@@ -1,60 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1280.0" stylesheets="@../../../styles/UIDesktopMain.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopMainController">
+<StackPane fx:id="stackPaneRoot" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../styles/UIDesktopMain.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopMainController">
    <children>
-      <AnchorPane fx:id="anchorPaneMapa" prefHeight="685.0" prefWidth="1280.0" styleClass="anchorPaneConteudo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="hBoxMain" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0">
          <children>
-            <Label layoutX="413.0" layoutY="158.0" prefHeight="369.0" prefWidth="454.0" text="MAPA">
-               <font>
-                  <Font size="150.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <HBox fx:id="hBoxMenu" prefHeight="685.0" prefWidth="1254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="300.0" styleClass="anchorPaneMenu">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="100.0" styleClass="anchorPaneMenu" HBox.hgrow="NEVER">
                <children>
-                  <Label layoutX="130.0" layoutY="39.0" text="Menu" textFill="WHITE">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="14.0" layoutY="147.0" prefHeight="448.0" prefWidth="300.0" vgap="7.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="147.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" />
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="300.0" styleClass="itemMenu" text="Button" GridPane.rowIndex="5" />
+                        <Button fx:id="buttonToggleMenu1" alignment="CENTER" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="347.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" />
+                        <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB1">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB1" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="236.0" styleClass="itemMenu" text="imgB2">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB2" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB3">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB4">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB4" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB5">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB5" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB6">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB6" textFill="WHITE" />
+                           </graphic></Button>
                      </children>
-                  </GridPane>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleToggleMenu" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" />
+            <AnchorPane fx:id="anchorPaneMapa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchorPaneConteudo" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label layoutX="363.0" layoutY="158.0" prefHeight="369.0" prefWidth="454.0" text="MAPA">
+                     <font>
+                        <Font size="150.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
-      <Button fx:id="buttonToggleMenu" layoutX="30.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="70.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <HBox fx:id="hBoxMenuAberto" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0">
+         <children>
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="300.0" styleClass="anchorPaneMenu" HBox.hgrow="NEVER">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="buttonToggleMenu" alignment="CENTER" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="347.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" />
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button1">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB1" textFill="#ee6767" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button2">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB2" textFill="#ee6767" />
+                           </graphic></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button3">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="#ee6767" />
+                           </graphic></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button4">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB4" textFill="#ee6767" />
+                           </graphic></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button5">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB5" textFill="#ee6767" />
+                           </graphic></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button6">
+                           <graphic>
+                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB6" textFill="#ee6767" />
+                           </graphic></Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleToggleMenu" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</StackPane>

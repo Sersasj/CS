@@ -13,11 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -32,24 +30,24 @@ public class UIDesktopBaseController implements Initializable {
      */
     @FXML
     Button buttonFechar, buttonMinimizar;
-    @FXML VBox vBoxRoot;
+    @FXML BorderPane root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        iniciarTelaLogin();
+        carregarTelaLogin();
     }
 
-    public void iniciarTelaLogin() {
+    public void carregarTelaLogin() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopLogin.fxml"));
             AnchorPane paneLogin = (AnchorPane) fxmlLoader.load();
-            vBoxRoot.getChildren().add(paneLogin);
-            VBox.setVgrow(paneLogin, Priority.ALWAYS);
+            root.setCenter(paneLogin);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
+    
     
     @FXML
     public void handleButtonFechar(ActionEvent event) {

@@ -63,10 +63,21 @@ public class App extends Application {
             System.out.println(nome);
         }
         
-        cpf = "111.222.333-44";
-        if (vs.validarCPF(cpf) == true){
-            System.out.println(vs.formatarCPF(cpf));
-        }
+        cpf = "11122";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+        cpf = "111.222";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+        cpf = "111.222.3";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+        cpf = "111.222.333";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+        cpf = "111.222.333-4";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+        cpf = "111.222.333-4123";
+        System.out.println(vs.formatarCPFIncompleto(cpf));
+//        if (vs.validarCPF(cpf) == true){
+//            System.out.println(vs.formatarCPF(cpf));
+//        }
         
         rg = "112223334";
         if (vs.validarRG(rg) == true){

@@ -4,8 +4,6 @@
  */
 package com.sistema.controller;
 
-import com.sistema.model.bd.Database;
-import com.sistema.model.bd.DatabaseFactory;
 import com.sistema.model.dao.FuncionarioDAO;
 import com.sistema.model.dao.MotoristaDAO;
 import com.sistema.model.pojo.Funcionario;

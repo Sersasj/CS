@@ -4,8 +4,6 @@
  */
 package com.sistema.controller;
 
-import com.sistema.model.bd.Database;
-import com.sistema.model.bd.DatabaseFactory;
 import com.sistema.model.dao.LinhaDAO;
 import com.sistema.model.dao.OnibusDAO;
 import com.sistema.model.dao.PontoDAO;

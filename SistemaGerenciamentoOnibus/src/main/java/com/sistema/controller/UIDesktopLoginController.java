@@ -11,7 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -43,6 +43,11 @@ public class UIDesktopLoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtFieldUsuario.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                txtFieldSenha.requestFocus();
+            }
+        });
         txtFieldSenha.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 handleLogin();
@@ -60,9 +65,12 @@ public class UIDesktopLoginController implements Initializable {
 //                login feito
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopMain.fxml"));
-                    AnchorPane paneMain = (AnchorPane) fxmlLoader.load();
-                    paneRoot.getChildren().clear();
-                    paneRoot.getChildren().add(paneMain);
+                    StackPane paneMain = (StackPane) fxmlLoader.load();
+                    paneRoot.getChildren().setAll(paneMain);
+                    AnchorPane.setTopAnchor(paneMain, 0.0);
+                    AnchorPane.setLeftAnchor(paneMain, 0.0);
+                    AnchorPane.setRightAnchor(paneMain, 0.0);
+                    AnchorPane.setBottomAnchor(paneMain, 0.0);
                 } catch (IOException e) {
                     Logger logger = Logger.getLogger(getClass().getName());
                     logger.log(Level.SEVERE, "Failed to create new Window.", e);

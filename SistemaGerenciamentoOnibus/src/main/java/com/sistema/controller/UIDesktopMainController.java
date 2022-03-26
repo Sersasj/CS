@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -30,13 +31,15 @@ public class UIDesktopMainController implements Initializable {
     @FXML
     private AnchorPane anchorPaneMapa, anchorPaneOpacidade;
     @FXML
-    private HBox hBoxMenu;
+    private HBox hBoxMenuAberto, hBoxMain;
+    @FXML
+    private StackPane stackPaneRoot;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        hBoxMenu.setDisable(true);
-        hBoxMenu.setVisible(false);
+        hBoxMenuAberto.setDisable(true);
+        hBoxMenuAberto.setVisible(false);
     }    
     
     @FXML
@@ -53,7 +56,7 @@ public class UIDesktopMainController implements Initializable {
     
     @FXML
     public void handleToggleMenu(ActionEvent event) {
-        hBoxMenu.setDisable(!hBoxMenu.isDisable());
-        hBoxMenu.setVisible(!hBoxMenu.isVisible());
+        hBoxMenuAberto.setDisable(!hBoxMenuAberto.isDisable());
+        hBoxMenuAberto.setVisible(!hBoxMenuAberto.isVisible());
     }
 }

@@ -4,7 +4,7 @@
  */
 package com.sistema.model.dao;
 
-import com.sistema.model.bd.EMFSingleton;
+import com.sistema.util.EMFSingleton;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
