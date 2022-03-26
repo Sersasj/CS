@@ -56,13 +56,13 @@ public class Corrida implements Serializable {
     private Float distanciaPercorrida;
     @JoinColumn(name = "num_linha", referencedColumnName = "numero")
     @ManyToOne(optional = false)
-    private Linha numLinha;
+    private Linha linha;
     @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
-    @ManyToOne(optional = false)
-    private Motorista cpfMotorista;
+    @ManyToOne(cascade = CascadeType.ALL,  optional = false)
+    private Motorista motorista;
     @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
     @ManyToOne(optional = false)
-    private Onibus placaOnibus;
+    private Onibus onibus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCorrida")
     private List<Emergencia> emergenciaList;
 
@@ -135,28 +135,28 @@ public class Corrida implements Serializable {
         this.distanciaPercorrida = distanciaPercorrida;
     }
 
-    public Linha getNumLinha() {
-        return numLinha;
+    public Linha getLinha() {
+        return linha;
     }
 
-    public void setNumLinha(Linha numLinha) {
-        this.numLinha = numLinha;
+    public void setLinha(Linha linha) {
+        this.linha = linha;
     }
 
-    public Motorista getCpfMotorista() {
-        return cpfMotorista;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setCpfMotorista(Motorista cpfMotorista) {
-        this.cpfMotorista = cpfMotorista;
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
-    public Onibus getPlacaOnibus() {
-        return placaOnibus;
+    public Onibus getOnibus() {
+        return onibus;
     }
 
-    public void setPlacaOnibus(Onibus placaOnibus) {
-        this.placaOnibus = placaOnibus;
+    public void setOnibus(Onibus onibus) {
+        this.onibus = onibus;
     }
 
     public List<Emergencia> getEmergenciaList() {

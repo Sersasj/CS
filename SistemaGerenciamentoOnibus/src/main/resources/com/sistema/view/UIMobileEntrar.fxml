@@ -48,7 +48,7 @@
             <TextField fx:id="txtFieldNumeroCpf" layoutY="47.0" prefHeight="46.0" prefWidth="392.0" promptText="___.___.___-__" />
          </children>
       </AnchorPane>
-      <Button fx:id="botaoConfirmar" layoutX="132.0" layoutY="600.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="128.0" style="-fx-background-color: #3486eb;" text="Confirmar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="600.0">
+      <Button fx:id="botaoConfirmar" layoutX="132.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#handleBotaoConfirmar" prefHeight="46.0" prefWidth="128.0" style="-fx-background-color: #3486eb;" text="Confirmar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="600.0">
          <font>
             <Font name="Calibri Bold" size="17.0" />
          </font>

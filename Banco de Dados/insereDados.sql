@@ -8,9 +8,9 @@ INSERT INTO Funcionario VALUES ("333.333.333-33", "33.444.555-6", "Samir Helbert
 INSERT INTO Motorista VALUES ("333.333.333-33", "345345345345");
 
 INSERT INTO Funcionario VALUES ("444.444.444-44", "44.555.666-7", "Gabriel Melo", "44 3322-1100", "R. Abacaxi, 4321");
-INSERT INTO Administrador VALUES ("444.444.444-44", "admin", 'admin');
+INSERT INTO Administrador VALUES ("444.444.444-44", 101, 'egnirc');
 INSERT INTO Funcionario VALUES ("555.555.555-55", "55.666.777-8", "Jose Silva", "44 99999-8888", "R. Banana II, 1234");
-INSERT INTO Administrador VALUES ("555.555.555-55", "admin2", 'admin2');
+INSERT INTO Administrador VALUES ("555.555.555-55", 102, 'skate123');
 
 
 insert into Onibus values("AAA1111", 2010, 15000.00, "Mercedes-Benz");
@@ -101,3 +101,8 @@ insert into Problema values(3, 4, "Pneus ficando carecas", '2021-01-01 19:05:15'
 
 insert into Emergencia values(1, 2, 1004, '2021-01-01 12:42:14', -23.425808, -51.938264);
 insert into Emergencia values(2, 1, 1007, '2021-01-01 18:23:25', -23.405614, -51.936603);
+
+
+select * from Funcionario;
+select * from Motorista;
+select * from Administrador;

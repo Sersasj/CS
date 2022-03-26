@@ -101,4 +101,7 @@ public class ValidadorString {
     public String formatarTelefone(String telefoneStr) {
         return telefoneStr.replaceAll(REGEX_TELEFONE_VALIDO, "$1 $2-$3");
     }
+    public String formatarPlaca(String placaStr) {
+        return placaStr.replaceAll(REGEX_PLACA_VALIDA_1, "$1$2");
+    }    
 }

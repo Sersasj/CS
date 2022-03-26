@@ -16,7 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -37,7 +38,8 @@ public class Motorista extends Funcionario implements Serializable{
     private String cnh;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
     private List<Problema> problemaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "motorista" )
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Corrida> corridaList;
     @JoinColumn(name = "cpf", referencedColumnName = "cpf", insertable = false, updatable = false)
     @OneToOne

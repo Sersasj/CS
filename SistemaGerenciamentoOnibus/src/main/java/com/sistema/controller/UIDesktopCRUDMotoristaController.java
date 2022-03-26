@@ -119,9 +119,8 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
             case 3:
                 //motorista = motoristaDAO.getById(textCPF.getText());
                 //motoristaDAO.delete(textCPF.getText());
-                motoristaDAO.delete(textCPF.getText());
+                motoristaDAO.remove(textCPF.getText());
                 carregarTableView();
-                System.out.println("aa");
                 tableViewMotorista.getColumns().get(0).setVisible(false);
                 tableViewMotorista.getColumns().get(0).setVisible(true);  
                 break;

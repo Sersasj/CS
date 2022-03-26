@@ -35,7 +35,7 @@ public class Linha implements Serializable {
     @Basic(optional = false)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numLinha")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "linha")
     private List<Corrida> corridaList;
     @ManyToMany(targetEntity = Ponto.class, cascade = { CascadeType.ALL })
     @JoinTable(name = "linhaponto",   

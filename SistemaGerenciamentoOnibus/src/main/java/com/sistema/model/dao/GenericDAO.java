@@ -108,7 +108,7 @@ public abstract class GenericDAO<T, K extends Serializable> {
         return obj;
     }
 
-    public boolean delete(K objId) {
+    public boolean remove(K objId) {
         EntityManager entityManager = getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
