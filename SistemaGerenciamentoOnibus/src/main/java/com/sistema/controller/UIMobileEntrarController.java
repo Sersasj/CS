@@ -74,6 +74,7 @@ public class UIMobileEntrarController implements Initializable {
         corrida.setMotorista(motorista);
         corrida.setOnibus(onibus);
         corrida.setLinha(linha);
+        corrida.setId(null);
 
 
         try {

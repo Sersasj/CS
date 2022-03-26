@@ -58,7 +58,7 @@ public class Corrida implements Serializable {
     @ManyToOne(optional = false)
     private Linha linha;
     @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
-    @ManyToOne(cascade = CascadeType.ALL,  optional = false)
+    @ManyToOne(optional = false)
     private Motorista motorista;
     @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
     @ManyToOne(optional = false)

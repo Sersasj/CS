@@ -4,8 +4,10 @@
  */
 package com.sistema.controller;
 
+import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,34 +30,39 @@ public class UIMobileCorridaController implements Initializable {
     @FXML
     private Button buttonEmergencia, buttonIniciar, buttonFinalizar;
     private Corrida corrida;
-    public LocalDateTime inicio; 
-    public LocalDateTime fim; 
-
+    
+    private final CorridaDAO corridaDAO = new CorridaDAO();
 
     /**
      * Initializes the controller class.
      */
     
     
-    
     public void simularCorrida(){
         Random rand = new Random();
+        
         corrida.setPassPagantes(rand.nextInt(60) + 10);
         corrida.setPassNaoPagantes(rand.nextInt(40));
-        corrida.setConsumoCombustivel(rand.nextFloat(20) + 3);
-        corrida.setDistanciaPercorrida(rand.nextFloat(5)+ 30);
-        corrida.setInicioCorrida(inicio);
-        corrida.setConsumoCombustivel(rand.nextFloat(100));
+        corrida.setConsumoCombustivel(rand.nextFloat() * (float)20.0 + (float)3.0);
+        corrida.setDistanciaPercorrida(rand.nextFloat() * (float)5.0 + (float)30.0);
+        corrida.setConsumoCombustivel(rand.nextFloat() * 100);
 
-        
-        float float_random=rand.nextFloat();
     }
     
-    
+    @FXML
+    public void handleFinalizar(MouseEvent event){
+        Timestamp fim = new Timestamp(System.currentTimeMillis());
+        simularCorrida();
+        corrida.setFimCorrida(fim);
+        corridaDAO.add(corrida);
+    }
     @FXML
     public void handleIniciar(MouseEvent event){
-        inicio = LocalDateTime.now(); 
-        
+
+        Timestamp inicio = new Timestamp(System.currentTimeMillis());
+        corrida.setInicioCorrida(inicio);
+
+        System.out.println(inicio);
         
         buttonIniciar.setDisable(true);
         buttonIniciar.setVisible(false);

@@ -103,5 +103,6 @@ public class ValidadorString {
     }
     public String formatarPlaca(String placaStr) {
         return placaStr.replaceAll(REGEX_PLACA_VALIDA_1, "$1$2");
-    }    
+    }
+   
 }

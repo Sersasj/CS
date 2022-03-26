@@ -30,7 +30,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonFinalizar" layoutX="65.0" layoutY="745.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="131.0" style="-fx-background-color: #3486eb;" text="Finalizar" textFill="WHITE">
+      <Button fx:id="buttonFinalizar" layoutX="65.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#handleFinalizar" prefHeight="39.0" prefWidth="131.0" style="-fx-background-color: #3486eb;" text="Finalizar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -49,7 +49,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="buttonIniciar" layoutX="146.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#handleInciar" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #3486eb;" text="Iniciar" textFill="WHITE">
+      <Button fx:id="buttonIniciar" layoutX="146.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#handleIniciar" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #3486eb;" text="Iniciar" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
