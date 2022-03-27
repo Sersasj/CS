@@ -6,6 +6,7 @@ package com.sistema.controller;
 
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
@@ -17,6 +18,12 @@ import javafx.scene.text.Text;
 import java.util.Random;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;   
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -55,6 +62,24 @@ public class UIMobileCorridaController implements Initializable {
         simularCorrida();
         corrida.setFimCorrida(fim);
         corridaDAO.add(corrida);
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileFinalizar.fxml"));           
+
+            UIMobileFinalizarController controller = new UIMobileFinalizarController();
+            controller.setCorrida(corrida);
+            fxmlLoader.setController(controller);
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) buttonFinalizar.getScene().getWindow();
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }          
     }
     @FXML
     public void handleIniciar(MouseEvent event){
