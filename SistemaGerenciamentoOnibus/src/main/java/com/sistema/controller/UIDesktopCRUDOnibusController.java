@@ -46,16 +46,16 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     @FXML
     private TextField textPlaca;
     @FXML 
-    private Integer intAno;
+    private TextField textAno;
     @FXML 
-    private Integer intQuilometragem;
+    private TextField textQuilometragem;
     @FXML 
     private TextField textModelo;
     @FXML   
     
     
-    private List<Onibus> listOnibus;
-    private ObservableList<Onibus> observableListOnibus;
+    //private List<Onibus> listOnibus;
+    //private ObservableList<Onibus> observableListOnibus;
     private final OnibusDAO onibusDAO = new OnibusDAO();
     
     
@@ -65,8 +65,8 @@ public class UIDesktopCRUDOnibusController implements Initializable {
         
         Onibus onibus = tableViewOnibus.getSelectionModel().getSelectedItem();
         textPlaca.setText(onibus.getPlaca());
-        intAno.setInteger(onibus.getAno());
-        intQuilometragem.setInt(onibus.getQuilometragem());
+        //intAno.setText(onibus.getAno());
+        //intQuilometragem.setText(onibus.getQuilometragem());
         textModelo.setText(onibus.getModelo());
     }
     @FXML 
@@ -76,8 +76,8 @@ public class UIDesktopCRUDOnibusController implements Initializable {
             case 1:
                 onibus = tableViewOnibus.getSelectionModel().getSelectedItem();
                 onibus.setPlaca(textPlaca.getText());
-                onibus.setAno(intAno.getInt());
-                onibus.setQuilometragem(intQuilometragem.getInt());
+                //onibus.setAno(intAno.getInt());
+                //onibus.setQuilometragem(intQuilometragem.getInt());
                 onibus.setModelo(textModelo.getText());
                 onibusDAO.update(onibus);
         
@@ -88,8 +88,8 @@ public class UIDesktopCRUDOnibusController implements Initializable {
             case 2:
                 onibus = new Onibus();
                 onibus.setPlaca(textPlaca.getText());
-                onibus.setAno(intAno.getInteger());
-                onibus.setQuilometragem(intQuilometragem.getInteger());
+                //onibus.setAno(intAno.getInteger());
+                //onibus.setQuilometragem(intQuilometragem.getInteger());
                 onibus.setModelo(textModelo.getText());        
   
                 onibusDAO.add(onibus);
@@ -114,15 +114,15 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     }
     public void setTextVazio(){
         textPlaca.setText("");
-        intAno.setInteger("");
-        intQuilometragem.setInteger("");
+        //intAno.setInteger("");
+        //intQuilometragem.setInteger("");
         textModelo.setText("");
     }
     @FXML
     public void handleCancelar(MouseEvent event){
         select = 0;
     }
-    public void handleRemoverMotorista(MouseEvent event){
+    public void handleRemoverOnibus(MouseEvent event){
         select = 3;
         
     }
@@ -131,8 +131,8 @@ public class UIDesktopCRUDOnibusController implements Initializable {
         setTextVazio();
         select = 2;
         textPlaca.setEditable(true);
-        intAno.setEditable(true);
-        intQuilometragem.setEditable(true);
+        //intAno.setEditable(true);
+        //intQuilometragem.setEditable(true);
         textModelo.setEditable(true);       
         
     }
@@ -141,15 +141,15 @@ public class UIDesktopCRUDOnibusController implements Initializable {
         select = 1;
 
         textPlaca.setEditable(true);
-        intAno.setEditable(false);
-        intQuilometragem.setEditable(true);
+        //intAno.setEditable(false);
+        //intQuilometragem.setEditable(true);
         textModelo.setEditable(true);
     }
     
     public void carregarTableView(){
         
-        listOnibus = onibusDAO.list();
-        observableListOnibus = FXCollections.observableArrayList(listOnibus);
+        //listOnibus = onibusDAO.list();
+        //observableListOnibus = FXCollections.observableArrayList(listOnibus);
        
         tableColumnPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
         tableColumnAno.setCellValueFactory(new PropertyValueFactory<>("ano"));
@@ -160,7 +160,7 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregarTableView();
+        //carregarTableView();
     }    
     
 }

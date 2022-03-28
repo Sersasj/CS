@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDMotoristaController">
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDOnibusController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,15 +30,13 @@
                               <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
                            </children>
                         </HBox>
-                        <TableView fx:id="tableViewOnibus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
-                          <columns>
-                              <TableColumn fx:id="tableColumnCNH" prefWidth="140.0" text="CNH" />
-                            <TableColumn fx:id="tableColumnCPF" prefWidth="140.0" text="CPF" />
-                            <TableColumn fx:id="tableColumnRG" prefWidth="140.0" text="RG" />
-                              <TableColumn fx:id="tableColumnNome" minWidth="9.59991455078125" prefWidth="140.0" text="Nome" />
-                              <TableColumn fx:id="tableColumnTelefone" prefWidth="140.0" text="Telefone" />
-                              <TableColumn fx:id="tableColumnEndereco" prefWidth="148.800048828125" text="Endereço" />
-                          </columns>
+                        <TableView fx:id="tableViewMotorista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumnPlaca" prefWidth="140.0" text="Placa" />
+                              <TableColumn fx:id="tableColumnAno" prefWidth="140.0" text="Ano" />
+                              <TableColumn fx:id="tableColumnModelo" prefWidth="140.0" text="Modelo" />
+                              <TableColumn fx:id="tableColumnQuilometragem" minWidth="9.59991455078125" prefWidth="140.0" text="Quilometragem" />
+                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
@@ -57,44 +55,50 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="371.0" spacing="10.0">
                            <children>
-                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" text="Novo" />
-                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="76.0" text="Alterar" />
-                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="46.0" prefWidth="76.0" text="Remover" />
+                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarOnibus" prefHeight="46.0" prefWidth="76.0" text="Novo" />
+                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarOnibus" prefHeight="45.0" prefWidth="76.0" text="Alterar" />
+                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverOnibus" prefHeight="46.0" prefWidth="76.0" text="Remover" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" />
-                        <TextField fx:id="textCPF" editable="false" prefHeight="30.0" prefWidth="139.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Placa" />
+                        <TextField fx:id="textPlaca" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RG" />
-                        <TextField fx:id="textRG" editable="false" prefHeight="30.0" prefWidth="139.0">
+                           </VBox.margin>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ano" />
+                        <TextField fx:id="textAno" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNH" />
-                        <TextField fx:id="textCNH" editable="false" prefHeight="30.0" prefWidth="139.0">
+                           </VBox.margin>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo" />
+                        <TextField fx:id="textModelo" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                        <TextField fx:id="textNome" editable="false" prefHeight="30.0" prefWidth="139.0">
+                           </VBox.margin>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quilometragem" />
+                        <TextField fx:id="textQuilometragem" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
+                           </VBox.margin>
+                        </TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
                         <TextField fx:id="textTelefone" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
+                           </VBox.margin>
+                        </TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" />
                         <TextField fx:id="textEndereco" editable="false" prefHeight="30.0" prefWidth="184.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></TextField>
+                           </VBox.margin>
+                        </TextField>
                         <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="371.0" spacing="15.0">
                            <children>
                               <Button fx:id="buttonCancelar" mnemonicParsing="false" onMouseClicked="#handleCancelar" prefHeight="45.0" prefWidth="80.0" text="Cancelar" />
