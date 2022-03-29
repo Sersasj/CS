@@ -16,11 +16,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 
 /**
  * FXML Controller class
@@ -61,7 +63,12 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private TextField textTelefone;
     @FXML 
     private TextField textEndereco;    
-    
+    @FXML
+    private Button buttonRemover;
+    @FXML
+    private Button buttonAlterar;
+    @FXML
+    private Button buttonAdicionar;
     
     private List<Motorista> listMotorista;
     private ObservableList<Motorista> observableListMotorista;
@@ -142,14 +149,23 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     }
     @FXML
     public void handleCancelar(MouseEvent event){
+        buttonAlterar.setStyle("-fx-background-color: #f5f5f5");
+        buttonAdicionar.setStyle("-fx-background-color: #f5f5f5");
+        buttonRemover.setStyle("-fx-background-color:#f5f5f5");
         select = 0;
     }
     public void handleRemoverMotorista(MouseEvent event){
+        buttonAlterar.setStyle("-fx-background-color: #f5f5f5");
+        buttonAdicionar.setStyle("-fx-background-color: #f5f5f5");
+        buttonRemover.setStyle("-fx-background-color: MediumSeaGreen");
         select = 3;
         
     }
     @FXML
     public void handleAdicionarMotorista(MouseEvent event){
+        buttonAlterar.setStyle("-fx-background-color: #f5f5f5");
+        buttonAdicionar.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonRemover.setStyle("-fx-background-color:#f5f5f5");        
         setTextVazio();
         select = 2;
         textCNH.setEditable(true);
@@ -161,8 +177,12 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
        
         
     }
-    @FXML
+    @FXML    
     public void handleAlterarMotorista(MouseEvent eventt){
+        
+        buttonAlterar.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonAdicionar.setStyle("-fx-background-color:#f5f5f5"); 
+        buttonRemover.setStyle("-fx-background-color:#f5f5f5");   
         select = 1;
 
         textCNH.setEditable(true);

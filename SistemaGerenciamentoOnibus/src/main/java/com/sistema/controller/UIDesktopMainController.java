@@ -41,17 +41,22 @@ public class UIDesktopMainController implements Initializable {
     private HBox hBoxMenuAberto, hBoxMain;
     @FXML
     private StackPane stackPaneRoot;
-    
+    @FXML
+    private AnchorPane anchorPaneRoot;
     @FXML
     public void handleButtonMotorista(MouseEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDMotorista.fxml"));         
 
-            Parent root1 = (Parent) fxmlLoader.load();
-            Scene scene = new Scene(root1);
-            Stage stage = (Stage) anchorPaneOpacidade.getScene().getWindow();            
-            stage.setScene(scene);
-            stage.show();
+            AnchorPane paneCRUDMotorista = (AnchorPane) fxmlLoader.load();
+            
+            
+            
+            anchorPaneRoot.getChildren().setAll(paneCRUDMotorista);
+            anchorPaneRoot.setTopAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneRoot.setLeftAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneRoot.setRightAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneRoot.setBottomAnchor(paneCRUDMotorista, 0.0);
         } catch(IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
@@ -63,11 +68,15 @@ public class UIDesktopMainController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDOnibus.fxml"));         
 
-            Parent root1 = (Parent) fxmlLoader.load();
-            Scene scene = new Scene(root1);
-            Stage stage = (Stage) anchorPaneOpacidade.getScene().getWindow();            
-            stage.setScene(scene);
-            stage.show();
+            AnchorPane paneCRUDOnibus = (AnchorPane) fxmlLoader.load();
+            
+            
+            
+            anchorPaneRoot.getChildren().setAll(paneCRUDOnibus);
+            anchorPaneRoot.setTopAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneRoot.setLeftAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneRoot.setRightAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneRoot.setBottomAnchor(paneCRUDOnibus, 0.0);
         } catch(IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);

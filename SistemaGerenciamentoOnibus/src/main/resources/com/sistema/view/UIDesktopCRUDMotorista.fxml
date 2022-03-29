@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDMotoristaController">
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" styleClass="anchorPaneBackground" stylesheets="@../../../styles/UIDesktopCRUD.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDMotoristaController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -57,7 +57,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="371.0" spacing="10.0">
                            <children>
-                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" text="Novo" />
+                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" styleClass="buttonBackground" text="Novo" />
                               <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="76.0" text="Alterar" />
                               <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="46.0" prefWidth="76.0" text="Remover" />
                            </children>
