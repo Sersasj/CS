@@ -30,7 +30,7 @@
                               <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
                            </children>
                         </HBox>
-                        <TableView fx:id="tableViewMotorista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
+                        <TableView fx:id="tableViewOnibus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
                            <columns>
                               <TableColumn fx:id="tableColumnPlaca" prefWidth="140.0" text="Placa" />
                               <TableColumn fx:id="tableColumnAno" prefWidth="140.0" text="Ano" />

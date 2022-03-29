@@ -67,18 +67,18 @@
                   <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button fx:id="buttonToggleMenu" alignment="CENTER" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="347.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" />
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button1">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Motorista">
                            <graphic>
                               <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB1" textFill="#ee6767" />
                            </graphic>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button2">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Ônibus">
                            <graphic>
                               <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB2" textFill="#ee6767" />
                            </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button3">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Rota">
                            <graphic>
                               <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="#ee6767" />
                            </graphic></Button>

@@ -4,12 +4,19 @@
  */
 package com.sistema.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -34,6 +41,38 @@ public class UIDesktopMainController implements Initializable {
     private HBox hBoxMenuAberto, hBoxMain;
     @FXML
     private StackPane stackPaneRoot;
+    
+    @FXML
+    public void handleButtonMotorista(MouseEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDMotorista.fxml"));         
+
+            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) anchorPaneOpacidade.getScene().getWindow();            
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }  
+    }
+    
+    @FXML 
+    public void handleButtonOnibus(MouseEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDOnibus.fxml"));         
+
+            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) anchorPaneOpacidade.getScene().getWindow();            
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }  
+    }
     
     
     @Override
