@@ -16,7 +16,7 @@
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane id="AnchorPane" styleClass="anchorPaneBackground" stylesheets="@../../../styles/UIDesktopCRUDMotorista.css">
+            <AnchorPane id="AnchorPane" styleClass="anchorPaneBackground" stylesheets="@../../../styles/UIDesktopCRUD.css">
                <children>
                   <VBox prefHeight="645.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>

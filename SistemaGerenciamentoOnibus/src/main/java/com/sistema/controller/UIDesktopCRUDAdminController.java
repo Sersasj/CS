@@ -4,12 +4,9 @@
  */
 package com.sistema.controller;
 
-import com.sistema.model.dao.FuncionarioDAO;
-import com.sistema.model.dao.MotoristaDAO;
-import com.sistema.model.pojo.Funcionario;
-import com.sistema.model.pojo.Motorista;
+import com.sistema.model.dao.AdministradorDAO;
+import com.sistema.model.pojo.Administrador;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,37 +19,43 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 
 /**
  * FXML Controller class
  *
  * @author sergi
  */
-public class UIDesktopCRUDMotoristaController implements Initializable {
+
+
+    
+public class UIDesktopCRUDAdminController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */  
+     */
     @FXML
-    private TableView<Motorista> tableViewMotorista;
+    private TableView<Administrador> tableViewAdmin;
     @FXML
-    private TableColumn<Motorista, String> tableColumnCNH;    
+    private TableColumn<Administrador, String> tableColumnUsuario;  
     @FXML
-    private TableColumn<Motorista, String> tableColumnCPF;
+    private TableColumn<Administrador, String> tableColumnSenha;      
     @FXML
-    private TableColumn<Motorista, String> tableColumnRG;
+    private TableColumn<Administrador, String> tableColumnCPF;
     @FXML
-    private TableColumn<Motorista, String> tableColumnNome;
+    private TableColumn<Administrador, String> tableColumnRG;
     @FXML
-    private TableColumn<Motorista, String> tableColumnTelefone;
+    private TableColumn<Administrador, String> tableColumnNome;
     @FXML
-    private TableColumn<Motorista, String> tableColumnEndereco;
+    private TableColumn<Administrador, String> tableColumnTelefone;
+    @FXML
+    private TableColumn<Administrador, String> tableColumnEndereco;    
     @FXML
     private TextField textBuscaNome;
     private int select;
     @FXML
-    private TextField textCNH;
+    private TextField textUsuario;
+    @FXML 
+    private TextField textSenha;           
     @FXML 
     private TextField textCPF;
     @FXML 
@@ -68,85 +71,74 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML
     private Button buttonAlterar;
     @FXML
-    private Button buttonAdicionar;
-    
-    private List<Motorista> listMotorista;
-    private ObservableList<Motorista> observableListMotorista;
-    private final MotoristaDAO motoristaDAO = new MotoristaDAO();
-    private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-    
-    
-     
-    @FXML
-    public void handleMouseAction(MouseEvent event){
-        
-        Motorista motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
-        textCNH.setText(motorista.getCnh());
-        textCPF.setText(motorista.getCpf());
-        textRG.setText(motorista.getRg());
-        textNome.setText(motorista.getNome());
-        textTelefone.setText(motorista.getTelefone());
-        textEndereco.setText(motorista.getEndereco());
-    }
+    private Button buttonAdicionar;        
+
+    private List<Administrador> listAdmin;
+    private ObservableList<Administrador> observableListAdmin;
+    private final AdministradorDAO adminDAO = new AdministradorDAO();
+
     @FXML 
     public void handleConfirmar(MouseEvent event){
-        Motorista motorista;
+        Administrador admin;
         switch(select){
             case 1:
-                motorista = tableViewMotorista.getSelectionModel().getSelectedItem();
-                motorista.setCnh(textCNH.getText());
-                motorista.setNome(textNome.getText());
-                motorista.setTelefone(textTelefone.getText());
-                motorista.setEndereco(textEndereco.getText());
+                admin = tableViewAdmin.getSelectionModel().getSelectedItem();
+                admin.setNome(textNome.getText());
+                admin.setTelefone(textTelefone.getText());
+                admin.setEndereco(textEndereco.getText());
                 // alterar cpf quebra tudo
                 //motorista.setCpf(textCPF.getText());
-                motorista.setRg(textRG.getText());
-                motoristaDAO.update(motorista);
+                admin.setRg(textRG.getText());
+                admin.setUsername(textUsuario.getText());
+                admin.setSenha(textSenha.getText());
+
+                adminDAO.update(admin);
         
                 carregarTableView();
-                tableViewMotorista.getColumns().get(0).setVisible(false);
-                tableViewMotorista.getColumns().get(0).setVisible(true);
+                tableViewAdmin.getColumns().get(0).setVisible(false);
+                tableViewAdmin.getColumns().get(0).setVisible(true);
                 break;
             case 2:
-                motorista = new Motorista();
-                motorista.setCnh(textCNH.getText());
-                motorista.setCpf(textCPF.getText());
-                motorista.setNome(textNome.getText());
-                motorista.setTelefone(textTelefone.getText());
-                motorista.setEndereco(textEndereco.getText()); 
-                motorista.setRg(textRG.getText());
-        
+                admin = new Administrador();
+                admin.setCpf(textCPF.getText());
+                admin.setNome(textNome.getText());
+                admin.setTelefone(textTelefone.getText());
+                admin.setEndereco(textEndereco.getText()); 
+                admin.setRg(textRG.getText());
+                admin.setUsername(textUsuario.getText());
+                admin.setSenha(textSenha.getText());        
   
-                motoristaDAO.add(motorista);
+                adminDAO.add(admin);
                 carregarTableView();
-                tableViewMotorista.getColumns().get(0).setVisible(false);
-                tableViewMotorista.getColumns().get(0).setVisible(true);
+                tableViewAdmin.getColumns().get(0).setVisible(false);
+                tableViewAdmin.getColumns().get(0).setVisible(true);
                 break;
                 
             case 3:
-                //motorista = motoristaDAO.getById(textCPF.getText());
+                //admin = adminDAO.getById(textCPF.getText());
                 //motoristaDAO.delete(textCPF.getText());
-                motoristaDAO.remove(textCPF.getText());
+                adminDAO.remove(textCPF.getText());
                 carregarTableView();
-                tableViewMotorista.getColumns().get(0).setVisible(false);
-                tableViewMotorista.getColumns().get(0).setVisible(true);  
+                tableViewAdmin.getColumns().get(0).setVisible(false);
+                tableViewAdmin.getColumns().get(0).setVisible(true);  
                 break;
             default:
                 System.out.println("error");
         }
-       
+    } 
+   @FXML
+    public void handleMouseAction(MouseEvent event){
         
-
-            
-    }
-    public void setTextVazio(){
-        textCNH.setText("");
-        textCPF.setText("");
-        textNome.setText("");
-        textTelefone.setText("");
-        textEndereco.setText("");
-        textRG.setText("");
-    }
+        Administrador admin = tableViewAdmin.getSelectionModel().getSelectedItem();
+        textCPF.setText(admin.getCpf());
+        textRG.setText(admin.getRg());
+        textNome.setText(admin.getNome());
+        textTelefone.setText(admin.getTelefone());
+        textEndereco.setText(admin.getEndereco());
+        textUsuario.setText(admin.getUsername());
+        textSenha.setText(admin.getSenha());
+        
+    }    
     @FXML
     public void handleCancelar(MouseEvent event){
         buttonAlterar.setStyle(null);
@@ -154,6 +146,17 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         buttonRemover.setStyle(null);
         select = 0;
     }
+    
+    public void setTextVazio(){
+        textUsuario.setText("");
+        textSenha.setText("");
+        textCPF.setText("");
+        textNome.setText("");
+        textTelefone.setText("");
+        textEndereco.setText("");
+        textRG.setText("");
+    }    
+    @FXML
     public void handleRemoverMotorista(MouseEvent event){
         buttonAlterar.setStyle(null);
         buttonAdicionar.setStyle(null);
@@ -168,7 +171,8 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         buttonRemover.setStyle(null);        
         setTextVazio();
         select = 2;
-        textCNH.setEditable(true);
+        textUsuario.setEditable(true);
+        textSenha.setEditable(true);        
         textCPF.setEditable(true);
         textNome.setEditable(true);
         textTelefone.setEditable(true);
@@ -186,29 +190,28 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
 
         select = 1;
 
-        textCNH.setEditable(true);
+        textUsuario.setEditable(true);
+        textSenha.setEditable(true);        
         textCPF.setEditable(false);
         textNome.setEditable(true);
         textTelefone.setEditable(true);
         textEndereco.setEditable(true);
         textRG.setEditable(true);
-    }
+    }    
     
     public void carregarTableView(){
-        
-        listMotorista = motoristaDAO.list();
-        observableListMotorista = FXCollections.observableArrayList(listMotorista);
-       
-        tableColumnCNH.setCellValueFactory(new PropertyValueFactory<>("cnh"));
+        listAdmin = adminDAO.list();
+        observableListAdmin = FXCollections.observableArrayList(listAdmin);
+        tableColumnUsuario.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tableColumnSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
+
         tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tableColumnRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        tableViewMotorista.setItems(observableListMotorista);   
-
+        tableViewAdmin.setItems(observableListAdmin);           
     }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         carregarTableView();

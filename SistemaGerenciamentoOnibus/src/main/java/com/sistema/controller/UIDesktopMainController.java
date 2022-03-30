@@ -63,6 +63,24 @@ public class UIDesktopMainController implements Initializable {
         }  
     }
     
+    @FXML void handleButtonAdmin(MouseEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDAdmin.fxml"));         
+
+            AnchorPane paneCRUDAdmin = (AnchorPane) fxmlLoader.load();
+            
+            
+            
+            anchorPaneRoot.getChildren().setAll(paneCRUDAdmin);
+            anchorPaneRoot.setTopAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneRoot.setLeftAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneRoot.setRightAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneRoot.setBottomAnchor(paneCRUDAdmin, 0.0);
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }        
+    }
     @FXML 
     public void handleButtonOnibus(MouseEvent event){
         try {
