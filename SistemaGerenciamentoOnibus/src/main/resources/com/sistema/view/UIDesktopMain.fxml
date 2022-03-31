@@ -49,7 +49,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneRoot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchorPaneConteudo" HBox.hgrow="ALWAYS">
+            <AnchorPane fx:id="anchorPaneConteudo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchorPaneConteudo" HBox.hgrow="ALWAYS">
                <children>
                   <Label layoutX="363.0" layoutY="158.0" prefHeight="369.0" prefWidth="454.0" text="MAPA">
                      <font>
@@ -101,7 +101,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleToggleMenu" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" HBox.hgrow="ALWAYS" />
+            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePaneOpacidade" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

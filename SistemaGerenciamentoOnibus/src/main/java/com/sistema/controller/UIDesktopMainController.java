@@ -42,7 +42,39 @@ public class UIDesktopMainController implements Initializable {
     @FXML
     private StackPane stackPaneRoot;
     @FXML
-    private AnchorPane anchorPaneRoot;
+    private AnchorPane anchorPaneConteudo;
+    
+      
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        inicializaMapa();
+        hBoxMenuAberto.setDisable(true);
+        hBoxMenuAberto.setVisible(false);
+    }
+    
+    @FXML
+    public void inicializaMapa(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopMapa.fxml"));         
+
+            AnchorPane paneMapa = (AnchorPane) fxmlLoader.load();
+            
+            anchorPaneConteudo.getChildren().setAll(paneMapa);
+            anchorPaneConteudo.setTopAnchor(paneMapa, 0.0);
+            anchorPaneConteudo.setLeftAnchor(paneMapa, 0.0);
+            anchorPaneConteudo.setRightAnchor(paneMapa, 0.0);
+            anchorPaneConteudo.setBottomAnchor(paneMapa, 0.0);
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }  
+    }
+    
+    @FXML
+    public void handleButtonMapa(MouseEvent event){
+        inicializaMapa();
+    }
+    
     @FXML
     public void handleButtonMotorista(MouseEvent event){
         try {
@@ -52,11 +84,11 @@ public class UIDesktopMainController implements Initializable {
             
             
             
-            anchorPaneRoot.getChildren().setAll(paneCRUDMotorista);
-            anchorPaneRoot.setTopAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneRoot.setLeftAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneRoot.setRightAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneRoot.setBottomAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneConteudo.getChildren().setAll(paneCRUDMotorista);
+            anchorPaneConteudo.setTopAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneConteudo.setLeftAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneConteudo.setRightAnchor(paneCRUDMotorista, 0.0);
+            anchorPaneConteudo.setBottomAnchor(paneCRUDMotorista, 0.0);
         } catch(IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
@@ -71,11 +103,11 @@ public class UIDesktopMainController implements Initializable {
             
             
             
-            anchorPaneRoot.getChildren().setAll(paneCRUDAdmin);
-            anchorPaneRoot.setTopAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneRoot.setLeftAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneRoot.setRightAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneRoot.setBottomAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneConteudo.getChildren().setAll(paneCRUDAdmin);
+            anchorPaneConteudo.setTopAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneConteudo.setLeftAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneConteudo.setRightAnchor(paneCRUDAdmin, 0.0);
+            anchorPaneConteudo.setBottomAnchor(paneCRUDAdmin, 0.0);
         } catch(IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
@@ -90,23 +122,18 @@ public class UIDesktopMainController implements Initializable {
             
             
             
-            anchorPaneRoot.getChildren().setAll(paneCRUDOnibus);
-            anchorPaneRoot.setTopAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneRoot.setLeftAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneRoot.setRightAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneRoot.setBottomAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneConteudo.getChildren().setAll(paneCRUDOnibus);
+            anchorPaneConteudo.setTopAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneConteudo.setLeftAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneConteudo.setRightAnchor(paneCRUDOnibus, 0.0);
+            anchorPaneConteudo.setBottomAnchor(paneCRUDOnibus, 0.0);
         } catch(IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }  
     }
     
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        hBoxMenuAberto.setDisable(true);
-        hBoxMenuAberto.setVisible(false);
-    }    
+ 
     
     @FXML
     public void handleButtonFechar(ActionEvent event) {
@@ -125,4 +152,11 @@ public class UIDesktopMainController implements Initializable {
         hBoxMenuAberto.setDisable(!hBoxMenuAberto.isDisable());
         hBoxMenuAberto.setVisible(!hBoxMenuAberto.isVisible());
     }
+    
+    @FXML
+    public void handlePaneOpacidade(MouseEvent event) {
+        hBoxMenuAberto.setDisable(true);
+        hBoxMenuAberto.setVisible(false);
+    }
+    
 }

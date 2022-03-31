@@ -1,6 +1,7 @@
 module com.sistema {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
     requires java.sql;
     requires java.base;
     requires java.persistence;
