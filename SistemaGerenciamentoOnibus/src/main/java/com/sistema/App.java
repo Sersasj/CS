@@ -3,6 +3,7 @@ package com.sistema;
 import com.sistema.model.dao.MotoristaDAO;
 import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Ponto;
+import com.sistema.server.Server;
 import com.sistema.util.ValidadorString;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * JavaFX App
@@ -87,7 +85,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         testesREGEX();
-        
         launch();
         //testeBD();
     }

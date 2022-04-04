@@ -13,14 +13,14 @@ import javax.persistence.Persistence;
 
 public class EMFSingleton {
 
-    private static EMFSingleton singleton;
+    private static EMFSingleton instance;
     protected EntityManagerFactory emf;
 
     public static EMFSingleton getInstance() {
-        if (singleton == null) {
-            singleton = new EMFSingleton();
+        if (instance == null) {
+            instance = new EMFSingleton();
         }
-        return singleton;
+        return instance;
     }
 
     private EMFSingleton() {

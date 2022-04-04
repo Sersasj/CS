@@ -25,7 +25,7 @@
 
          </children>
       </AnchorPane>
-      <Button fx:id="buttonEmergencia" layoutX="215.0" layoutY="745.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="134.0" style="-fx-background-color: #FF0000;" text="EMERGÊNCIA" textFill="WHITE">
+      <Button fx:id="buttonEmergencia" layoutX="215.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#handleEmergencia" prefHeight="39.0" prefWidth="134.0" style="-fx-background-color: #FF0000;" text="EMERGÊNCIA" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

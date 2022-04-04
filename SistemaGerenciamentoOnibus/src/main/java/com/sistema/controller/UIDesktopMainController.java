@@ -4,6 +4,8 @@
  */
 package com.sistema.controller;
 
+import com.sistema.model.pojo.Corrida;
+import com.sistema.util.Mediator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,8 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -48,6 +48,7 @@ public class UIDesktopMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializaMapa();
+        Mediator.getInstance().registerControllerDesktop(this);
         hBoxMenuAberto.setDisable(true);
         hBoxMenuAberto.setVisible(false);
     }
@@ -133,7 +134,11 @@ public class UIDesktopMainController implements Initializable {
         }  
     }
     
- 
+    @FXML
+    public void popUpEmergencia(){
+        // vai usar uma corrida como parametro
+        System.out.println("emergencia ativada");
+    }
     
     @FXML
     public void handleButtonFechar(ActionEvent event) {

@@ -16,12 +16,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -65,6 +64,8 @@ public class Corrida implements Serializable {
     private Onibus onibus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCorrida")
     private List<Emergencia> emergenciaList;
+    @Transient
+    private float latitude, longitude;
 
     public Corrida() {
     }
@@ -166,6 +167,24 @@ public class Corrida implements Serializable {
     public void setEmergenciaList(List<Emergencia> emergenciaList) {
         this.emergenciaList = emergenciaList;
     }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+    
+    
 
     @Override
     public int hashCode() {
