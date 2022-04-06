@@ -6,6 +6,7 @@ package com.sistema.util;
 
 import com.sistema.controller.UIDesktopMainController;
 import com.sistema.controller.UIMobileCorridaController;
+import com.sistema.model.pojo.Corrida;
 import java.util.ArrayList;
 
 /**
@@ -25,9 +26,9 @@ public class Mediator {
         listControllerMobile.add(ctrlMobile);
     }
     
-    public void handleEmergencia(){
+    public void handleEmergencia(Corrida corrida){
         if (controllerDesktop != null)
-            controllerDesktop.popUpEmergencia();
+            controllerDesktop.popUpEmergencia(corrida);
     }
 
     private static Mediator instance;

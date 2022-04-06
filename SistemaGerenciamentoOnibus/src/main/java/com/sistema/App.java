@@ -4,7 +4,7 @@ import com.sistema.model.dao.MotoristaDAO;
 import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Ponto;
 import com.sistema.server.Server;
-import com.sistema.util.ValidadorString;
+import com.sistema.util.StringFormatter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +43,7 @@ public class App extends Application {
         System.out.println("aaaa" + m.toString());
     }
     private static void testesREGEX(){
-        ValidadorString vs = new ValidadorString();
+        StringFormatter vs = new StringFormatter();
         String nome, email, telefone, rg, cpf;
         
         email = "ra115672@uem.br";

@@ -11,7 +11,7 @@ import com.sistema.model.pojo.Corrida;
 import com.sistema.model.pojo.Linha;
 import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Onibus;
-import com.sistema.util.ValidadorString;
+import com.sistema.util.StringFormatter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -52,7 +52,7 @@ public class UIMobileEntrarController implements Initializable {
     private final LinhaDAO linhaDAO = new LinhaDAO();
     private final OnibusDAO onibusDAO = new OnibusDAO(); 
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
-    private ValidadorString validadorString = new ValidadorString();
+    private StringFormatter validadorString = new StringFormatter();
 
     /**
      * Initializes the controller class.
@@ -106,7 +106,7 @@ public class UIMobileEntrarController implements Initializable {
         txtFieldNumeroCpf.setTextFormatter(new TextFormatter<>((change) -> {
             String novaString = change.getControlNewText();
             System.out.println(validadorString.formatarCPFIncompleto(novaString));
-            if (ValidadorString.PATTERN_CPF_INCOMPLETO.matcher(novaString).matches()) {
+            if (StringFormatter.PATTERN_CPF_INCOMPLETO.matcher(novaString).matches()) {
                 return change; 
             } else {
                 return null;
@@ -119,7 +119,7 @@ public class UIMobileEntrarController implements Initializable {
             }
             String novaString = change.getControlNewText();
             System.out.println(novaString);
-            if (ValidadorString.PATTERN_PLACA_INCOMPLETA.matcher(novaString).matches()) {
+            if (StringFormatter.PATTERN_PLACA_INCOMPLETA.matcher(novaString).matches()) {
                 return change; 
             } else {
                 return null;

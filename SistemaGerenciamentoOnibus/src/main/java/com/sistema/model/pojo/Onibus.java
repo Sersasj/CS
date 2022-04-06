@@ -121,7 +121,8 @@ public class Onibus implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Onibus[ placa=" + placa + " ]";
+        return "Onibus{" + "placa=" + placa + ", ano=" + ano + ", quilometragem=" + quilometragem + ", modelo=" + modelo + '}';
     }
+
     
 }

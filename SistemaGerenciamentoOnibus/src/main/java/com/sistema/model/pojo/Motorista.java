@@ -120,8 +120,10 @@ public class Motorista extends Funcionario implements Serializable{
 
     @Override
     public String toString() {
-        return "Motorista{" + "cpf=" + cpf + ", cnh=" + cnh + ", problemaList=" + problemaList + ", corridaList=" + corridaList + ", funcionario=" + funcionario + '}';
+        return "Motorista{" + "cpf=" + cpf + ", nome=" + this.getNome() + ", telefone=" + this.getTelefone() + ", endereco=" + this.getEndereco() + '}';
     }
+
+    
     
 
     

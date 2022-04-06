@@ -94,6 +94,9 @@ public class UIMobileCorridaController implements Initializable {
 
         Timestamp inicio = new Timestamp(System.currentTimeMillis());
         corrida.setInicioCorrida(inicio);
+        // coordenadas do terminal
+        corrida.setLatitude((float)-23.418590);
+        corrida.setLongitude((float)-51.938117);
 
         System.out.println(inicio);
 
@@ -108,7 +111,7 @@ public class UIMobileCorridaController implements Initializable {
     
     @FXML
     public void handleEmergencia(MouseEvent event) {
-        Mediator.getInstance().handleEmergencia();
+        Mediator.getInstance().handleEmergencia(corrida);
     }
 
     @Override

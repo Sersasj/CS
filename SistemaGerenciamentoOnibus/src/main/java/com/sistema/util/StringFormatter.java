@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  *
  * @author vini
  */
-public class ValidadorString {
+public class StringFormatter {
 
     public static final String REGEX_EMAIL_VALIDO = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
     public static final Pattern PATTERN_EMAIL_VALIDO
@@ -33,11 +33,11 @@ public class ValidadorString {
     public static final Pattern PATTERN_TELEFONE_VALIDO
             = Pattern.compile(REGEX_TELEFONE_VALIDO, Pattern.CASE_INSENSITIVE);
 
-    public static final String REGEX_PLACA_VALIDA_1 = "^([A-Z]{3})[-]([0-9]{4})$";
+    public static final String REGEX_PLACA_VALIDA_1 = "^([A-Z]{3})[-]?([0-9]{4})$";
     public static final Pattern PATTERN_PLACA_VALIDA_1
             = Pattern.compile(REGEX_PLACA_VALIDA_1, Pattern.CASE_INSENSITIVE);
 
-    public static final String REGEX_PLACA_VALIDA_2 = "^([A-Z]{3})[-][0-9][A-Z]([0-9]{2})$";
+    public static final String REGEX_PLACA_VALIDA_2 = "^([A-Z]{3})[-]?[0-9][A-Z]([0-9]{2})$";
     public static final Pattern PATTERN_PLACA_VALIDA_2
             = Pattern.compile(REGEX_PLACA_VALIDA_2, Pattern.CASE_INSENSITIVE);
 
@@ -45,7 +45,7 @@ public class ValidadorString {
     public static final Pattern PATTERN_PLACA_INCOMPLETA
             = Pattern.compile(REGEX_PLACA_INCOMPLETA, Pattern.CASE_INSENSITIVE);
     
-    public ValidadorString() {
+    public StringFormatter() {
     }
 
     public boolean validarEmail(String emailStr) {
@@ -99,10 +99,16 @@ public class ValidadorString {
     }
 
     public String formatarTelefone(String telefoneStr) {
-        return telefoneStr.replaceAll(REGEX_TELEFONE_VALIDO, "$1 $2-$3");
+        return telefoneStr.replaceAll(REGEX_TELEFONE_VALIDO, "($1) $2-$3");
     }
     public String formatarPlaca(String placaStr) {
         return placaStr.replaceAll(REGEX_PLACA_VALIDA_1, "$1$2");
+    }
+    public String formatarTelefoneDisplay(String telefoneStr) {
+        return telefoneStr.replaceAll(REGEX_TELEFONE_VALIDO, "($1) $2-$3");
+    }
+    public String formatarPlacaDisplay(String placaStr) {
+        return placaStr.replaceAll(REGEX_PLACA_VALIDA_1, "$1-$2");
     }
    
 }

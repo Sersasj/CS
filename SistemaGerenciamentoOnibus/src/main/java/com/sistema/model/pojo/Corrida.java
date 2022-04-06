@@ -208,7 +208,11 @@ public class Corrida implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Corrida[ id=" + id + " ]";
+        return "Corrida{" + "id=" + id + ", linha=" + linha + ", motorista=" + motorista + ", onibus=" + onibus + ", latitude=" + latitude + ", longitude=" + longitude + '}';
+    }
+
+    public String coordenadasToString() {
+        return "" + latitude + ", " + longitude;
     }
     
 }
