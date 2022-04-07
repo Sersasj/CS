@@ -1,0 +1,17 @@
+{
+    "marcadores" : [
+        {
+            "title": "DIN",
+            "lat": -23.405609,
+            "lng": -51.936445,
+            "icon": "./icons/front-of-bus.png"
+        },
+        {
+            "title": "D67",
+            "lat": -23.404939,
+            "lng":  -51.936602,
+            "icon": "./icons/front-of-bus.png"
+        }
+
+    ]
+}

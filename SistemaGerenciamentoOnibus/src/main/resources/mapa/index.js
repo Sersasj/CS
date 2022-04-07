@@ -1,5 +1,8 @@
+
 let map;
+//var json = "https://api.jsonbin.io/b/624e39c74c42ee0bc564d062";
 function initMap() {
+    
     // Propriedades do mapa
     map = new google.maps.Map(document.getElementById("map"), {
         mapId: "f65341f68a260442",
@@ -9,14 +12,71 @@ function initMap() {
         mapTypeControl: false,
         streetViewControl: false
     });
+    //$.getJSON("https://api.jsonbin.io/b/624e39c74c42ee0bc564d062", function(json1) {
+        
+ $.getJSON('https://api.jsonbin.io/b/624e39c74c42ee0bc564d062', function(json1) {
+  
+        // JSON result in `data` variable
     
-    // Marcador de Onibus
-    const marker = new google.maps.Marker({
-        title: "DIN",
-        position: {lat: -23.405609, lng: -51.936445},
+//   var json1 = {
+//        "marcadores" : [
+//          {
+//            "title": "DIN",
+//            "lat": -23.405609,
+//            "lng": -51.936445,
+//            "icon": "./icons/front-of-bus.png"
+//        },
+//        {
+//            "title": "D67",
+//            "lat": -23.404939,
+//            "lng":  -51.936602,
+//            "icon": "./icons/front-of-bus.png"
+//        }
+//       ]
+//    };
+//    
+//  
+    for(var i = 0; i < json1.marcadores.length; i++){
+        var obj = json1.marcadores[i];
+        var latLng = new google.maps.LatLng(obj.lat, obj.lng);
+
+        new google.maps.Marker({
+        title: obj.title,
+        position: latLng,
         icon: "./icons/front-of-bus.png",
         map: map
-      });
+        });       
+        
+    }
+    });
+         
+    // $.each(json1.marcadores, function(key,data) {
+    // alert("aa");
+//    var latLng = new google.maps.LatLng(data.lat, data.lng);
+//
+//    var marker = new google.maps.Marker({
+//        title:      data.title,        
+//        position:   latLng,
+//        icon: "./icons/front-of-bus.png",
+//        map:        map
+//    });   
+//     });
+//    
+    // Marcador de Onibus
+    
+//    const marker = new google.maps.Marker({
+//        title: "DIN",
+//        position: {lat: -23.405609, lng: -51.936445},
+//        icon: "./icons/front-of-bus.png",
+//        map: map
+//     });
+//    new google.maps.Marker({
+//        title: "D67",
+//        position: {lat: -23.404939, lng: -51.936602},
+//        icon: "./icons/front-of-bus.png",
+//        map: map
+//     });
+//     
      
     // Texto no marcador
     const contentString =
@@ -54,3 +114,5 @@ function initMap() {
       infowindow.close();
     });
   }
+  
+
