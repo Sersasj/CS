@@ -12,36 +12,27 @@ function initMap() {
         mapTypeControl: false,
         streetViewControl: false
     });
-    //$.getJSON("https://api.jsonbin.io/b/624e39c74c42ee0bc564d062", function(json1) {
         
- $.getJSON('https://api.jsonbin.io/b/624e39c74c42ee0bc564d062', function(json1) {
-  
-        // JSON result in `data` variable
-    
-//   var json1 = {
-//        "marcadores" : [
-//          {
-//            "title": "DIN",
-//            "lat": -23.405609,
-//            "lng": -51.936445,
-//            "icon": "./icons/front-of-bus.png"
-//        },
-//        {
-//            "title": "D67",
-//            "lat": -23.404939,
-//            "lng":  -51.936602,
-//            "icon": "./icons/front-of-bus.png"
-//        }
-//       ]
+    $.getJSON('https://api.jsonbin.io/b/62506bbed8a4cc06909e037b', function(json1) {
+//let req = new XMLHttpRequest();
+//
+//    req.onreadystatechange = () => {
+//    if (req.readyState == XMLHttpRequest.DONE) {
+//        console.log(req.responseText);
+//    }
 //    };
-//    
-//  
+//
+//    req.open("PUT", "https://api.jsonbin.io/b/624f8755d20ace068f9526ce", true);
+//    req.setRequestHeader("Content-Type", "application/json");
+//    req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+//    req.send('{"sample": "Hello World"}');  
+
     for(var i = 0; i < json1.marcadores.length; i++){
         var obj = json1.marcadores[i];
         var latLng = new google.maps.LatLng(obj.lat, obj.lng);
 
         new google.maps.Marker({
-        title: obj.title,
+        title: obj.motorista,
         position: latLng,
         icon: "./icons/front-of-bus.png",
         map: map
@@ -50,33 +41,7 @@ function initMap() {
     }
     });
          
-    // $.each(json1.marcadores, function(key,data) {
-    // alert("aa");
-//    var latLng = new google.maps.LatLng(data.lat, data.lng);
-//
-//    var marker = new google.maps.Marker({
-//        title:      data.title,        
-//        position:   latLng,
-//        icon: "./icons/front-of-bus.png",
-//        map:        map
-//    });   
-//     });
-//    
-    // Marcador de Onibus
-    
-//    const marker = new google.maps.Marker({
-//        title: "DIN",
-//        position: {lat: -23.405609, lng: -51.936445},
-//        icon: "./icons/front-of-bus.png",
-//        map: map
-//     });
-//    new google.maps.Marker({
-//        title: "D67",
-//        position: {lat: -23.404939, lng: -51.936602},
-//        icon: "./icons/front-of-bus.png",
-//        map: map
-//     });
-//     
+   
      
     // Texto no marcador
     const contentString =
@@ -114,5 +79,30 @@ function initMap() {
       infowindow.close();
     });
   }
+
+function sendLocalization(placa, linha, motorista, cpf, lat, lng){
+ 
+
+    let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+    console.log(req.responseText);
+  }
+   };
+
+
+    $.getJSON('https://api.jsonbin.io/b/624f7df5d8a4cc06909d94b7', function(json1) {
+
+    json1['marcadores'].push({"placa": placa, "linha": linha, "motorista" : motorista, "cpf": cpf, "lat": lat, "lng": lng, "icon":"./icons/front-of-bus.png"});
+    jsonStr = JSON.stringify(json1);
+
+    req.open("PUT", "https://api.jsonbin.io/v3/b/624f7df5d8a4cc06909d94b7", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+    console.log(json1);
+    req.send(jsonStr);
   
+     });
+}
 

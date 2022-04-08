@@ -9,7 +9,17 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
-    <dependencies>
+    <dependencies> 
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.11.0</version>
+</dependency>        
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20211205</version>
+        </dependency>           
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -60,7 +70,12 @@
             <version>2.3.1</version>
          </dependency>
          -->
-         
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.core</artifactId>
+            <version>2.7.9</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
