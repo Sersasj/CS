@@ -1,6 +1,5 @@
 
 let map;
-//var json = "https://api.jsonbin.io/b/624e39c74c42ee0bc564d062";
 function initMap() {
     
     // Propriedades do mapa
@@ -13,19 +12,8 @@ function initMap() {
         streetViewControl: false
     });
         
-    $.getJSON('https://api.jsonbin.io/b/62506bbed8a4cc06909e037b', function(json1) {
-//let req = new XMLHttpRequest();
-//
-//    req.onreadystatechange = () => {
-//    if (req.readyState == XMLHttpRequest.DONE) {
-//        console.log(req.responseText);
-//    }
-//    };
-//
-//    req.open("PUT", "https://api.jsonbin.io/b/624f8755d20ace068f9526ce", true);
-//    req.setRequestHeader("Content-Type", "application/json");
-//    req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
-//    req.send('{"sample": "Hello World"}');  
+    $.getJSON('https://api.jsonbin.io/b/6250cfcfd20ace068f95aa94', function(json1) {
+
 
     for(var i = 0; i < json1.marcadores.length; i++){
         var obj = json1.marcadores[i];

@@ -4,6 +4,7 @@
  */
 package com.sistema.controller;
 
+import com.mysql.cj.xdevapi.JsonArray;
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
 import com.sistema.model.pojo.Motorista;
@@ -19,6 +20,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
@@ -75,27 +77,84 @@ public class UIMobileCorridaController implements Initializable {
         corrida.setConsumoCombustivel(rand.nextFloat() * 100);
 
     }
-  private static String readAll(Reader rd) throws IOException {
-    StringBuilder sb = new StringBuilder();
-    int cp;
-    while ((cp = rd.read()) != -1) {
-      sb.append((char) cp);
+    private static String readAll(Reader rd) throws IOException {
+      StringBuilder sb = new StringBuilder();
+      int cp;
+      while ((cp = rd.read()) != -1) {
+        sb.append((char) cp);
+      }
+      return sb.toString();
     }
-    return sb.toString();
-  }
 
-  public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-    InputStream is = new URL(url).openStream();
-    try {
-      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-      String jsonText = readAll(rd);
-      JSONObject json = new JSONObject(jsonText);
-      return json;
-    } finally {
-      is.close();
-    }
-  }    
+    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+      InputStream is = new URL(url).openStream();
+      try {
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        String jsonText = readAll(rd);
+        JSONObject json = new JSONObject(jsonText);
+        return json;
+      } finally {
+        is.close();
+      }
+    }    
     
+    public void putText(String input) throws Exception{
+        URL url = new URL("https://api.jsonbin.io/v3/b/6250e19ad8a4cc06909e20a7");
+        HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
+        //urlConnection.setConnectTimeout(5000);
+        urlConnection.setRequestMethod("PUT"); 
+
+        urlConnection.setRequestProperty("Content-Type", "application/json");
+        urlConnection.setRequestProperty("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+
+        urlConnection.setDoInput(true);
+        urlConnection.setDoOutput(true);
+        urlConnection.setUseCaches(false);
+
+        //String input = json.toString();
+        OutputStream os = urlConnection.getOutputStream();
+        os.write(input.getBytes("UTF-8"));
+        os.flush();
+            if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                    + urlConnection.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (urlConnection.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            urlConnection.disconnect(); 
+    }
+    
+    public void finalizarLocalizacao() throws Exception{
+    String placa = corrida.getOnibus().getPlaca();
+    // Le Json
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6250e19ad8a4cc06909e20a7"); 
+    JSONObject jsonAux = new JSONObject();
+    JSONArray jsonArray = json.getJSONArray("marcadores");
+
+    
+    // remove quem tem placa igual a corrida finalizada
+    for(int i = 0; i < jsonArray.length(); i++){
+        if(jsonArray.getJSONObject(i).get("placa").equals(placa)){
+            jsonArray.remove(i);
+            i = 0;
+        }
+    }
+    for(int i = 0; i < jsonArray.length(); i++){   
+        jsonAux.accumulate("marcadores", jsonArray.getJSONObject(i));
+    }    
+    putText(jsonAux.toString());
+    }
+    
+    
+  
     public void iniciarLocalizacao() throws Exception{
     String nome = corrida.getMotorista().getNome();
     String cpf = corrida.getMotorista().getCpf();
@@ -106,7 +165,7 @@ public class UIMobileCorridaController implements Initializable {
     
     
     // Le Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/62506bbed8a4cc06909e037b");
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6250e19ad8a4cc06909e20a7");
     //System.out.println(json.toString());
     // Cria novo objeto
     JSONObject jsonNew = new JSONObject();
@@ -119,57 +178,19 @@ public class UIMobileCorridaController implements Initializable {
     jsonNew.put("icon", "./icons/front-of-bus.png" );
     // Adiciona novo objeto no json
     json.accumulate("marcadores", jsonNew);
-    System.out.println(json.toString());
+    putText(json.toString()); 
 
-    URL url = new URL("https://api.jsonbin.io/v3/b/62506bbed8a4cc06909e037b");
-    HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
-    //urlConnection.setConnectTimeout(5000);
-    urlConnection.setRequestMethod("PUT"); 
-
-    urlConnection.setRequestProperty("Content-Type", "application/json");
-    urlConnection.setRequestProperty("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
-    
-    urlConnection.setDoInput(true);
-    urlConnection.setDoOutput(true);
-    urlConnection.setUseCaches(false);
-
-    String input = json.toString();
-    OutputStream os = urlConnection.getOutputStream();
-    os.write(input.getBytes("UTF-8"));
-    os.flush();
-        if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                + urlConnection.getResponseCode());
-        }
- 
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (urlConnection.getInputStream())));
- 
-        String output;
-        System.out.println("Output from Server .... \n");
-        while ((output = br.readLine()) != null) {
-            System.out.println(output);
-        }
- 
-        urlConnection.disconnect();    
-
-    
-//    // read the response
-//    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-//    String result = org.apache.commons.io.IOUtils.toString(in, "UTF-8");
-//    JSONObject jsonObject = new JSONObject(result);
-//
-//
-//    in.close();
-//    urlConnection.disconnect();    
-//        System.out.println(jsonObject.toString());
     
 
     }
 
     @FXML
     public void handleFinalizar(MouseEvent event) throws IOException {
-
+        try {
+            finalizarLocalizacao();
+        } catch (Exception ex) {
+            Logger.getLogger(UIMobileCorridaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Timestamp fim = new Timestamp(System.currentTimeMillis());
         simularCorrida();
         corrida.setFimCorrida(fim);
