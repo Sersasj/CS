@@ -82,7 +82,7 @@
                            <graphic>
                               <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="#ee6767" />
                            </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button4">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonHistorico" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Histórico de Corridas">
                            <graphic>
                               <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB4" textFill="#ee6767" />
                            </graphic></Button>

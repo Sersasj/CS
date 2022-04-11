@@ -4,7 +4,6 @@
  */
 package com.sistema.controller;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
 import com.sistema.model.pojo.Motorista;

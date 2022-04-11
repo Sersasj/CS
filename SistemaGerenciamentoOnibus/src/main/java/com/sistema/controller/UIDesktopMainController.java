@@ -130,6 +130,24 @@ public class UIDesktopMainController implements Initializable {
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
+    
+    @FXML
+    public void handleButtonHistorico(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopHistoricoCorridas.fxml"));
+
+            AnchorPane paneHistorico = (AnchorPane) fxmlLoader.load();
+
+            anchorPaneConteudo.getChildren().setAll(paneHistorico);
+            anchorPaneConteudo.setTopAnchor(paneHistorico, 0.0);
+            anchorPaneConteudo.setLeftAnchor(paneHistorico, 0.0);
+            anchorPaneConteudo.setRightAnchor(paneHistorico, 0.0);
+            anchorPaneConteudo.setBottomAnchor(paneHistorico, 0.0);
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
 
     @FXML
     public void popUpEmergencia(Corrida corrida) {
