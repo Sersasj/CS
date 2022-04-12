@@ -39,13 +39,14 @@ function initMap() {
                 infowindow.open(map,marker);
         };
         })(marker, content, infowindow));
+        /*
         google.maps.event.addListener(marker,'mouseout', (function(marker,infowindow){
             return function(){
                 infowindow.close();
             };
 
         })(marker, infowindow));
-        /*
+        
         marker.addListener("mouseout", () => {
             infowindow.close();
         })
