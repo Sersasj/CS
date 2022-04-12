@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="1180.0" styleClass="anchorPaneBackground" stylesheets="@../../../styles/UIDesktopCRUD.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopHistoricoCorridasController">
@@ -15,14 +17,27 @@
          <children>
             <VBox prefHeight="645.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" VBox.vgrow="NEVER">
+                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" spacing="10.0" VBox.vgrow="NEVER">
                      <children>
-                        <Label text="imgLupa">
+                        <Label minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" text="imgLupa" HBox.hgrow="NEVER">
                            <HBox.margin>
-                              <Insets left="5.0" right="10.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
+                        <TextField prefHeight="35.0" prefWidth="218.0" promptText="Buscar por nome" />
+                        <Pane prefHeight="70.0" prefWidth="473.0" HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="180.0">
+                           <children>
+                              <Label text="Início" />
+                              <DatePicker fx:id="datePickerInicio" onAction="#handleDatePickerInicio" promptText="Insira a Data Inicial" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="180.0">
+                           <children>
+                              <Label text="Fim" />
+                              <DatePicker fx:id="datePickerFim" onAction="#handleDatePickerFim" promptText="Insira a Data Final" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewCorrida" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

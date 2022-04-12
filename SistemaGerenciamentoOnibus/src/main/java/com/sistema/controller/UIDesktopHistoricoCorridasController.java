@@ -7,16 +7,20 @@ package com.sistema.controller;
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -28,26 +32,28 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */  
+     */
     @FXML
     private TableView<Corrida> tableViewCorrida;
     @FXML
     private TableColumn<Corrida, String> tableColumnID, tableColumnMotorista, tableColumnOnibus, tableColumnLinha;
     @FXML
-    private TableColumn<Corrida, String> tableColumnInicio, tableColumnFim, tableColumnPagantes, tableColumnNaoPagantes;    
+    private TableColumn<Corrida, String> tableColumnInicio, tableColumnFim, tableColumnPagantes, tableColumnNaoPagantes;
+    @FXML
+    private DatePicker datePickerInicio, datePickerFim;
 //    @FXML
 //    private TextField textBuscaNome;  
-    
+
+    private Date dataInicial = null, dataFinal = null;
     private List<Corrida> listCorrida;
     private ObservableList<Corrida> observableListCorrida;
     private final CorridaDAO corridaDAO = new CorridaDAO();
-    
-    
-    public void carregarTableView(){
-        
+
+    public void carregarTableView() {
+
         listCorrida = corridaDAO.list();
         observableListCorrida = FXCollections.observableArrayList(listCorrida);
-       
+
         tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnMotorista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotorista().getNome()));
         tableColumnOnibus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOnibus().getPlaca()));
@@ -56,13 +62,37 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
         tableColumnFim.setCellValueFactory(new PropertyValueFactory<>("fimCorrida"));
         tableColumnPagantes.setCellValueFactory(new PropertyValueFactory<>("passPagantes"));
         tableColumnNaoPagantes.setCellValueFactory(new PropertyValueFactory<>("passNaoPagantes"));
-       
+
         tableViewCorrida.setItems(observableListCorrida);
     }
     
+    public void atualizarTableView() {
+
+        listCorrida = corridaDAO.list(dataInicial, dataFinal);
+        observableListCorrida = FXCollections.observableArrayList(listCorrida);
+
+        tableViewCorrida.setItems(observableListCorrida);
+    }
+
+    public void handleDatePickerInicio(ActionEvent e) {
+        LocalDate localDateInicial = datePickerInicio.getValue();
+        if (localDateInicial != null) {
+            dataInicial = Date.from(localDateInicial.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            atualizarTableView();
+        }
+    }
+
+    public void handleDatePickerFim(ActionEvent e) {
+        LocalDate localDateFinal = datePickerFim.getValue();
+        if (localDateFinal != null) {
+            dataFinal = Date.from(localDateFinal.atTime(23, 59, 59, 999999999).atZone(ZoneId.systemDefault()).toInstant());
+            atualizarTableView();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         carregarTableView();
-    }    
-    
+    }
+
 }
