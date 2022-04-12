@@ -98,7 +98,7 @@ public class UIMobileCorridaController implements Initializable {
     }    
     
     public void putText(String input) throws Exception{
-        URL url = new URL("https://api.jsonbin.io/v3/b/6250e19ad8a4cc06909e20a7");
+        URL url = new URL("https://api.jsonbin.io/v3/b/6255c2fa21e89024ee8b8f35");
         HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
         //urlConnection.setConnectTimeout(5000);
         urlConnection.setRequestMethod("PUT"); 
@@ -134,7 +134,7 @@ public class UIMobileCorridaController implements Initializable {
     public void finalizarLocalizacao() throws Exception{
     String placa = corrida.getOnibus().getPlaca();
     // Le Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6250e19ad8a4cc06909e20a7"); 
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35"); 
     JSONObject jsonAux = new JSONObject();
     JSONArray jsonArray = json.getJSONArray("marcadores");
 
@@ -146,10 +146,15 @@ public class UIMobileCorridaController implements Initializable {
             i = 0;
         }
     }
+    
     for(int i = 0; i < jsonArray.length(); i++){   
         jsonAux.accumulate("marcadores", jsonArray.getJSONObject(i));
-    }    
+    } 
+    
+    
     putText(jsonAux.toString());
+    
+    
     }
     
     
@@ -159,12 +164,11 @@ public class UIMobileCorridaController implements Initializable {
     String cpf = corrida.getMotorista().getCpf();
     String placa = corrida.getOnibus().getPlaca();
     String linha = corrida.getLinha().getNome();
-    //String lat = Float.toHexString(corrida.getLatitude());
-    //String lng = Float.toHexString(corrida.getLongitude());
-    
+    String lat = Float.toString(corrida.getLatitude());
+    String lng = Float.toString(corrida.getLongitude());
     
     // Le Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6250e19ad8a4cc06909e20a7");
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35");
     //System.out.println(json.toString());
     // Cria novo objeto
     JSONObject jsonNew = new JSONObject();
@@ -172,8 +176,8 @@ public class UIMobileCorridaController implements Initializable {
     jsonNew.put("linha", linha);    
     jsonNew.put("motorista", nome);
     jsonNew.put("cpf", cpf);    
-    jsonNew.put("lat", "-23.405679");
-    jsonNew.put("lng", "-51.936449" );
+    jsonNew.put("lat", lat);
+    jsonNew.put("lng", lng );
     jsonNew.put("icon", "./icons/front-of-bus.png" );
     // Adiciona novo objeto no json
     json.accumulate("marcadores", jsonNew);
@@ -216,11 +220,7 @@ public class UIMobileCorridaController implements Initializable {
 
     @FXML
     public void handleIniciar(MouseEvent event) {
-        try {
-            iniciarLocalizacao();
-        } catch (Exception ex) {
-            Logger.getLogger(UIMobileCorridaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+ 
         Timestamp inicio = new Timestamp(System.currentTimeMillis());
         corrida.setInicioCorrida(inicio);
         // coordenadas do terminal
@@ -235,7 +235,12 @@ public class UIMobileCorridaController implements Initializable {
         buttonEmergencia.setDisable(false);
         buttonFinalizar.setDisable(false);
         buttonEmergencia.setVisible(true);
-        buttonFinalizar.setVisible(true);
+        buttonFinalizar.setVisible(true); 
+        try {
+            iniciarLocalizacao();
+        } catch (Exception ex) {
+            Logger.getLogger(UIMobileCorridaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
