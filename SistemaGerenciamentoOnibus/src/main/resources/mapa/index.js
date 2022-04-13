@@ -1,4 +1,6 @@
 let map;
+var markersArray = [];
+
 function initMap() {
     
     // Propriedades do mapa
@@ -12,11 +14,64 @@ function initMap() {
     });
         
 
-    showMarkers();
+    refresh();
    
 
   }
-  function showMarkers(){
+function refresh(){
+    resetMarkers();
+    randomWalk();
+    showMarkers();
+    setTimeout(refresh, 5000);
+}
+
+//refresh(); 
+function resetMarkers(){
+    if (markersArray) {
+    for (i in markersArray) {
+      markersArray[i].setMap(null);
+    }
+    markersArray.length = 0;
+  }    
+}
+function randomWalk(){
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        console.log(req.responseText);
+    }
+   };
+
+
+    $.getJSON('https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35', function(json1) {
+
+
+    jsonStr = JSON.stringify(json1);
+
+    for(var i in json1['marcadores']){
+      
+      var random = (Math.random() * (0.0001 - 0.00001) + 0.00001).toFixed(5);
+        random *= Math.round(Math.random()) ? 1 : -1;
+    	var string1 = json1['marcadores'][i].lat;
+        var string2 = json1['marcadores'][i].lng;
+      string1 = +random + +string1;
+      string2 =  +random + +string2
+      json1['marcadores'][i].lat = string1.toString();
+      json1['marcadores'][i].lng = string2.toString();
+
+    }
+    req.open("PUT", "https://api.jsonbin.io/v3/b/6255c2fa21e89024ee8b8f35", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+    jsonStr = JSON.stringify(json1);
+
+    req.send(jsonStr);
+  
+     });
+}
+  
+function showMarkers(){
         $.getJSON('https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35', function(json1) {
 
 
@@ -30,7 +85,8 @@ function initMap() {
         icon: "./icons/front-of-bus.png",
         map: map
         }); 
-        
+        +markersArray.push(marker);
+
         var infowindow = new google.maps.InfoWindow()
         var content = "Placa: " + obj.placa + " Linha: " + obj.linha;
         google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){ 
@@ -55,3 +111,4 @@ function initMap() {
     }
     });
   }
+
