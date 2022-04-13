@@ -43,7 +43,21 @@ public class UIMobileFinalizarController implements Initializable {
         linhaOnibus.setText("Linha: " + corrida.getLinha().toString());
         
     }    
-    
+    @FXML
+    public void handleProblema(MouseEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileEnviarProblemas.fxml"));         
+
+            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) placaOnibus.getScene().getWindow();            
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }         
+    }
     @FXML
     public void handleVoltar(MouseEvent event){
         try {
