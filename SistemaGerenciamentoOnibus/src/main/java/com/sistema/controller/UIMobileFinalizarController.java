@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,6 +37,12 @@ public class UIMobileFinalizarController implements Initializable {
     private Corrida corrida;
     private final CorridaDAO corridaDAO = new CorridaDAO();
     
+    Button buttonContinuar;
+    @FXML
+    public void handleContinuar (MouseEvent event) {
+        buttonContinuar.setDisable(true);
+        buttonContinuar.setVisible(false);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
