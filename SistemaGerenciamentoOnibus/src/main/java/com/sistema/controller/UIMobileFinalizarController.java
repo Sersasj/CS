@@ -34,18 +34,29 @@ public class UIMobileFinalizarController implements Initializable {
     
     @FXML 
     Text placaOnibus, linhaOnibus;
+    @FXML
+    Button buttonContinuar, buttonContinuarLinha, buttonContinuarMotorista;    
+    
     private Corrida corrida;
     private final CorridaDAO corridaDAO = new CorridaDAO();
-    
-    Button buttonContinuar;
+
     @FXML
     public void handleContinuar (MouseEvent event) {
         buttonContinuar.setDisable(true);
         buttonContinuar.setVisible(false);
+        buttonContinuarLinha.setDisable(false);
+        buttonContinuarLinha.setVisible(true);
+        buttonContinuarMotorista.setDisable(false);
+        buttonContinuarMotorista.setVisible(true);        
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        buttonContinuarLinha.setDisable(true);
+        buttonContinuarLinha.setVisible(false);
+        buttonContinuarMotorista.setDisable(true);
+        buttonContinuarMotorista.setVisible(false);
+        
         placaOnibus.setText("Placa: " + corrida.getOnibus().getPlaca());
         linhaOnibus.setText("Linha: " + corrida.getLinha().toString());
         

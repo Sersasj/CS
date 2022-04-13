@@ -51,7 +51,7 @@ function randomWalk(){
 
     for(var i in json1['marcadores']){
       
-      var random = (Math.random() * (0.0001 - 0.00001) + 0.00001).toFixed(5);
+      var random = (Math.random() * (0.001 - 0.00001) + 0.00001).toFixed(4);
         random *= Math.round(Math.random()) ? 1 : -1;
     	var string1 = json1['marcadores'][i].lat;
         var string2 = json1['marcadores'][i].lng;
