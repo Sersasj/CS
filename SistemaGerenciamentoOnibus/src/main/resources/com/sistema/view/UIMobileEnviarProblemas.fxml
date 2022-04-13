@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="844.0" prefWidth="381.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.sistema.controller.UIMobileEnviarProblemasController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="2.0" layoutY="2.0" prefHeight="844.0" prefWidth="381.0" style="-fx-background-color: #F0F8FF;">
+         <children>
+            <AnchorPane layoutY="-5.0" prefHeight="663.0" prefWidth="394.0" style="-fx-background-color: #3486eb;">
+               <children>
+                  <Text fill="WHITE" layoutX="19.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile Corrida">
+                     <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="placaOnibus" fill="WHITE" layoutX="19.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informe no campo abaixo o ocorrido:">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField alignment="TOP_LEFT" layoutX="19.0" layoutY="143.0" prefHeight="490.0" prefWidth="354.0" style="-fx-background-color: #F0F8FF;" />
+               </children>
+            </AnchorPane>
+            <Button layoutX="142.0" layoutY="761.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #FF0000;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="123.0" layoutY="698.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0" style="-fx-background-color: #3486eb;" text="Enviar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

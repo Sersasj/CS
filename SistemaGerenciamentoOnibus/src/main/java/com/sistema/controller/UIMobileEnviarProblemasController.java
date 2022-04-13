@@ -11,9 +11,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author gcpav
+ * @author sergi
  */
-public class EnviaProblemasController implements Initializable {
+public class UIMobileEnviarProblemasController implements Initializable {
 
     /**
      * Initializes the controller class.
