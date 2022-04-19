@@ -6,23 +6,18 @@ package com.sistema.controller;
 
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
-import com.sistema.model.pojo.Motorista;
 import com.sistema.util.Mediator;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
@@ -30,14 +25,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +49,7 @@ public class UIMobileCorridaController implements Initializable {
     private BufferedReader in;
     
     @FXML
-    private Text linhaOnibus, placaOnibus;
+    private Label linhaOnibus, placaOnibus;
     @FXML
     private Button buttonEmergencia, buttonIniciar, buttonFinalizar;
     
