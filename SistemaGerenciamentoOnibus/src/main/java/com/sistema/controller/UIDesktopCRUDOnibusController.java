@@ -5,6 +5,7 @@
 package com.sistema.controller;
 
 import com.sistema.model.dao.OnibusDAO;
+import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Onibus;
 import java.net.URL;
 import java.sql.Connection;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,7 +45,7 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     @FXML
     private TableColumn<Onibus, String> tableColumnModelo;
     @FXML
-    private TextField textBuscaPlaca;
+    private TextField textBusca;
     private int select;
     @FXML
     private TextField textPlaca;
@@ -176,9 +179,38 @@ public class UIDesktopCRUDOnibusController implements Initializable {
         
     }
     
+    public void search(){
+        
+    FilteredList<Onibus> filteredData = new FilteredList<>(observableListOnibus, b -> true);
+    textBusca.textProperty().addListener ((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(onibus -> {
+            if (newValue == null || newValue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (onibus.getPlaca().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }
+            if (onibus.getAno().toString().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }
+            if (onibus.getModelo().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }            
+            return false;
+        });
+    });
+    
+ 
+    SortedList<Onibus> sortedData = new SortedList<>(filteredData);
+    
+    sortedData.comparatorProperty().bind(tableViewOnibus.comparatorProperty());
+    tableViewOnibus.setItems(sortedData);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         carregarTableView();
+        search();
     }    
     
 }

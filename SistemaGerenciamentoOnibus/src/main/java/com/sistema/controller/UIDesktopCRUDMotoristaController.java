@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 
@@ -154,6 +158,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         buttonRemover.setStyle(null);
         select = 0;
     }
+    @FXML
     public void handleRemoverMotorista(MouseEvent event){
         buttonAlterar.setStyle(null);
         buttonAdicionar.setStyle(null);
@@ -209,9 +214,39 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
 
     }
     
+    
+    public void search(){
+        
+    FilteredList<Motorista> filteredData = new FilteredList<>(observableListMotorista, b -> true);
+    textBuscaNome.textProperty().addListener ((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(motorista -> {
+            if (newValue == null || newValue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (motorista.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }            
+            return false;
+        });
+    });
+    
+ 
+    SortedList<Motorista> sortedData = new SortedList<>(filteredData);
+    
+    sortedData.comparatorProperty().bind(tableViewMotorista.comparatorProperty());
+    tableViewMotorista.setItems(sortedData);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+       
+        
+    
         carregarTableView();
+        search();
+        
     }    
     
 }

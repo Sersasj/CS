@@ -15,12 +15,15 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -41,8 +44,8 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
     private TableColumn<Corrida, String> tableColumnInicio, tableColumnFim, tableColumnPagantes, tableColumnNaoPagantes;
     @FXML
     private DatePicker datePickerInicio, datePickerFim;
-//    @FXML
-//    private TextField textBuscaNome;  
+    @FXML
+    private TextField textBusca;  
 
     private Date dataInicial = null, dataFinal = null;
     private List<Corrida> listCorrida;
@@ -90,9 +93,42 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
         }
     }
 
+    public void search(){
+        
+    FilteredList<Corrida> filteredData = new FilteredList<>(observableListCorrida, b -> true);
+    textBusca.textProperty().addListener ((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(corrida -> {
+            if (newValue == null || newValue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (corrida.getOnibus().getPlaca().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }
+            if (corrida.getLinha().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }
+            if (corrida.getLinha().getNumero().toString().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }            
+            if (corrida.getMotorista().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }            
+            return false;
+        });
+    });
+    
+ 
+    SortedList<Corrida> sortedData = new SortedList<>(filteredData);
+    
+    sortedData.comparatorProperty().bind(tableViewCorrida.comparatorProperty());
+    tableViewCorrida.setItems(sortedData);
+    }    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         carregarTableView();
+        search();
     }
 
 }

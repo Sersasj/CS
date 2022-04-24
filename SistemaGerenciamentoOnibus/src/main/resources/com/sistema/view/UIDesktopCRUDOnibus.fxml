@@ -27,7 +27,7 @@
                                     <Insets left="5.0" right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
+                              <TextField fx:id="textBusca" prefHeight="35.0" prefWidth="218.0" text="Buscar" />
                            </children>
                         </HBox>
                         <TableView fx:id="tableViewOnibus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
