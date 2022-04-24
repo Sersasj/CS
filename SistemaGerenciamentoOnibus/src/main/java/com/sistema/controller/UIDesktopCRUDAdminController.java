@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -211,6 +213,29 @@ public class UIDesktopCRUDAdminController implements Initializable {
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         tableViewAdmin.setItems(observableListAdmin);           
+    }
+    
+    public void search(){
+        
+    FilteredList<Administrador> filteredData = new FilteredList<>(observableListAdmin, b -> true);
+    textBuscaNome.textProperty().addListener ((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(admin -> {
+            if (newValue == null || newValue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (admin.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                return true; 
+            }            
+            return false;
+        });
+    });    
+
+    SortedList<Administrador> sortedData = new SortedList<>(filteredData);
+    
+    sortedData.comparatorProperty().bind(tableViewAdmin.comparatorProperty());
+    tableViewAdmin.setItems(sortedData);    
+    
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
