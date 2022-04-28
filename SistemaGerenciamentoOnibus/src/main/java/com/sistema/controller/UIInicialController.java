@@ -55,6 +55,8 @@ public class UIInicialController implements Initializable {
     public void handleButtonAbrirMobile(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileEntrar.fxml"));
+            UIMobileEntrarController controller = new UIMobileEntrarController();
+            fxmlLoader.setController(controller);
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));

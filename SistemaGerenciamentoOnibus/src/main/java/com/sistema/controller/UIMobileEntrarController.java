@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,7 +46,11 @@ public class UIMobileEntrarController implements Initializable {
     private TextField txtFieldPlacaOnibus, txtFieldNumeroCpf;
     @FXML
     private Button botaoConfirmar;
-
+    
+    private Onibus onibusAnterior = null;
+    private Motorista motoristaAnterior = null;
+    private Linha linhaAnterior = null;
+    
     private List<Linha> listLinhas;
     private ObservableList<Linha> observableListLinhas;
 
@@ -57,6 +62,44 @@ public class UIMobileEntrarController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        carregarComboBoxLinhas();
+
+        txtFieldNumeroCpf.setTextFormatter(new TextFormatter<>((change) -> {
+            String novaString = change.getControlNewText();
+            System.out.println(validadorString.formatarCPFIncompleto(novaString));
+            if (StringFormatter.PATTERN_CPF_INCOMPLETO.matcher(novaString).matches()) {
+                return change; 
+            } else {
+                return null;
+            }
+        }));
+
+        txtFieldPlacaOnibus.setTextFormatter(new TextFormatter<>((change) -> {
+            if (change.getText().matches("[a-z]")) {
+                change.setText(change.getText().toUpperCase());
+            }
+            String novaString = change.getControlNewText();
+            System.out.println(novaString);
+            if (StringFormatter.PATTERN_PLACA_INCOMPLETA.matcher(novaString).matches()) {
+                return change; 
+            } else {
+                return null;
+            }
+            
+        }));
+        
+        if(onibusAnterior != null){
+            txtFieldPlacaOnibus.setText(onibusAnterior.getPlaca());
+        }
+        if(motoristaAnterior != null){
+            txtFieldNumeroCpf.setText(motoristaAnterior.getCpf());
+        }
+        if(linhaAnterior != null){
+            comboBoxLinhas.getSelectionModel().select(linhaAnterior);
+        }
+    }
     
     @FXML
     public void handleBotaoConfirmar(MouseEvent event){
@@ -88,7 +131,7 @@ public class UIMobileEntrarController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
 
             Scene scene = new Scene(root1);
-            Stage stage = (Stage) botaoConfirmar.getScene().getWindow();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             
             stage.setScene(scene);
             stage.show();
@@ -96,37 +139,35 @@ public class UIMobileEntrarController implements Initializable {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }        
-        
-        
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        carregarComboBoxLinhas();
-
-        txtFieldNumeroCpf.setTextFormatter(new TextFormatter<>((change) -> {
-            String novaString = change.getControlNewText();
-            System.out.println(validadorString.formatarCPFIncompleto(novaString));
-            if (StringFormatter.PATTERN_CPF_INCOMPLETO.matcher(novaString).matches()) {
-                return change; 
-            } else {
-                return null;
-            }
-        }));
-
-        txtFieldPlacaOnibus.setTextFormatter(new TextFormatter<>((change) -> {
-            if (change.getText().matches("[a-z]")) {
-                change.setText(change.getText().toUpperCase());
-            }
-            String novaString = change.getControlNewText();
-            System.out.println(novaString);
-            if (StringFormatter.PATTERN_PLACA_INCOMPLETA.matcher(novaString).matches()) {
-                return change; 
-            } else {
-                return null;
-            }
+    
+    public void continuarCorridaAnterior(MouseEvent event){
+        if(onibusAnterior != null && motoristaAnterior != null && linhaAnterior != null){
+            Corrida corrida = new Corrida();
+            corrida.setMotorista(motoristaAnterior);
+            corrida.setOnibus(onibusAnterior);
+            corrida.setLinha(linhaAnterior);
+            corrida.setId(null);
             
-        }));
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileCorrida.fxml"));
+                UIMobileCorridaController controller = new UIMobileCorridaController();
+                controller.setCorrida(corrida);
+                fxmlLoader.setController(controller);
+                Parent root1 = (Parent) fxmlLoader.load();
+
+                Scene scene = new Scene(root1);
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stage.setScene(scene);
+                stage.show();
+            } catch(IOException e) {
+                Logger logger = Logger.getLogger(getClass().getName());
+                logger.log(Level.SEVERE, "Failed to create new Window.", e);
+            }   
+        }
     }
+            
 
     public void carregarComboBoxLinhas() {
         listLinhas = linhaDAO.list();
@@ -135,4 +176,28 @@ public class UIMobileEntrarController implements Initializable {
         //mostrar nome
     }
 
+    public Onibus getOnibus() {
+        return onibusAnterior;
+    }
+
+    public void setOnibus(Onibus onibus) {
+        this.onibusAnterior = onibus;
+    }
+
+    public Motorista getMotorista() {
+        return motoristaAnterior;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motoristaAnterior = motorista;
+    }
+
+    public Linha getLinha() {
+        return linhaAnterior;
+    }
+
+    public void setLinha(Linha linha) {
+        this.linhaAnterior = linha;
+    }
+    
 }

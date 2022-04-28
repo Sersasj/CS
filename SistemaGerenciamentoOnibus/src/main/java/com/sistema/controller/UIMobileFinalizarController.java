@@ -14,11 +14,12 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -33,33 +34,27 @@ public class UIMobileFinalizarController implements Initializable {
      */
     
     @FXML 
-    Text placaOnibus, linhaOnibus;
+    Label labelPlaca, labelLinha, labelMotorista;
     @FXML
-    Button buttonContinuar, buttonContinuarLinha, buttonContinuarMotorista;    
+    Button buttonContinuar, buttonProblema, buttonAlterarDados, buttonRetornar;    
     
     private Corrida corrida;
     private final CorridaDAO corridaDAO = new CorridaDAO();
 
     @FXML
     public void handleContinuar (MouseEvent event) {
-        buttonContinuar.setDisable(true);
-        buttonContinuar.setVisible(false);
-        buttonContinuarLinha.setDisable(false);
-        buttonContinuarLinha.setVisible(true);
-        buttonContinuarMotorista.setDisable(false);
-        buttonContinuarMotorista.setVisible(true);        
+        UIMobileEntrarController controller = new UIMobileEntrarController();
+        controller.setLinha(corrida.getLinha());
+        controller.setOnibus(corrida.getOnibus());
+        controller.setMotorista(corrida.getMotorista());
+        controller.continuarCorridaAnterior(event);
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        buttonContinuarLinha.setDisable(true);
-        buttonContinuarLinha.setVisible(false);
-        buttonContinuarMotorista.setDisable(true);
-        buttonContinuarMotorista.setVisible(false);
-        
-        placaOnibus.setText("Placa: " + corrida.getOnibus().getPlaca());
-        linhaOnibus.setText("Linha: " + corrida.getLinha().toString());
-        
+    public void initialize(URL url, ResourceBundle rb) {  
+        labelPlaca.setText(corrida.getOnibus().getPlaca());
+        labelLinha.setText(corrida.getLinha().toString());
+        labelMotorista.setText(corrida.getMotorista().getNome());
     }    
     @FXML
     public void handleProblema(MouseEvent event){
@@ -72,7 +67,7 @@ public class UIMobileFinalizarController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
 
             Scene scene = new Scene(root1);
-            Stage stage = (Stage) placaOnibus.getScene().getWindow();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
             stage.setScene(scene);
             stage.show();
@@ -85,10 +80,34 @@ public class UIMobileFinalizarController implements Initializable {
     public void handleVoltar(MouseEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileEntrar.fxml"));         
-
+            UIMobileEntrarController controller = new UIMobileEntrarController();
+            fxmlLoader.setController(controller);
+            
             Parent root1 = (Parent) fxmlLoader.load();
             Scene scene = new Scene(root1);
-            Stage stage = (Stage) placaOnibus.getScene().getWindow();            
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();            
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }        
+        
+    }
+    
+    @FXML
+    public void handleAlterarDados(MouseEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileEntrar.fxml"));         
+            UIMobileEntrarController controller = new UIMobileEntrarController();
+            controller.setLinha(corrida.getLinha());
+            controller.setOnibus(corrida.getOnibus());
+            controller.setMotorista(corrida.getMotorista());
+            fxmlLoader.setController(controller);
+            
+            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();            
             stage.setScene(scene);
             stage.show();
         } catch(IOException e) {

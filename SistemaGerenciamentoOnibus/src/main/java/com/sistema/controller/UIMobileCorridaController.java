@@ -29,6 +29,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -49,9 +50,9 @@ public class UIMobileCorridaController implements Initializable {
     private BufferedReader in;
     
     @FXML
-    private Label linhaOnibus, placaOnibus;
+    private Label labelLinha, labelPlaca, labelMotorista;
     @FXML
-    private Button buttonEmergencia, buttonIniciar, buttonFinalizar;
+    private Button buttonEmergencia, buttonIniciar, buttonFinalizar, btnVoltar;
     
     private Corrida corrida;
 
@@ -211,6 +212,27 @@ public class UIMobileCorridaController implements Initializable {
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
+    
+    @FXML
+    public void handleVoltar(MouseEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIMobileEntrar.fxml"));         
+            UIMobileEntrarController controller = new UIMobileEntrarController();
+            controller.setLinha(corrida.getLinha());
+            controller.setOnibus(corrida.getOnibus());
+            controller.setMotorista(corrida.getMotorista());
+            fxmlLoader.setController(controller);
+            
+            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root1);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
 
     @FXML
     public void handleIniciar(MouseEvent event) {
@@ -249,8 +271,9 @@ public class UIMobileCorridaController implements Initializable {
         buttonEmergencia.setVisible(false);
         buttonFinalizar.setVisible(false);
 
-        linhaOnibus.setText(corrida.getLinha().toString());
-        placaOnibus.setText(corrida.getOnibus().getPlaca());
+        labelPlaca.setText(corrida.getOnibus().getPlaca());
+        labelLinha.setText(corrida.getLinha().toString());
+        labelMotorista.setText(corrida.getMotorista().getNome());
         
         Mediator.getInstance().registerControllerMobile(this);
     }
