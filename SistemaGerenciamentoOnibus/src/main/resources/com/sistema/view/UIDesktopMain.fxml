@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -13,42 +15,68 @@
    <children>
       <HBox fx:id="hBoxMain" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0">
          <children>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="100.0" styleClass="anchorPaneMenu" HBox.hgrow="NEVER">
+            <VBox alignment="TOP_CENTER" prefHeight="685.0" spacing="10.0" styleClass="anchorPaneMenu">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="buttonToggleMenu1" alignment="CENTER" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="347.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" />
-                        <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB1">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB1" textFill="WHITE" />
-                           </graphic></Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="236.0" styleClass="itemMenu" text="imgB2">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB2" textFill="WHITE" />
-                           </graphic></Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB3">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="WHITE" />
-                           </graphic></Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB4">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB4" textFill="WHITE" />
-                           </graphic></Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB5">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB5" textFill="WHITE" />
-                           </graphic></Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="imgB6">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB6" textFill="WHITE" />
-                           </graphic></Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-                     </padding>
-                  </VBox>
+                  <Button fx:id="buttonToggleMenu1" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="64.0" prefWidth="64.0" styleClass="btn" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-menu-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB1">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-driver-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB2">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-bus-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB3">
+                     <graphic>
+                        <Label alignment="CENTER" text="imgB3" textFill="WHITE" />
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB4">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-order-history-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-graph-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB6">
+                     <graphic>
+                        <Label alignment="CENTER" text="imgB6" textFill="WHITE" />
+                     </graphic>
+                  </Button>
                </children>
-            </AnchorPane>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
+            </VBox>
             <AnchorPane fx:id="anchorPaneConteudo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchorPaneConteudo" HBox.hgrow="ALWAYS">
                <children>
                   <Label layoutX="363.0" layoutY="158.0" prefHeight="369.0" prefWidth="454.0" text="MAPA">
@@ -62,46 +90,75 @@
       </HBox>
       <HBox fx:id="hBoxMenuAberto" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0">
          <children>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="300.0" styleClass="anchorPaneMenu" HBox.hgrow="NEVER">
+            <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="10.0" styleClass="anchorPaneMenu">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="buttonToggleMenu" alignment="CENTER" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="70.0" prefWidth="347.0" styleClass="btnToggleMenu" text="imgMenu" textFill="WHITE" />
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Motorista">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB1" textFill="#ee6767" />
-                           </graphic>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Ônibus">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB2" textFill="#ee6767" />
-                           </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Rota">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB3" textFill="#ee6767" />
-                           </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonHistorico" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Histórico de Corridas">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB4" textFill="#ee6767" />
-                           </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button5">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB5" textFill="#ee6767" />
-                           </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" styleClass="itemMenu" text="Button6">
-                           <graphic>
-                              <Label alignment="CENTER" prefHeight="54.0" prefWidth="54.0" text="imgB6" textFill="#ee6767" />
-                           </graphic></Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-                     </padding>
-                  </VBox>
+                  <Button fx:id="buttonToggleMenu" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleToggleMenu" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Menu" textFill="WHITE" VBox.vgrow="NEVER">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-menu-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Motorista" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-driver-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Ônibus" VBox.vgrow="NEVER">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-bus-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Rota" VBox.vgrow="NEVER">
+                     <graphic>
+                        <Label alignment="CENTER" text="imgB3" textFill="#ee6767" />
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonHistorico" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Histórico de Corridas" VBox.vgrow="NEVER">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-order-history-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonRelatorio" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Relatório" VBox.vgrow="NEVER">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-graph-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Button6" VBox.vgrow="NEVER">
+                     <graphic>
+                        <Label alignment="CENTER" text="imgB6" textFill="#ee6767" />
+                     </graphic>
+                  </Button>
                </children>
-            </AnchorPane>
-            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePaneOpacidade" opacity="0.4" prefHeight="685.0" prefWidth="1285.0" styleClass="anchorPaneOpacidade" HBox.hgrow="ALWAYS" />
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
+            </VBox>
+            <AnchorPane fx:id="anchorPaneOpacidade" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePaneOpacidade" opacity="0.4" prefHeight="685.0" prefWidth="410.0" styleClass="anchorPaneOpacidade" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

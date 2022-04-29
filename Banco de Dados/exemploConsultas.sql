@@ -1,5 +1,7 @@
 USE sistemaOnibus;
 
+select YEAR(fim_corrida) as ano, MONTH(fim_corrida) as mes, sum(pass_pagantes) from corrida group by ano, mes order by ano, mes;
+
 # 1 Consulta utilizando projeção
 # Esta consulta seleciona o nome e o CPF de todos os funcionários.
 SELECT 

@@ -6,40 +6,38 @@
 
 }
 
-.btnToggleMenu{
-    -fx-border-style: solid;
-    -fx-border-width: 3px;
-    -fx-border-radius: 7px;
-    -fx-border-color: #3a3b3c;
-    
-    -fx-background-radius: 10px;
-    -fx-background-color: #3a3b3c;
-}
-.btnToggleMenu:hover 
-{
-    -fx-border-color: gray;
-    -fx-cursor: hand;
-} 
-
 .anchorPaneConteudo{
     -fx-background-color: green;
 }
 
 .anchorPaneOpacidade{
     -fx-background-color: black;
+    -fx-opacity: 0.4;
 }
 
 .anchorPaneMenu{
     -fx-background-color: #3a3b3c;
+    -paint: white;
 }
 
-.itemMenu{
+.anchorPaneMenu .btn{
+    -fx-border-width: 3px;
+    -fx-text-fill: -paint;
+    
     -fx-background-radius: 10px;
     -fx-background-color: transparent;
-    -fx-text-fill: white;
 }
 
-.itemMenu:hover{
-    -fx-background-color: #444546;
+.anchorPaneMenu .btnMenu{
+    -fx-border-width: 3px;
+    -fx-text-fill: -paint;
+    
+    -fx-background-radius: 10px;
+    -fx-background-color: transparent;
+}
+
+.anchorPaneMenu .btn:hover 
+{
+    -fx-border-color: gray;
     -fx-cursor: hand;
 }

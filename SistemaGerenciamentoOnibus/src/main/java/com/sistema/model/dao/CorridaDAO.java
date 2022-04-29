@@ -48,4 +48,31 @@ public class CorridaDAO extends GenericDAO<Corrida, Integer>{
 
         return listaRetorno;
     }
+    
+    public List listLucroMensal(Date dataInicial, Date dataFinal) {
+        EntityManager entityManager = super.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List listaRetorno = new ArrayList<>();
+        try {
+            System.out.println(entityManager.toString());
+            transaction.begin();
+            if(dataInicial == null) dataInicial = new Date(0L);
+            if(dataFinal == null) dataFinal = new Date(System.currentTimeMillis());
+            Query query = entityManager.createQuery("SELECT YEAR(c.fim_corrida) as ano, MONTH(c.fim_corrida) as mes, SUM(pass_pagantes) from Corrida c GROUP BY ano, mes ORDER BY ano, mes");
+                // WHERE c.fimCorrida >= :dataInicial AND  c.fimCorrida <= :dataFinal
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
+            listaRetorno = query.getResultList();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        return listaRetorno;
+    }
 }

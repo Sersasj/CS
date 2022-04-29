@@ -80,7 +80,6 @@ function showMarkers(){
         var latLng = new google.maps.LatLng(obj.lat, obj.lng);
 
         var marker = new google.maps.Marker({
-        title: obj.motorista,
         position: latLng,
         icon: "./icons/front-of-bus.png",
         map: map
@@ -88,7 +87,29 @@ function showMarkers(){
         +markersArray.push(marker);
 
         var infowindow = new google.maps.InfoWindow()
-        var content = "Placa: " + obj.placa + " Linha: " + obj.linha;
+        var content = 
+                '<div id="content">' +
+                '<div id="motorista">' + 
+                "<b> Motorista: </b>" + obj.motorista  +
+                "</div>" +
+                '<div id="placa">' + 
+                "<b>Ônibus: </b>" + obj.placa +
+                "</div>" +
+                '<div id="linha">' + 
+                "<b>Linha: </b>" + obj.linha +
+                "</div>" +
+                "</div>";
+        
+        marker.addListener('mouseover', function() {
+            infowindow.setContent(content);
+            infowindow.open(map, this);
+        });
+
+        marker.addListener('mouseout', function() {
+            infowindow.close();
+        });
+        
+        /*
         google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){ 
             return function() {
                 infowindow.setContent(content);

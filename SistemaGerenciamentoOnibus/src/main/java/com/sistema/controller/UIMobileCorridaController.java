@@ -154,15 +154,15 @@ public class UIMobileCorridaController implements Initializable {
     
     
   
-    public void iniciarLocalizacao() throws Exception{
+    public void iniciarCorrida() throws Exception{
     String nome = corrida.getMotorista().getNome();
     String cpf = corrida.getMotorista().getCpf();
     String placa = corrida.getOnibus().getPlaca();
-    String linha = corrida.getLinha().getNome();
+    String linha = corrida.getLinha().toString();
     String lat = Float.toString(corrida.getLatitude());
     String lng = Float.toString(corrida.getLongitude());
     
-    // Le Json
+    // Lê Json
     JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35");
     //System.out.println(json.toString());
     // Cria novo objeto
@@ -253,7 +253,7 @@ public class UIMobileCorridaController implements Initializable {
         buttonEmergencia.setVisible(true);
         buttonFinalizar.setVisible(true); 
         try {
-            iniciarLocalizacao();
+            iniciarCorrida();
         } catch (Exception ex) {
             Logger.getLogger(UIMobileCorridaController.class.getName()).log(Level.SEVERE, null, ex);
         }

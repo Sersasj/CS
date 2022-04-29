@@ -48,105 +48,57 @@ public class UIDesktopMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inicializaMapa();
+        carregarTela("/com/sistema/view/UIDesktopMapa.fxml");
         Mediator.getInstance().registerControllerDesktop(this);
         hBoxMenuAberto.setDisable(true);
         hBoxMenuAberto.setVisible(false);
     }
-
-    @FXML
-    public void inicializaMapa() {
+    
+    public void carregarTela(String enderecoTela){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopMapa.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(enderecoTela));
 
-            AnchorPane paneMapa = (AnchorPane) fxmlLoader.load();
+            AnchorPane anchorPane = (AnchorPane) fxmlLoader.load();
 
-            anchorPaneConteudo.getChildren().setAll(paneMapa);
-            anchorPaneConteudo.setTopAnchor(paneMapa, 0.0);
-            anchorPaneConteudo.setLeftAnchor(paneMapa, 0.0);
-            anchorPaneConteudo.setRightAnchor(paneMapa, 0.0);
-            anchorPaneConteudo.setBottomAnchor(paneMapa, 0.0);
+            anchorPaneConteudo.getChildren().setAll(anchorPane);
+            anchorPaneConteudo.setTopAnchor(anchorPane, 0.0);
+            anchorPaneConteudo.setLeftAnchor(anchorPane, 0.0);
+            anchorPaneConteudo.setRightAnchor(anchorPane, 0.0);
+            anchorPaneConteudo.setBottomAnchor(anchorPane, 0.0);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
-
+            
     @FXML
     public void handleButtonMapa(MouseEvent event) {
-        inicializaMapa();
+        carregarTela("/com/sistema/view/UIDesktopMapa.fxml");
     }
 
     @FXML
     public void handleButtonMotorista(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDMotorista.fxml"));
-
-            AnchorPane paneCRUDMotorista = (AnchorPane) fxmlLoader.load();
-
-            anchorPaneConteudo.getChildren().setAll(paneCRUDMotorista);
-            anchorPaneConteudo.setTopAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneConteudo.setLeftAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneConteudo.setRightAnchor(paneCRUDMotorista, 0.0);
-            anchorPaneConteudo.setBottomAnchor(paneCRUDMotorista, 0.0);
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
+        carregarTela("/com/sistema/view/UIDesktopCRUDMotorista.fxml");
     }
 
     @FXML
     void handleButtonAdmin(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDAdmin.fxml"));
-
-            AnchorPane paneCRUDAdmin = (AnchorPane) fxmlLoader.load();
-
-            anchorPaneConteudo.getChildren().setAll(paneCRUDAdmin);
-            anchorPaneConteudo.setTopAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneConteudo.setLeftAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneConteudo.setRightAnchor(paneCRUDAdmin, 0.0);
-            anchorPaneConteudo.setBottomAnchor(paneCRUDAdmin, 0.0);
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
+        carregarTela("/com/sistema/view/UIDesktopCRUDAdmin.fxml");
     }
 
     @FXML
     public void handleButtonOnibus(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCRUDOnibus.fxml"));
-
-            AnchorPane paneCRUDOnibus = (AnchorPane) fxmlLoader.load();
-
-            anchorPaneConteudo.getChildren().setAll(paneCRUDOnibus);
-            anchorPaneConteudo.setTopAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneConteudo.setLeftAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneConteudo.setRightAnchor(paneCRUDOnibus, 0.0);
-            anchorPaneConteudo.setBottomAnchor(paneCRUDOnibus, 0.0);
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
+        carregarTela("/com/sistema/view/UIDesktopCRUDOnibus.fxml");
     }
     
     @FXML
     public void handleButtonHistorico(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopHistoricoCorridas.fxml"));
-
-            AnchorPane paneHistorico = (AnchorPane) fxmlLoader.load();
-
-            anchorPaneConteudo.getChildren().setAll(paneHistorico);
-            anchorPaneConteudo.setTopAnchor(paneHistorico, 0.0);
-            anchorPaneConteudo.setLeftAnchor(paneHistorico, 0.0);
-            anchorPaneConteudo.setRightAnchor(paneHistorico, 0.0);
-            anchorPaneConteudo.setBottomAnchor(paneHistorico, 0.0);
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
+        carregarTela("/com/sistema/view/UIDesktopHistoricoCorridas.fxml");
+    }
+    
+    @FXML
+    public void handleButtonRelatorio(MouseEvent event) {
+        carregarTela("/com/sistema/view/UIDesktopRelatorio.fxml");
     }
 
     @FXML
