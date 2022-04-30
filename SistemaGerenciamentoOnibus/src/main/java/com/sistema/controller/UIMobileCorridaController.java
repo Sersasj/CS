@@ -66,9 +66,9 @@ public class UIMobileCorridaController implements Initializable {
 
         corrida.setPassPagantes(rand.nextInt(60) + 10);
         corrida.setPassNaoPagantes(rand.nextInt(40));
-        corrida.setConsumoCombustivel(rand.nextFloat() * (float) 20.0 + (float) 3.0);
-        corrida.setDistanciaPercorrida(rand.nextFloat() * (float) 5.0 + (float) 30.0);
-        corrida.setConsumoCombustivel(rand.nextFloat() * 100);
+        //corrida.setConsumoCombustivel(rand.nextFloat() * (float) 20.0 + (float) 3.0);
+        //corrida.setDistanciaPercorrida(rand.nextFloat() * (float) 5.0 + (float) 30.0);
+        //corrida.setConsumoCombustivel(rand.nextFloat() * 100);
 
     }
     private static String readAll(Reader rd) throws IOException {
@@ -93,7 +93,7 @@ public class UIMobileCorridaController implements Initializable {
     }    
     
     public void putText(String input) throws Exception{
-        URL url = new URL("https://api.jsonbin.io/v3/b/6255c2fa21e89024ee8b8f35");
+        URL url = new URL("https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5");
         HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
         //urlConnection.setConnectTimeout(5000);
         urlConnection.setRequestMethod("PUT"); 
@@ -129,14 +129,19 @@ public class UIMobileCorridaController implements Initializable {
     public void finalizarLocalizacao() throws Exception{
     String placa = corrida.getOnibus().getPlaca();
     // Le Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35"); 
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626d7b3538be296761fa43b5"); 
+    
     JSONObject jsonAux = new JSONObject();
     JSONArray jsonArray = json.getJSONArray("marcadores");
 
     
     // remove quem tem placa igual a corrida finalizada
+    // seta distancia e consumo combustivel
     for(int i = 0; i < jsonArray.length(); i++){
         if(jsonArray.getJSONObject(i).get("placa").equals(placa)){
+            String distancia = jsonArray.getJSONObject(i).get("distancia").toString();            
+            corrida.setDistanciaPercorrida(Float.parseFloat(distancia));
+            corrida.setConsumoCombustivel(Float.parseFloat(distancia)*0.125f);            
             jsonArray.remove(i);
             i = 0;
         }
@@ -163,7 +168,7 @@ public class UIMobileCorridaController implements Initializable {
     String lng = Float.toString(corrida.getLongitude());
     
     // Lê Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35");
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626d7b3538be296761fa43b5");
     //System.out.println(json.toString());
     // Cria novo objeto
     JSONObject jsonNew = new JSONObject();
@@ -174,6 +179,7 @@ public class UIMobileCorridaController implements Initializable {
     jsonNew.put("lat", lat);
     jsonNew.put("lng", lng );
     jsonNew.put("icon", "./icons/front-of-bus.png" );
+    jsonNew.put("distancia", "0.0");
     // Adiciona novo objeto no json
     json.accumulate("marcadores", jsonNew);
     putText(json.toString()); 

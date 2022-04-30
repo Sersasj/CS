@@ -75,6 +75,12 @@ public class UIDesktopMainController implements Initializable {
     public void handleButtonMapa(MouseEvent event) {
         carregarTela("/com/sistema/view/UIDesktopMapa.fxml");
     }
+    
+    @FXML
+    public void handleButtonHome(MouseEvent event) {
+        carregarTela("/com/sistema/view/UIDesktopMapa.fxml");
+
+    }
 
     @FXML
     public void handleButtonMotorista(MouseEvent event) {

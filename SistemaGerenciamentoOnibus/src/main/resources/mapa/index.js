@@ -34,6 +34,25 @@ function resetMarkers(){
     markersArray.length = 0;
   }    
 }
+
+function calcDist(latAntiga, lngAntiga, latNova, lngNova){
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(latNova-latAntiga);  // deg2rad below
+  var dLon = deg2rad(lngNova-lngAntiga); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(latAntiga)) * Math.cos(deg2rad(latAntiga)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180);
+}
+
 function randomWalk(){
     let req = new XMLHttpRequest();
 
@@ -44,24 +63,28 @@ function randomWalk(){
    };
 
 
-    $.getJSON('https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35', function(json1) {
+    $.getJSON('https://api.jsonbin.io/b/626d7b3538be296761fa43b5', function(json1) {
 
 
     jsonStr = JSON.stringify(json1);
 
     for(var i in json1['marcadores']){
-      
+      var latAntiga = json1['marcadores'][i].lat;
+      var lngAntiga = json1['marcadores'][i].lng;
+      var dist = json1['marcadores'][i].distancia;
       var random = (Math.random() * (0.001 - 0.00001) + 0.00001).toFixed(4);
         random *= Math.round(Math.random()) ? 1 : -1;
-    	var string1 = json1['marcadores'][i].lat;
-        var string2 = json1['marcadores'][i].lng;
-      string1 = +random + +string1;
-      string2 =  +random + +string2
-      json1['marcadores'][i].lat = string1.toString();
-      json1['marcadores'][i].lng = string2.toString();
+    	var latNova = json1['marcadores'][i].lat;
+        var lngNova = json1['marcadores'][i].lng;
+      latNova = +random + +latNova;
+      lngNova =  +random + +lngNova;
+      dist = +dist + calcDist(+latAntiga, +lngAntiga, latNova, lngNova);
+      json1['marcadores'][i].distancia = dist.toString();
+      json1['marcadores'][i].lat = latNova.toString();
+      json1['marcadores'][i].lng = lngNova.toString();
 
     }
-    req.open("PUT", "https://api.jsonbin.io/v3/b/6255c2fa21e89024ee8b8f35", true);
+    req.open("PUT", "https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
     jsonStr = JSON.stringify(json1);
@@ -72,7 +95,7 @@ function randomWalk(){
 }
   
 function showMarkers(){
-        $.getJSON('https://api.jsonbin.io/b/6255c2fa21e89024ee8b8f35', function(json1) {
+        $.getJSON('https://api.jsonbin.io/b/626d7b3538be296761fa43b5', function(json1) {
 
 
     for(var i = 0; i < json1.marcadores.length; i++){

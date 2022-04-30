@@ -26,7 +26,16 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB1">
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonHome" prefHeight="64.0" prefWidth="64.0" styleClass="btn" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-casa-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB1">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,21 +44,25 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB2">
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonAdmin" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
                      <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonAdmin" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-homem-de-negócios-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB2">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonOnibus" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/icons8-bus-60.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB3">
-                     <graphic>
-                        <Label alignment="CENTER" text="imgB3" textFill="WHITE" />
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB4">
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonHistorico" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB4">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,18 +71,13 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonRelatorio" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
                      <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonRelatorio" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/icons8-graph-48.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB6">
-                     <graphic>
-                        <Label alignment="CENTER" text="imgB6" textFill="WHITE" />
                      </graphic>
                   </Button>
                </children>
@@ -104,6 +112,15 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonHome" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-casa-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Motorista" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets />
@@ -116,6 +133,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonAdmin" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Administrador">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-homem-de-negócios-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Ônibus" VBox.vgrow="NEVER">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -123,11 +149,6 @@
                               <Image url="@icons/icons8-bus-60.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Rota" VBox.vgrow="NEVER">
-                     <graphic>
-                        <Label alignment="CENTER" text="imgB3" textFill="#ee6767" />
                      </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonHistorico" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Histórico de Corridas" VBox.vgrow="NEVER">
@@ -146,11 +167,6 @@
                               <Image url="@icons/icons8-graph-48.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Button6" VBox.vgrow="NEVER">
-                     <graphic>
-                        <Label alignment="CENTER" text="imgB6" textFill="#ee6767" />
                      </graphic>
                   </Button>
                </children>

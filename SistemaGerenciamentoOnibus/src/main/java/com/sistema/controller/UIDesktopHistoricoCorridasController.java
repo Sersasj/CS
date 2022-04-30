@@ -43,6 +43,8 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
     @FXML
     private TableColumn<Corrida, String> tableColumnInicio, tableColumnFim, tableColumnPagantes, tableColumnNaoPagantes;
     @FXML
+    private TableColumn<Corrida, String> tableColumnDistancia, tableColumnConsumo;    
+    @FXML
     private DatePicker datePickerInicio, datePickerFim;
     @FXML
     private TextField textBusca;  
@@ -65,7 +67,8 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
         tableColumnFim.setCellValueFactory(new PropertyValueFactory<>("fimCorrida"));
         tableColumnPagantes.setCellValueFactory(new PropertyValueFactory<>("passPagantes"));
         tableColumnNaoPagantes.setCellValueFactory(new PropertyValueFactory<>("passNaoPagantes"));
-
+        tableColumnDistancia.setCellValueFactory(new PropertyValueFactory<>("distanciaPercorrida"));
+        tableColumnConsumo.setCellValueFactory(new PropertyValueFactory<>("consumoCombustivel"));
         tableViewCorrida.setItems(observableListCorrida);
     }
     
