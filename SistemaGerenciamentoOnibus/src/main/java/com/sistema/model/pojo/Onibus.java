@@ -124,5 +124,9 @@ public class Onibus implements Serializable {
         return "Onibus{" + "placa=" + placa + ", ano=" + ano + ", quilometragem=" + quilometragem + ", modelo=" + modelo + '}';
     }
 
+    public void getPlaca(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

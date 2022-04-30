@@ -66,9 +66,7 @@ public class UIMobileCorridaController implements Initializable {
 
         corrida.setPassPagantes(rand.nextInt(60) + 10);
         corrida.setPassNaoPagantes(rand.nextInt(40));
-        //corrida.setConsumoCombustivel(rand.nextFloat() * (float) 20.0 + (float) 3.0);
-        //corrida.setDistanciaPercorrida(rand.nextFloat() * (float) 5.0 + (float) 30.0);
-        //corrida.setConsumoCombustivel(rand.nextFloat() * 100);
+
 
     }
     private static String readAll(Reader rd) throws IOException {
@@ -92,8 +90,8 @@ public class UIMobileCorridaController implements Initializable {
       }
     }    
     
-    public void putText(String input) throws Exception{
-        URL url = new URL("https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5");
+    public void putText(String input, String urlStr) throws Exception{
+        URL url = new URL(urlStr);
         HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
         //urlConnection.setConnectTimeout(5000);
         urlConnection.setRequestMethod("PUT"); 
@@ -152,7 +150,7 @@ public class UIMobileCorridaController implements Initializable {
     } 
     
     
-    putText(jsonAux.toString());
+    putText(jsonAux.toString(),"https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5");
     
     
     }
@@ -182,7 +180,7 @@ public class UIMobileCorridaController implements Initializable {
     jsonNew.put("distancia", "0.0");
     // Adiciona novo objeto no json
     json.accumulate("marcadores", jsonNew);
-    putText(json.toString()); 
+    putText(json.toString(),"https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5"); 
 
     
 
@@ -266,8 +264,35 @@ public class UIMobileCorridaController implements Initializable {
     }
     
     @FXML
-    public void handleEmergencia(MouseEvent event) {
-        Mediator.getInstance().handleEmergencia(corrida);
+    public void handleEmergencia(MouseEvent event) throws Exception {
+    //Mediator.getInstance().handleEmergencia(corrida);
+    String nome = corrida.getMotorista().getNome();
+    String cpf = corrida.getMotorista().getCpf();
+    String placa = corrida.getOnibus().getPlaca();
+    String linhaNum = corrida.getLinha().getNumero().toString();
+    String linhaNome = corrida.getLinha().getNome().toString();
+    String telefone = corrida.getMotorista().getTelefone();
+    String lat = Float.toString(corrida.getLatitude());
+    String lng = Float.toString(corrida.getLongitude());
+    
+    // Lê Json
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626db70c019db4679693e10e");
+    //System.out.println(json.toString());
+    // Cria novo objeto
+    JSONObject jsonNew = new JSONObject();
+    jsonNew.put("placa", placa);
+    jsonNew.put("linhaNum", linhaNum);  
+    jsonNew.put("linhaNome", linhaNome);
+    jsonNew.put("motorista", nome);
+    jsonNew.put("telefone", telefone);
+    jsonNew.put("cpf", cpf);    
+    jsonNew.put("lat", lat);
+    jsonNew.put("lng", lng );
+    // Adiciona novo objeto no json
+    json.accumulate("emergencias", jsonNew);
+    System.out.println(jsonNew.toString());
+    putText(json.toString(),"https://api.jsonbin.io/v3/b/626db70c019db4679693e10e");         
+        
     }
 
     @Override
