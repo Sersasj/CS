@@ -12,7 +12,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .background{
-    -fx-background-color: #F8F8F8;
+    -fx-background-color: WhiteSmoke;
+}
+
+.label{
+    -fx-text-fill: #383838;
 }
 
 .text-field{
@@ -25,10 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: black;
 }
 .text-field:hover {
-    -fx-border-color: gainsboro;
+    -fx-border-color: Gray;
 }
 
-.btn{
+.button{
     -fx-border-style: solid;
     -fx-border-width: 1px;
     -fx-border-radius: 3px;
@@ -38,8 +42,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: #383838;
 }
 
-.btn:hover{
+.button:hover{
     -fx-background-color: WhiteSmoke;
+}
+
+.buttonNovo:hover{
+    -fx-background-color: #deffde;
+}
+.buttonNovo:selected{
+    -fx-background-color: #98f296;
+}
+
+.buttonAlterar:hover{
+    -fx-background-color: #fffdde;
+}
+.buttonAlterar:selected{
+    -fx-background-color: #f2ef96;
+}
+
+.buttonRemover:hover{
+    -fx-background-color: #ffdede;
+}
+.buttonRemover:selected{
+    -fx-background-color: #f29696;
 }
 
 .table-view .column-header-background{

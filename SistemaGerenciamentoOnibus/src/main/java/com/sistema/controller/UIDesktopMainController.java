@@ -9,7 +9,6 @@ import com.sistema.model.pojo.Corrida;
 import com.sistema.model.pojo.Linha;
 import com.sistema.model.pojo.Motorista;
 import com.sistema.model.pojo.Onibus;
-import com.sistema.util.Mediator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,14 +16,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -69,6 +65,7 @@ public class UIDesktopMainController implements Initializable {
         hBoxMenuAberto.setVisible(false);
         
         // verifica se tem emergencia a cada 5 seg
+        /* 
         Timer t = new Timer( );
         t.scheduleAtFixedRate(new TimerTask() {
 
@@ -85,6 +82,18 @@ public class UIDesktopMainController implements Initializable {
     
             }
         }, 1000,5000);
+        */
+        Timeline timer = new Timeline(
+            new KeyFrame(Duration.seconds(5), evt -> {
+                try {        
+                    verifyEmergencia();
+                } catch (Exception ex) {
+                    Logger.getLogger(UIDesktopMainController.class.getName()).log(Level.SEVERE, null, ex);
+                }           
+            })
+        );
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
         
     }
     
