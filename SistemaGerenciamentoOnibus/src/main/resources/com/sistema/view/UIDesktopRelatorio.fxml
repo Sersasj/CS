@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -40,21 +43,35 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableViewCorrida" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                    <columns>
-                      <TableColumn fx:id="tableColumnID" minWidth="-1.0" prefWidth="-1.0" text="ID" />
-                      <TableColumn fx:id="tableColumnMotorista" prefWidth="126.0" text="Motorista" />
-                        <TableColumn fx:id="tableColumnOnibus" prefWidth="78.0" text="Ônibus" />
-                        <TableColumn fx:id="tableColumnLinha" prefWidth="89.0" text="Linha" />
-                        <TableColumn fx:id="tableColumnInicio" prefWidth="97.0" text="Início" />
-                        <TableColumn fx:id="tableColumnFim" prefWidth="94.0" text="Fim" />
-                        <TableColumn fx:id="tableColumnPagantes" prefWidth="76.0" text="Pagantes" />
-                        <TableColumn fx:id="tableColumnNaoPagantes" prefWidth="78.0" text="Não Pagantes" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="barChart" prefHeight="342.0" prefWidth="590.0">
+                          <xAxis>
+                            <CategoryAxis label="Data" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="R$" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <TableView fx:id="tableViewCorrida" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="550.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumnID" minWidth="-1.0" prefWidth="-1.0" text="ID" />
+                            <TableColumn fx:id="tableColumnMotorista" prefWidth="126.0" text="Motorista" />
+                              <TableColumn fx:id="tableColumnOnibus" prefWidth="78.0" text="Ônibus" />
+                              <TableColumn fx:id="tableColumnLinha" prefWidth="89.0" text="Linha" />
+                              <TableColumn fx:id="tableColumnInicio" prefWidth="97.0" text="Início" />
+                              <TableColumn fx:id="tableColumnFim" prefWidth="94.0" text="Fim" />
+                              <TableColumn fx:id="tableColumnPagantes" prefWidth="76.0" text="Pagantes" />
+                              <TableColumn fx:id="tableColumnNaoPagantes" prefWidth="78.0" text="Não Pagantes" />
+                              <TableColumn fx:id="tableColumnDistancia" prefWidth="75.0" text="Distancia" />
+                              <TableColumn fx:id="tableColumnConsumo" prefWidth="75.0" text="Consumo" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

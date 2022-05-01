@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Vector;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -43,10 +46,13 @@ public class UIDesktopRelatorioController implements Initializable {
     @FXML
     private TableColumn<Corrida, String> tableColumnInicio, tableColumnFim, tableColumnPagantes, tableColumnNaoPagantes;
     @FXML
+    private TableColumn<Corrida, String> tableColumnDistancia, tableColumnConsumo;  
+    @FXML
     private DatePicker datePickerInicio, datePickerFim;
     @FXML
     private TextField textBusca;  
-
+    @FXML
+    private BarChart barChart;
     private Date dataInicial = null, dataFinal = null;
     private List<Corrida> listCorrida;
     private ObservableList<Corrida> observableListCorrida;
@@ -65,6 +71,8 @@ public class UIDesktopRelatorioController implements Initializable {
         tableColumnFim.setCellValueFactory(new PropertyValueFactory<>("fimCorrida"));
         tableColumnPagantes.setCellValueFactory(new PropertyValueFactory<>("passPagantes"));
         tableColumnNaoPagantes.setCellValueFactory(new PropertyValueFactory<>("passNaoPagantes"));
+        tableColumnDistancia.setCellValueFactory(new PropertyValueFactory<>("distanciaPercorrida"));
+        tableColumnConsumo.setCellValueFactory(new PropertyValueFactory<>("consumoCombustivel"));
 
         tableViewCorrida.setItems(observableListCorrida);
     }
@@ -91,6 +99,16 @@ public class UIDesktopRelatorioController implements Initializable {
             dataFinal = Date.from(localDateFinal.atTime(23, 59, 59, 999999999).atZone(ZoneId.systemDefault()).toInstant());
             atualizarTableView();
         }
+    }
+    
+    public void lucroChart(){
+        XYChart.Series series1 = new XYChart.Series();
+        //for (int i = 0; i < tableColumnMotorista.get)
+        System.out.println("aaaaqui "+tableColumnMotorista.getCellObservableValue(0));
+        series1.getData().add(new XYChart.Data("Austria",21313));
+        series1.getData().add(new XYChart.Data("Brazil",1323));
+        barChart.getData().addAll(series1);
+        
     }
 
     public void search(){
@@ -127,8 +145,10 @@ public class UIDesktopRelatorioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         carregarTableView();
         search();
+        lucroChart();
     }
 
 }

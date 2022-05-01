@@ -67,6 +67,7 @@ public class UIDesktopMainController implements Initializable {
         carregarTela("/com/sistema/view/UIDesktopMapa.fxml");
         hBoxMenuAberto.setDisable(true);
         hBoxMenuAberto.setVisible(false);
+        
         // verifica se tem emergencia a cada 5 seg
         Timer t = new Timer( );
         t.scheduleAtFixedRate(new TimerTask() {
