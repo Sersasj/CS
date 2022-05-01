@@ -162,14 +162,14 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     public void handleRemoverMotorista(MouseEvent event){
         buttonAlterar.setStyle(null);
         buttonAdicionar.setStyle(null);
-        buttonRemover.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonRemover.setStyle("-fx-background-color: #f29696");
         select = 3;
         
     }
     @FXML
     public void handleAdicionarMotorista(MouseEvent event){
         buttonAlterar.setStyle(null);
-        buttonAdicionar.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonAdicionar.setStyle("-fx-background-color: #98f296");
         buttonRemover.setStyle(null);        
         setTextVazio();
         select = 2;
@@ -185,7 +185,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     @FXML    
     public void handleAlterarMotorista(MouseEvent eventt){
         
-        buttonAlterar.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonAlterar.setStyle("-fx-background-color: #f2ef96");
         buttonAdicionar.setStyle(null);
         buttonRemover.setStyle(null);
 

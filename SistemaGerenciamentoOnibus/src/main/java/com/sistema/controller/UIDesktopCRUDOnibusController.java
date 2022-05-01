@@ -136,15 +136,15 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     public void handleRemoverOnibus(MouseEvent event){
         buttonAlterar.setStyle(null);
         buttonAdicionar.setStyle(null);
-        buttonRemover.setStyle("-fx-background-color: MediumSeaGreen");        
+        buttonRemover.setStyle("-fx-background-color: #f29696");     
         select = 3;
         
     }
     @FXML
     public void handleAdicionarOnibus(MouseEvent event){
         buttonAlterar.setStyle(null);
-        buttonAdicionar.setStyle("-fx-background-color: MediumSeaGreen");
-        buttonRemover.setStyle(null);        
+        buttonAdicionar.setStyle("-fx-background-color: #98f296");
+        buttonRemover.setStyle(null);     
         setTextVazio();
         select = 2;
         textPlaca.setEditable(true);
@@ -155,7 +155,7 @@ public class UIDesktopCRUDOnibusController implements Initializable {
     }
     @FXML
     public void handleAlterarOnibus(MouseEvent eventt){
-        buttonAlterar.setStyle("-fx-background-color: MediumSeaGreen");
+        buttonAlterar.setStyle("-fx-background-color: #f2ef96");
         buttonAdicionar.setStyle(null);
         buttonRemover.setStyle(null);
         select = 1;

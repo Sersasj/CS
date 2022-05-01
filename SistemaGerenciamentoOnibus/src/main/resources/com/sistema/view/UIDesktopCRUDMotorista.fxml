@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" styleClass="anchorPaneBackground" stylesheets="@../../../styles/UIDesktopCRUD.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDMotoristaController">
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="685.0" prefWidth="1180.0" styleClass="background" stylesheets="@../../../styles/UIDesktopCRUD.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDMotoristaController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,14 +21,17 @@
                <children>
                   <VBox prefHeight="645.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" VBox.vgrow="NEVER">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" spacing="10.0" VBox.vgrow="NEVER">
                            <children>
                               <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/icons8-pesquisar-48.png" />
+                                    <Image url="@icons/icons8-pesquisar-gray-48.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
+                              <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" promptText="Buscar por nome" />
                            </children>
                         </HBox>
                         <TableView fx:id="tableViewMotorista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
@@ -58,40 +61,40 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="371.0" spacing="10.0">
                            <children>
-                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" styleClass="buttonBackground" text="Novo" />
-                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="76.0" text="Alterar" />
-                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="46.0" prefWidth="76.0" text="Remover" />
+                              <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionarMotorista" prefHeight="46.0" prefWidth="76.0" styleClass="buttonNovo" text="Novo" />
+                              <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterarMotorista" prefHeight="45.0" prefWidth="76.0" styleClass="buttonAlterar" text="Alterar" />
+                              <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemoverMotorista" prefHeight="46.0" prefWidth="76.0" styleClass="buttonRemover" text="Remover" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" />
                         <TextField fx:id="textCPF" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RG" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="RG" />
                         <TextField fx:id="textRG" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNH" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="CNH" />
                         <TextField fx:id="textCNH" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
                         <TextField fx:id="textNome" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
                         <TextField fx:id="textTelefone" editable="false" prefHeight="30.0" prefWidth="139.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" />
+                        <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" />
                         <TextField fx:id="textEndereco" editable="false" prefHeight="30.0" prefWidth="184.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
