@@ -79,8 +79,8 @@ public class UIMobileEnviarProblemasController implements Initializable {
         tipoProblema.setTipo("Motor");
         problema.setIdTipo(tipoProblema);
         problema.setDescricao(textFieldProblema.getText());
-        problema.setCpfMotorista(motorista);
-        problema.setPlacaOnibus(onibus);
+        problema.setMotorista(motorista);
+        problema.setOnibus(onibus);
         problema.setDataHorario(corrida.getFimCorrida());     
 
         problemaDAO.add(problema);

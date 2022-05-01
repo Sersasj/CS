@@ -7,8 +7,10 @@ package com.sistema.controller;
 import com.sistema.model.dao.CorridaDAO;
 import com.sistema.model.pojo.Corrida;
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -81,14 +83,19 @@ public class UIDesktopRelatorioController implements Initializable {
 
         listCorrida = corridaDAO.list(dataInicial, dataFinal);
         observableListCorrida = FXCollections.observableArrayList(listCorrida);
-
         tableViewCorrida.setItems(observableListCorrida);
+        lucroChart();
+
+        
     }
+    
 
     public void handleDatePickerInicio(ActionEvent e) {
         LocalDate localDateInicial = datePickerInicio.getValue();
         if (localDateInicial != null) {
-            dataInicial = Date.from(localDateInicial.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            localDateInicial = localDateInicial.withDayOfMonth(1);
+            datePickerInicio.setValue(localDateInicial);
+            dataInicial = Date.from(localDateInicial.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());            
             atualizarTableView();
         }
     }
@@ -96,18 +103,44 @@ public class UIDesktopRelatorioController implements Initializable {
     public void handleDatePickerFim(ActionEvent e) {
         LocalDate localDateFinal = datePickerFim.getValue();
         if (localDateFinal != null) {
+            localDateFinal = localDateFinal.withDayOfMonth(localDateFinal.getMonth().length(localDateFinal.isLeapYear()));
+            datePickerFim.setValue(localDateFinal);
             dataFinal = Date.from(localDateFinal.atTime(23, 59, 59, 999999999).atZone(ZoneId.systemDefault()).toInstant());
             atualizarTableView();
         }
     }
+
     
     public void lucroChart(){
-        XYChart.Series series1 = new XYChart.Series();
-        //for (int i = 0; i < tableColumnMotorista.get)
-        System.out.println("aaaaqui "+tableColumnMotorista.getCellObservableValue(0));
-        series1.getData().add(new XYChart.Data("Austria",21313));
-        series1.getData().add(new XYChart.Data("Brazil",1323));
-        barChart.getData().addAll(series1);
+        barChart.getData().clear();
+        XYChart.Series seriesGasto = new XYChart.Series();
+        XYChart.Series seriesReceita = new XYChart.Series();
+        XYChart.Series seriesLucro = new XYChart.Series();
+        seriesGasto.setName("Gasto");
+        seriesReceita.setName("Receita");
+        seriesLucro.setName("Lucro");        
+        List<Object[]> resultado = corridaDAO.listLucroMensal(dataInicial, dataFinal);
+        for (int i = 0; i < resultado.size(); i++){
+            List<Object> resultadoMes = Arrays.asList(resultado.get(i));
+            
+            
+            String data = resultadoMes.get(0).toString() + "/" +  resultadoMes.get(1).toString();
+            Float passagem = Float.parseFloat(resultadoMes.get(2).toString());
+            Float consumo = Float.parseFloat(resultadoMes.get(3).toString());
+
+            
+            seriesGasto.getData().add(new XYChart.Data(data,consumo*5.0));
+            seriesReceita.getData().add(new XYChart.Data(data,passagem*4.0));
+            seriesLucro.getData().add(new XYChart.Data(data,passagem*4.0 - consumo*5.0));
+
+           
+        }        
+                
+
+        barChart.getData().addAll(seriesGasto);
+        barChart.getData().addAll(seriesReceita);
+        barChart.getData().addAll(seriesLucro);
+
         
     }
 
@@ -145,7 +178,8 @@ public class UIDesktopRelatorioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        barChart.setAnimated(false);
+
         carregarTableView();
         search();
         lucroChart();

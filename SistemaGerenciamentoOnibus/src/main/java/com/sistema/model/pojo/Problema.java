@@ -45,10 +45,10 @@ public class Problema implements Serializable {
     private Date dataHorario;
     @JoinColumn(name = "cpf_motorista", referencedColumnName = "cpf")
     @ManyToOne(optional = false)
-    private Motorista cpfMotorista;
+    private Motorista motorista;
     @JoinColumn(name = "placa_onibus", referencedColumnName = "placa")
     @ManyToOne(optional = false)
-    private Onibus placaOnibus;
+    private Onibus onibus;
     @JoinColumn(name = "id_tipo", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TipoProblema idTipo;
@@ -89,20 +89,20 @@ public class Problema implements Serializable {
         this.dataHorario = dataHorario;
     }
 
-    public Motorista getCpfMotorista() {
-        return cpfMotorista;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setCpfMotorista(Motorista cpfMotorista) {
-        this.cpfMotorista = cpfMotorista;
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
-    public Onibus getPlacaOnibus() {
-        return placaOnibus;
+    public Onibus getOnibus() {
+        return onibus;
     }
 
-    public void setPlacaOnibus(Onibus placaOnibus) {
-        this.placaOnibus = placaOnibus;
+    public void setOnibus(Onibus onibus) {
+        this.onibus = onibus;
     }
 
     public TipoProblema getIdTipo() {

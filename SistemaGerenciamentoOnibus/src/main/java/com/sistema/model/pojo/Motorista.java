@@ -36,7 +36,7 @@ public class Motorista extends Funcionario implements Serializable{
     @Basic(optional = false)
     @Column(name = "cnh")
     private String cnh;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cpfMotorista")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motorista")
     private List<Problema> problemaList;
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "motorista" )
     @OnDelete(action = OnDeleteAction.CASCADE)

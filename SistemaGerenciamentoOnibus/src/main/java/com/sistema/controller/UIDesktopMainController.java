@@ -138,7 +138,10 @@ public class UIDesktopMainController implements Initializable {
     public void handleButtonOnibus(MouseEvent event) {
         carregarTela("/com/sistema/view/UIDesktopCRUDOnibus.fxml");
     }
-    
+    @FXML
+    public void handleButtonProblemas(MouseEvent event) {
+        carregarTela("/com/sistema/view/UIDesktopProblemas.fxml");
+    }    
     @FXML
     public void handleButtonHistorico(MouseEvent event) {
         carregarTela("/com/sistema/view/UIDesktopHistoricoCorridas.fxml");

@@ -39,7 +39,7 @@ public class Onibus implements Serializable {
     private Float quilometragem;
     @Column(name = "modelo")
     private String modelo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "placaOnibus")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "onibus")
     private List<Problema> problemaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "onibus")
     private List<Corrida> corridaList;

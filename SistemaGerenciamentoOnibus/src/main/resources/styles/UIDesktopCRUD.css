@@ -126,3 +126,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-radius:0px ;
     -fx-background-color: #383838;
 }
+
+.default-color0.chart-bar { -fx-bar-fill: #ff3030 }
+.default-color1.chart-bar { -fx-bar-fill: #3dff77 }
+.default-color2.chart-bar { -fx-bar-fill: #3b2dfc }
+

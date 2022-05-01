@@ -102,7 +102,7 @@ insert into Problema values(3, 4, "Pneus ficando carecas", '2021-01-01 19:05:15'
 insert into Emergencia values(1, 2, 1004, '2021-01-01 12:42:14', -23.425808, -51.938264);
 insert into Emergencia values(2, 1, 1007, '2021-01-01 18:23:25', -23.405614, -51.936603);
 
-
+select * from Problema;
 select * from Funcionario;
 select * from Motorista;
 select * from Administrador;
