@@ -83,7 +83,7 @@ public class UIDesktopMainController implements Initializable {
 
     
             }
-        }, 0,5000);
+        }, 1000,5000);
         
     }
     
@@ -180,7 +180,6 @@ public class UIDesktopMainController implements Initializable {
     JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626db70c019db4679693e10e");     
     JSONObject jsonAux = new JSONObject();
     JSONArray jsonArray = json.getJSONArray("emergencias");
-    System.out.println("adwadwaddwa");
     // Ativa popup se placa != teste e remove ele   
     for(int i = 0; i < jsonArray.length(); i++){
         if(!jsonArray.getJSONObject(i).get("placa").equals("Teste")){

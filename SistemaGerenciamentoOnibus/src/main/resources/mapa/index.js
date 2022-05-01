@@ -116,7 +116,7 @@ function showMarkers(){
                 "<b> Motorista: </b>" + obj.motorista  +
                 "</div>" +
                 '<div id="placa">' + 
-                "<b>Ônibus: </b>" + obj.placa +
+                "<b>Onibus: </b>" + obj.placa +
                 "</div>" +
                 '<div id="linha">' + 
                 "<b>Linha: </b>" + obj.linha +

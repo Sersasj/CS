@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -36,6 +37,8 @@ public class UIDesktopLoginController implements Initializable {
     Button btnLogin, btnRegistrar;
     @FXML
     AnchorPane paneRoot;
+    @FXML
+    Label lblLoginIncorreto;
     private final AdministradorDAO administradorDAO = new AdministradorDAO();
 
     /**
@@ -56,6 +59,7 @@ public class UIDesktopLoginController implements Initializable {
     }
 
     public void handleLogin() {
+        lblLoginIncorreto.setText("");
         String usuario = txtFieldUsuario.getText();
         String senha = txtFieldSenha.getText();
         Administrador administrador = administradorDAO.getByUsername(usuario);
@@ -75,12 +79,11 @@ public class UIDesktopLoginController implements Initializable {
                     Logger logger = Logger.getLogger(getClass().getName());
                     logger.log(Level.SEVERE, "Failed to create new Window.", e);
                 }
-                System.out.println("sucesso");
             } else {
-                System.out.println("senha errada");
+                lblLoginIncorreto.setText("Senha incorreta");
             }
         } else {
-            System.out.println("user n existe");
+            lblLoginIncorreto.setText("Usuário não registrado");
         }
     }
 }

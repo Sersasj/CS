@@ -8,12 +8,96 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .mainFxmlClass {
-
+    -fx-background-color: #3a3b3c;
 }
 
-.anchorPaneBackground{
-    -fx-background-color: #f5f5f5;
+.background{
+    -fx-background-color: #F8F8F8;
 }
-.buttonBackground:active{
-    -fx-background-color:red;
+
+.text-field{
+    -fx-box-sizing: border-box;
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-border-color: darkgray;
+    -fx-text-fill: black;
+}
+.text-field:hover {
+    -fx-border-color: gainsboro;
+}
+
+.btn{
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-border-color: darkgray;
+    -fx-background-radius: 3px;
+    -fx-background-color: Gainsboro;
+    -fx-text-fill: #383838;
+}
+
+.btn:hover{
+    -fx-background-color: WhiteSmoke;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: gainsboro;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #383838;
+}
+
+.table-view .column-header {
+    -fx-background-color: gainsboro;
+}
+.table-view .scroll-bar:vertical,
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.table-view .increment-button ,
+.table-view .decrement-button {
+    -fx-background-color: gainsboro;
+}
+
+.table-view .scroll-bar:horizontal .track ,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: gainsboro;
+    -fx-background-radius: 3px;
+}
+
+.date-picker {
+    -fx-box-sizing: border-box;
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-border-color: darkgray;
+    -fx-text-fill: black;
+    -fx-box-shadow: 0;
+}
+.date-picker .text-field{
+    -fx-border-width: 0px;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-box-shadow: 0;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: gainsboro;
+ }
+ 
+ .date-picker .arrow-button .arrow{
+    -fx-background-radius:0px ;
+    -fx-background-color: #383838;
 }

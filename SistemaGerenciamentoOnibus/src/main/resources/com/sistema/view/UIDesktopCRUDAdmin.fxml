@@ -23,15 +23,18 @@
                      <children>
                         <VBox prefHeight="645.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" VBox.vgrow="NEVER">
+                              <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="810.0" spacing="10.0" VBox.vgrow="NEVER">
                                  <children>
                                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/icons8-pesquisar-48.png" />
+                                          <Image url="@icons/icons8-pesquisar-gray-48.png" />
                                        </image>
                                     </ImageView>
-                                    <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" text="Buscar por nome" />
+                                    <TextField fx:id="textBuscaNome" prefHeight="35.0" prefWidth="218.0" promptText="Buscar por nome" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
                               </HBox>
                               <TableView fx:id="tableViewAdmin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#handleMouseAction" prefHeight="578.0" prefWidth="800.0">
                                  <columns>
