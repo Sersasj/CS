@@ -5,7 +5,9 @@
 package com.sistema.controller;
 
 import com.sistema.model.dao.CorridaDAO;
+import com.sistema.model.dao.LinhaDAO;
 import com.sistema.model.pojo.Corrida;
+import com.sistema.model.pojo.Linha;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -24,12 +26,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -42,7 +48,7 @@ public class UIDesktopRelatorioController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private TableView<Corrida> tableViewCorrida;
+    private LineChart lineChart;
     @FXML
     private TableColumn<Corrida, String> tableColumnID, tableColumnMotorista, tableColumnOnibus, tableColumnLinha;
     @FXML
@@ -52,42 +58,22 @@ public class UIDesktopRelatorioController implements Initializable {
     @FXML
     private DatePicker datePickerInicio, datePickerFim;
     @FXML
-    private TextField textBusca;  
+    private ToggleButton toggleButton;
     @FXML
     private BarChart barChart;
+    @FXML
+    private ComboBox<Linha> comboBoxLinhas;    
     private Date dataInicial = null, dataFinal = null;
     private List<Corrida> listCorrida;
     private ObservableList<Corrida> observableListCorrida;
     private final CorridaDAO corridaDAO = new CorridaDAO();
-
-    public void carregarTableView() {
-
-        listCorrida = corridaDAO.list();
-        observableListCorrida = FXCollections.observableArrayList(listCorrida);
-
-        tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tableColumnMotorista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotorista().getNome()));
-        tableColumnOnibus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOnibus().getPlaca()));
-        tableColumnLinha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLinha().toString()));
-        tableColumnInicio.setCellValueFactory(new PropertyValueFactory<>("inicioCorrida"));
-        tableColumnFim.setCellValueFactory(new PropertyValueFactory<>("fimCorrida"));
-        tableColumnPagantes.setCellValueFactory(new PropertyValueFactory<>("passPagantes"));
-        tableColumnNaoPagantes.setCellValueFactory(new PropertyValueFactory<>("passNaoPagantes"));
-        tableColumnDistancia.setCellValueFactory(new PropertyValueFactory<>("distanciaPercorrida"));
-        tableColumnConsumo.setCellValueFactory(new PropertyValueFactory<>("consumoCombustivel"));
-
-        tableViewCorrida.setItems(observableListCorrida);
-    }
+    private final LinhaDAO linhaDAO = new LinhaDAO();
+    private List<Linha> listLinhas;
+    private ObservableList<Linha> observableListLinhas;
     
-    public void atualizarTableView() {
+ 
+    
 
-        listCorrida = corridaDAO.list(dataInicial, dataFinal);
-        observableListCorrida = FXCollections.observableArrayList(listCorrida);
-        tableViewCorrida.setItems(observableListCorrida);
-        lucroChart();
-
-        
-    }
     
 
     public void handleDatePickerInicio(ActionEvent e) {
@@ -96,7 +82,6 @@ public class UIDesktopRelatorioController implements Initializable {
             localDateInicial = localDateInicial.withDayOfMonth(1);
             datePickerInicio.setValue(localDateInicial);
             dataInicial = Date.from(localDateInicial.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());            
-            atualizarTableView();
         }
     }
 
@@ -106,23 +91,42 @@ public class UIDesktopRelatorioController implements Initializable {
             localDateFinal = localDateFinal.withDayOfMonth(localDateFinal.getMonth().length(localDateFinal.isLeapYear()));
             datePickerFim.setValue(localDateFinal);
             dataFinal = Date.from(localDateFinal.atTime(23, 59, 59, 999999999).atZone(ZoneId.systemDefault()).toInstant());
-            atualizarTableView();
         }
     }
+    public void carregarComboBoxLinhas() {
+        listLinhas = linhaDAO.list();
+        observableListLinhas = FXCollections.observableArrayList(listLinhas);
+        comboBoxLinhas.setItems(observableListLinhas);
+    }
 
-    
+    @FXML
+    public void handleComboBox(MouseEvent event) {
+        lucroChart();
+        passageiroChart();
+    }
     public void lucroChart(){
+        List<Object[]> resultado;
+
         barChart.getData().clear();
         XYChart.Series seriesGasto = new XYChart.Series();
         XYChart.Series seriesReceita = new XYChart.Series();
         XYChart.Series seriesLucro = new XYChart.Series();
         seriesGasto.setName("Gasto");
         seriesReceita.setName("Receita");
-        seriesLucro.setName("Lucro");        
-        List<Object[]> resultado = corridaDAO.listLucroMensal(dataInicial, dataFinal);
+        seriesLucro.setName("Lucro");
+       // Linha
+        if(toggleButton.isSelected()){
+            resultado = corridaDAO.listLucroLinhaMensal(dataInicial, dataFinal, comboBoxLinhas.getValue());
+            
+        }
+        // Geral
+        else{
+            resultado = corridaDAO.listLucroMensal(dataInicial, dataFinal);
+
+        }        
         for (int i = 0; i < resultado.size(); i++){
             List<Object> resultadoMes = Arrays.asList(resultado.get(i));
-            
+            System.out.println(resultadoMes);
             
             String data = resultadoMes.get(0).toString() + "/" +  resultadoMes.get(1).toString();
             Float passagem = Float.parseFloat(resultadoMes.get(2).toString());
@@ -143,46 +147,47 @@ public class UIDesktopRelatorioController implements Initializable {
 
         
     }
+    
+    public void passageiroChart(){
+        lineChart.getData().clear();
+        XYChart.Series quantidadePassageiros = new XYChart.Series();
+        quantidadePassageiros.setName("Passageiros");
+        List<Object[]> resultado;
+        // Linha
+        if(toggleButton.isSelected()){
+            resultado = corridaDAO.listPassageiroLinhaMensal(dataInicial, dataFinal, comboBoxLinhas.getValue());
 
-    public void search(){
+            System.out.println("adadawdawda");
+        }
+        // Geral
+        else{
+            resultado = corridaDAO.listPassageiroMensal(dataInicial, dataFinal);
+
+        }
         
-    FilteredList<Corrida> filteredData = new FilteredList<>(observableListCorrida, b -> true);
-    textBusca.textProperty().addListener ((observable, oldValue, newValue) -> {
-        filteredData.setPredicate(corrida -> {
-            if (newValue == null || newValue.isEmpty()){
-                return true;
-            }
-            String lowerCaseFilter = newValue.toLowerCase();
-            if (corrida.getOnibus().getPlaca().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                return true; 
-            }
-            if (corrida.getLinha().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                return true; 
-            }
-            if (corrida.getLinha().getNumero().toString().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                return true; 
-            }            
-            if (corrida.getMotorista().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                return true; 
-            }            
-            return false;
-        });
-    });
-    
- 
-    SortedList<Corrida> sortedData = new SortedList<>(filteredData);
-    
-    sortedData.comparatorProperty().bind(tableViewCorrida.comparatorProperty());
-    tableViewCorrida.setItems(sortedData);
-    }    
+        for (int i = 0; i < resultado.size(); i++){
+            List<Object> passageirosMes = Arrays.asList(resultado.get(i));
+            System.out.println(passageirosMes);
+            
+            String data = passageirosMes.get(0).toString() + "/" +  passageirosMes.get(1).toString();
+            Float passageiro = Float.parseFloat(passageirosMes.get(2).toString());
+                    
+            quantidadePassageiros.getData().add(new XYChart.Data(data,passageiro));
+
+           
+        }
+        lineChart.getData().addAll(quantidadePassageiros);
+
+    }
+
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        carregarComboBoxLinhas() ;
+        
         barChart.setAnimated(false);
-
-        carregarTableView();
-        search();
-        lucroChart();
+        //lucroChart();
     }
 
 }
