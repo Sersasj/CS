@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +59,9 @@ public class UIDesktopMainController implements Initializable {
     private StackPane stackPaneRoot;
     @FXML
     private AnchorPane anchorPaneConteudo;
+    
+    private Boolean existeEmergencia = false;
+    private Corrida corridaEmergencia = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,37 +69,37 @@ public class UIDesktopMainController implements Initializable {
         hBoxMenuAberto.setDisable(true);
         hBoxMenuAberto.setVisible(false);
         
-        // verifica se tem emergencia a cada 5 seg
-        /* 
-        Timer t = new Timer( );
-        t.scheduleAtFixedRate(new TimerTask() {
-
-            @Override
-            public void run() {
-            Platform.runLater(() -> {
-                try {        
-                    verifyEmergencia();
-                } catch (Exception ex) {
-                    Logger.getLogger(UIDesktopMainController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });    
-
-    
-            }
-        }, 1000,5000);
-        */
+        // verifica se tem uma emergencia guardada a cada 5 seg
         Timeline timer = new Timeline(
             new KeyFrame(Duration.seconds(5), evt -> {
-                try {        
-                    verifyEmergencia();
-                } catch (Exception ex) {
-                    Logger.getLogger(UIDesktopMainController.class.getName()).log(Level.SEVERE, null, ex);
-                }           
+                if(existeEmergencia){
+                    popUpEmergencia(corridaEmergencia);
+                }
+                           
             })
         );
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
         
+        // busca por emergencias no servidor
+        ScheduledService<Void> schedule = new ScheduledService<Void>() {
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        try {        
+                            verifyEmergencia();
+                        } catch (Exception ex) {
+                            Logger.getLogger(UIDesktopMainController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        return null;
+                    }
+                };
+            }
+        };
+        schedule.setPeriod(Duration.seconds(2));
+        schedule.start();
     }
     
     public void carregarTela(String enderecoTela){
@@ -196,7 +201,6 @@ public class UIDesktopMainController implements Initializable {
     // Ativa popup se placa != teste e remove ele   
     for(int i = 0; i < jsonArray.length(); i++){
         if(!jsonArray.getJSONObject(i).get("placa").equals("Teste")){
-            Corrida corrida = new Corrida();
             Motorista motorista = new Motorista();
             Onibus onibus = new Onibus();
             Linha linha = new Linha();
@@ -206,14 +210,13 @@ public class UIDesktopMainController implements Initializable {
             onibus.setPlaca(jsonArray.getJSONObject(i).get("placa").toString());
             linha.setNumero(Integer.parseInt(jsonArray.getJSONObject(i).get("linhaNum").toString()));
             linha.setNome(jsonArray.getJSONObject(i).get("linhaNome").toString());
-            corrida.setOnibus(onibus);
-            corrida.setMotorista(motorista);
-            corrida.setLatitude(Float.parseFloat(jsonArray.getJSONObject(i).get("lat").toString()));
-            corrida.setLatitude(Float.parseFloat(jsonArray.getJSONObject(i).get("lng").toString()));
-            corrida.setLinha(linha);
+            corridaEmergencia.setOnibus(onibus);
+            corridaEmergencia.setMotorista(motorista);
+            corridaEmergencia.setLatitude(Float.parseFloat(jsonArray.getJSONObject(i).get("lat").toString()));
+            corridaEmergencia.setLatitude(Float.parseFloat(jsonArray.getJSONObject(i).get("lng").toString()));
+            corridaEmergencia.setLinha(linha);
 
-            
-            popUpEmergencia(corrida);
+            existeEmergencia = true;
             
             jsonArray.remove(i);
             i = 0;
@@ -257,6 +260,7 @@ public class UIDesktopMainController implements Initializable {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
+        existeEmergencia = false;
     }
 
     @FXML

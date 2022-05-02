@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  * @author vini
  */
 @Entity
-@Table(name = "horarioesperado")
+@Table(name = "HorarioEsperado")
 public class HorarioEsperado implements Serializable {
 
     private static final long serialVersionUID = 1L;

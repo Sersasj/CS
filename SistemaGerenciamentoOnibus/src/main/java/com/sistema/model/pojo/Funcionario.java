@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author vini
  */
 @Entity
-@Table(name = "funcionario")
+@Table(name = "Funcionario")
 @Inheritance(strategy=InheritanceType.JOINED)  
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 

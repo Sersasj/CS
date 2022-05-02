@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @PrimaryKeyJoinColumn(name = "cpf")
 
-@Table(name = "administrador")
+@Table(name = "Administrador")
 public class Administrador extends Funcionario implements Serializable{
 
     private static final long serialVersionUID = 1L;

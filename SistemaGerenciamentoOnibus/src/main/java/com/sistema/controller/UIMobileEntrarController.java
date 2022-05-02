@@ -68,7 +68,6 @@ public class UIMobileEntrarController implements Initializable {
 
         txtFieldNumeroCpf.setTextFormatter(new TextFormatter<>((change) -> {
             String novaString = change.getControlNewText();
-            System.out.println(validadorString.formatarCPFIncompleto(novaString));
             if (StringFormatter.PATTERN_CPF_INCOMPLETO.matcher(novaString).matches()) {
                 return change; 
             } else {
@@ -81,7 +80,6 @@ public class UIMobileEntrarController implements Initializable {
                 change.setText(change.getText().toUpperCase());
             }
             String novaString = change.getControlNewText();
-            System.out.println(novaString);
             if (StringFormatter.PATTERN_PLACA_INCOMPLETA.matcher(novaString).matches()) {
                 return change; 
             } else {

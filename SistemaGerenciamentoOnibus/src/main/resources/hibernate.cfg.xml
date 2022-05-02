@@ -37,9 +37,12 @@ Contributor(s):
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sistemaonibus?zeroDateTimeBehavior=CONVERT_TO_NULL</property>
+        <!--property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sistemaonibus?zeroDateTimeBehavior=CONVERT_TO_NULL</property>
         <property name="hibernate.connection.username">usuarioAdmin</property>
-        <property name="hibernate.connection.password">senhaAdmin</property>
+        <property name="hibernate.connection.password">senhaAdmin</property-->
+        <property name="hibernate.connection.url">jdbc:mysql://db4free.net:3306/sistemaonibus?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</property>
+        <property name="hibernate.connection.username">admsistemaonibus</property>
+        <property name="hibernate.connection.password">senhasistemaonibus</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.format_sql">false</property>

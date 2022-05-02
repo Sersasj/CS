@@ -25,7 +25,7 @@ import org.hibernate.annotations.OnDeleteAction;
  */
 @Entity
 @PrimaryKeyJoinColumn(name = "cpf")
-@Table(name = "motorista")
+@Table(name = "Motorista")
 public class Motorista extends Funcionario implements Serializable{
 
     private static final long serialVersionUID = 1L;

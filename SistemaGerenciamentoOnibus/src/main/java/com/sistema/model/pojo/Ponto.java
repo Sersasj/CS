@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @author vini
  */
 @Entity
-@Table(name = "ponto")
+@Table(name = "Ponto")
 public class Ponto implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,9 +1,9 @@
-drop schema if exists sistemaOnibus;
-CREATE SCHEMA sistemaOnibus;
-USE sistemaOnibus;
+drop schema if exists sistemaonibus;
+CREATE SCHEMA sistemaonibus;
+USE sistemaonibus;
 
-CREATE USER IF NOT EXISTS 'usuarioAdmin'@'localhost' IDENTIFIED BY 'senhaAdmin';
-grant all privileges on sistemaonibus.* to 'usuarioAdmin'@'localhost';
+CREATE USER IF NOT EXISTS 'usuarioadmin'@'localhost' IDENTIFIED BY 'senhaadmin';
+grant all privileges on sistemaonibus.* to 'usuarioadmin'@'localhost';
 
 CREATE TABLE Funcionario (
     cpf CHAR(14) NOT NULL,

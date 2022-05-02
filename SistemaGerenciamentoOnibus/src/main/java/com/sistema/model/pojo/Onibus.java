@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author vini
  */
 @Entity
-@Table(name = "onibus")
+@Table(name = "Onibus")
 public class Onibus implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -27,7 +27,7 @@ import javax.persistence.Transient;
  * @author vini
  */
 @Entity
-@Table(name = "corrida")
+@Table(name = "Corrida")
 public class Corrida implements Serializable {
 
     private static final long serialVersionUID = 1L;

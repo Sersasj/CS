@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author vini
  */
 @Entity
-@Table(name = "linhaponto")
+@Table(name = "LinhaPonto")
 public class LinhaPonto implements Serializable {
 
     private static final long serialVersionUID = 1L;

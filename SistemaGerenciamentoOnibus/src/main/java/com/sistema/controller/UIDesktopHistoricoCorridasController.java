@@ -58,7 +58,8 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
 
         listCorrida = corridaDAO.list();
         observableListCorrida = FXCollections.observableArrayList(listCorrida);
-
+        
+        tableColumnInicio.setSortType(TableColumn.SortType.DESCENDING);
         tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnMotorista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotorista().getNome()));
         tableColumnOnibus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOnibus().getPlaca()));
@@ -70,6 +71,7 @@ public class UIDesktopHistoricoCorridasController implements Initializable {
         tableColumnDistancia.setCellValueFactory(new PropertyValueFactory<>("distanciaPercorrida"));
         tableColumnConsumo.setCellValueFactory(new PropertyValueFactory<>("consumoCombustivel"));
         tableViewCorrida.setItems(observableListCorrida);
+        tableViewCorrida.getSortOrder().add(tableColumnInicio);
     }
     
     public void atualizarTableView() {
