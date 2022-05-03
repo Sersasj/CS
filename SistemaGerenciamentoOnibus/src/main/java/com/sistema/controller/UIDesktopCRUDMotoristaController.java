@@ -178,8 +178,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
         textNome.setEditable(true);
         textTelefone.setEditable(true);
         textEndereco.setEditable(true);
-        textRG.setEditable(true);
-       
+        textRG.setEditable(true);      
         
     }
     @FXML    
