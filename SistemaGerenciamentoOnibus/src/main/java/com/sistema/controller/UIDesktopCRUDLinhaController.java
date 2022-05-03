@@ -21,6 +21,7 @@ import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -57,7 +58,8 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     private TableColumn<LinhaPonto, String> tableColumnPontoLat;     
     @FXML 
     private TableColumn<LinhaPonto, String> tableColumnPontoLng;          
-
+    @FXML 
+    private ComboBox<Ponto> comboBoxPontos;
     // Ponto
     @FXML 
     private TableView<Ponto> tableViewPonto;    
@@ -70,7 +72,7 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     private int select;
 
     @FXML
-    private TextField textNumeroPonto, textLatPonto, textLngPonto;
+    private TextField  textLatPonto, textLngPonto;
     @FXML
     private TextField textNomeLinha, textNumeroLinha;    
     
@@ -102,7 +104,48 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         tableViewLinhaPonto.setItems(observableListLinhaPonto);   
 
     }
-  
+    
+    @FXML
+    public void handleMouseAction(MouseEvent event){
+        
+//        LinhaPonto linhaPonto = tableViewLinhaPonto.getSelectionModel().getSelectedItem().getNumLinha();
+//        textNomeLinha.setText(linha.getNome());
+//        textNumeroLinha.setText(linha.getNumero().toString());
+//        System.out.println("ALOU");
+//        listPonto =  new ArrayList();
+//        listPonto  = linha.getPontoList();
+//        observableListPonto = FXCollections.observableArrayList(listPonto);
+//
+//        tableViewPonto.setItems(observableListPonto);
+        
+        
+//        listPonto = linhaPonto.getIdPonto();
+//        observableListPonto = FXCollections.observableArrayList(listPonto);
+//        tableViewPonto.set.setText(onibus.getQuilometragem().toString());
+//        textModelo.setText(onibus.getModelo());
+    }    
+    @FXML
+    public void handleAlterar(MouseEvent event){
+        buttonAlterar.setStyle("-fx-background-color: #98f296");
+        buttonAdicionar.setStyle(null);
+        buttonRemover.setStyle(null);        
+        setTextVazio();
+        select = 1;
+        textLatPonto.setEditable(true);
+        textLngPonto.setEditable(true);
+        textNomeLinha.setEditable(true);
+        textNumeroLinha.setEditable(true);
+    }
+    @FXML
+    public void handleDeletarPonto(MouseEvent event){
+        Ponto selectedItem = tableViewPonto.getSelectionModel().getSelectedItem();
+        tableViewPonto.getItems().remove(selectedItem);      
+    }
+    @FXML
+    public void handleAdicionarPonto(MouseEvent event){
+        Ponto selectedItem = comboBoxPontos.getSelectionModel().getSelectedItem();
+        tableViewPonto.getItems().add(selectedItem);      
+    }    
     @FXML
     public void handleBlockLinha(KeyEvent event){
         textNomeLinha.setText("");
@@ -112,10 +155,8 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     }
     @FXML
     public void handleBlockPonto(KeyEvent event){
-        textNumeroPonto.setText("");
         textLatPonto.setText("");
         textLngPonto.setText("");
-        textNumeroPonto.setEditable(false);
         textLatPonto.setEditable(false);   
         textLngPonto.setEditable(false);   
     }   
@@ -126,7 +167,6 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         buttonRemover.setStyle(null);        
         setTextVazio();
         select = 2;
-        textNumeroPonto.setEditable(true);
         textLatPonto.setEditable(true);
         textLngPonto.setEditable(true);
         textNomeLinha.setEditable(true);
@@ -136,7 +176,6 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     }
     
     public void setTextVazio(){
-        textNumeroPonto.setText("");
         textLatPonto.setText("");
         textLngPonto.setText("");
         textNomeLinha.setText("");
@@ -154,11 +193,12 @@ public class UIDesktopCRUDLinhaController implements Initializable {
                 if(textNomeLinha.getText().equals("")){
 
                     ponto = new Ponto();
-                    ponto.setId(Integer.parseInt(textNumeroPonto.getText()));
+                    ponto.setId(null);
                     ponto.setLatitude(Float.parseFloat(textLatPonto.getText()));
-                    ponto.setLatitude(Float.parseFloat(textLngPonto.getText()));
+                    ponto.setLongitude(Float.parseFloat(textLngPonto.getText()));
                     pontoDAO.add(ponto);
                     carregarTablePontoView();
+                    carregarComboBox();
                     tableColumnPonto2.getColumns().get(0).setVisible(false);
                     tableColumnPonto2.getColumns().get(0).setVisible(true);                    
                 }   
@@ -178,11 +218,10 @@ public class UIDesktopCRUDLinhaController implements Initializable {
                     linhaDAO.add(linha);
                     
                     //LinhaPonto
-                    System.out.println("aaaaa");
                     
                     for (int i = 0; i < observableListPonto.size(); i++){
                         linhaPonto = new LinhaPonto();
-                        linhaPonto.setId(i+20);
+                        linhaPonto.setId(null);
                         linhaPonto.setIdPonto(observableListPonto.get(i));
                         linhaPonto.setNumLinha(linha);
                         linhaPontoDAO.add(linhaPonto);
@@ -192,6 +231,11 @@ public class UIDesktopCRUDLinhaController implements Initializable {
                 }
         }
         
+    }
+    public void carregarComboBox(){
+        listPonto = pontoDAO.list();
+        observableListPonto = FXCollections.observableArrayList(listPonto);
+        comboBoxPontos.setItems(observableListPonto);
     }
     public void carregarTablePontoView(){
         listPonto = pontoDAO.list();
@@ -217,6 +261,7 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         webEngine.load(getClass().getResource("/mapa/mapaRota/googlemaps2.html").toString());
         carregarTablePontoLinhaView();
         carregarTablePontoView();
+        carregarComboBox();
     }
     
 //    @FXML

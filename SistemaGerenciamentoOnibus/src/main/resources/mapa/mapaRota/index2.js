@@ -9,6 +9,8 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: myLatlng,
+    mapTypeControl: false,
+    streetViewControl: false    
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({

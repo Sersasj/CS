@@ -26,7 +26,7 @@ public class Ponto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -107,7 +107,7 @@ public class Ponto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Ponto[ id=" + id + " ]";
+        return "id = " + id;
     }
     
 }
