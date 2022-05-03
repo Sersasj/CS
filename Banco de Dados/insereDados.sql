@@ -107,4 +107,5 @@ select * from Funcionario;
 select * from Motorista;
 select * from Administrador;
 select * from Corrida;
+select * from Linha natural join ponto;
 select YEAR(fim_corrida) as ano, MONTH(fim_corrida) as mes, 123 as num_linha, sum(pass_pagantes) from corrida where num_linha = 123 group by ano, mes order by ano, mes;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="1180.0" styleClass="background" stylesheets="@../../../styles/UIDesktopCRUD.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCRUDLinhaController">
+   <children>
+      <HBox prefHeight="685.0" prefWidth="1180.0">
+         <children>
+            <WebView fx:id="webView" prefHeight="686.0" prefWidth="566.0" />
+            <AnchorPane prefHeight="686.0" prefWidth="356.0">
+               <children>
+                  <TableView fx:id="tableViewLinha" prefHeight="686.0" prefWidth="309.0">
+                    <columns>
+                      <TableColumn fx:id="tableColumnNumero" prefWidth="75.0" text="Número" />
+                      <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
+                        <TableColumn fx:id="tableColumnPonto" prefWidth="158.4000183105469" text="Ponto" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <Separator orientation="VERTICAL" prefHeight="686.0" prefWidth="0.0" />
+            <AnchorPane prefHeight="686.0" prefWidth="428.0" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
