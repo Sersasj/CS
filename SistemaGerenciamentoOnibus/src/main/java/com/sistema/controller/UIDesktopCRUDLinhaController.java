@@ -25,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -49,9 +50,7 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     @FXML
     private TableView<LinhaPonto> tableViewLinhaPonto;    
     @FXML 
-    private TableColumn<LinhaPonto, String> tableColumnNumero;
-    @FXML 
-    private TableColumn<LinhaPonto, String> tableColumnNome;    
+    private TableColumn<LinhaPonto, String> tableColumnLinha;
     @FXML 
     private TableColumn<LinhaPonto, String> tableColumnPonto;   
     @FXML 
@@ -78,7 +77,8 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     
     @FXML
     private Button buttonAdicionar, buttonAlterar, buttonRemover;
-    
+    @FXML
+    private ToggleButton toggleButtonSelect;
     
     private List<LinhaPonto> listLinhaPonto;
     private ObservableList<LinhaPonto> observableListLinhaPonto;    
@@ -94,8 +94,7 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     public void carregarTablePontoLinhaView(){
         listLinhaPonto = linhaPontoDAO.list();
         observableListLinhaPonto = FXCollections.observableArrayList(listLinhaPonto);
-        tableColumnNumero.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getNumLinha().getNumero())));
-        tableColumnNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumLinha().getNome()));
+        tableColumnLinha.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getNumLinha().toString())));
         tableColumnPonto.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getIdPonto().getId())));
         tableColumnPontoLat.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getIdPonto().getLatitude())));
         tableColumnPontoLng.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getIdPonto().getLongitude())));
@@ -107,22 +106,29 @@ public class UIDesktopCRUDLinhaController implements Initializable {
     
     @FXML
     public void handleMouseAction(MouseEvent event){
+        if(!toggleButtonSelect.isSelected()){
+            LinhaPonto linhaPonto = tableViewLinhaPonto.getSelectionModel().getSelectedItem();
+            textNomeLinha.setText(linhaPonto.getNumLinha().getNome());
+            textNumeroLinha.setText(linhaPonto.getNumLinha().getNumero().toString());
+            listPonto  = new ArrayList<>();
+            listPonto.add(linhaPonto.getIdPonto());
+            observableListPonto = FXCollections.observableArrayList(listPonto);
+            tableViewPonto.setItems(observableListPonto);   
+            if(select == 1){
+                tableViewPonto.getItems().clear();
+            }
+                    
+
+        }
+        else{
+            LinhaPonto linhaPonto = tableViewLinhaPonto.getSelectionModel().getSelectedItem();
+            textLatPonto.setText(String.valueOf(linhaPonto.getIdPonto().getLatitude()));
+            textLngPonto.setText(String.valueOf(linhaPonto.getIdPonto().getLongitude()));
+            
+        }
+    
         
-//        LinhaPonto linhaPonto = tableViewLinhaPonto.getSelectionModel().getSelectedItem().getNumLinha();
-//        textNomeLinha.setText(linha.getNome());
-//        textNumeroLinha.setText(linha.getNumero().toString());
-//        System.out.println("ALOU");
-//        listPonto =  new ArrayList();
-//        listPonto  = linha.getPontoList();
-//        observableListPonto = FXCollections.observableArrayList(listPonto);
-//
-//        tableViewPonto.setItems(observableListPonto);
-        
-        
-//        listPonto = linhaPonto.getIdPonto();
-//        observableListPonto = FXCollections.observableArrayList(listPonto);
-//        tableViewPonto.set.setText(onibus.getQuilometragem().toString());
-//        textModelo.setText(onibus.getModelo());
+
     }    
     @FXML
     public void handleAlterar(MouseEvent event){
@@ -134,7 +140,14 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         textLatPonto.setEditable(true);
         textLngPonto.setEditable(true);
         textNomeLinha.setEditable(true);
-        textNumeroLinha.setEditable(true);
+        textNumeroLinha.setEditable(false);
+    }
+    @FXML
+    public void handleRemover(MouseEvent event){
+        select = 3;
+        buttonAlterar.setStyle(null);
+        buttonAdicionar.setStyle(null);
+        buttonRemover.setStyle("-fx-background-color: #98f296"); 
     }
     @FXML
     public void handleDeletarPonto(MouseEvent event){
@@ -146,20 +159,30 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         Ponto selectedItem = comboBoxPontos.getSelectionModel().getSelectedItem();
         tableViewPonto.getItems().add(selectedItem);      
     }    
-    @FXML
-    public void handleBlockLinha(KeyEvent event){
+    public void blockLinha(){
         textNomeLinha.setText("");
         textNumeroLinha.setText("");
         textNomeLinha.setEditable(false);
         textNumeroLinha.setEditable(false);        
     }
-    @FXML
-    public void handleBlockPonto(KeyEvent event){
+    public void blockPonto(){
         textLatPonto.setText("");
         textLngPonto.setText("");
         textLatPonto.setEditable(false);   
         textLngPonto.setEditable(false);   
     }   
+    @FXML
+    public void handleSelect(){
+        if(toggleButtonSelect.isSelected()){
+            blockLinha();
+            toggleButtonSelect.setStyle("-fx-background-color: #98f296");
+
+        }
+        else{
+            blockPonto();
+            toggleButtonSelect.setStyle(null);
+        }
+    }
     @FXML
     public void handleAdicionar(MouseEvent event){
         buttonAlterar.setStyle(null);
@@ -171,7 +194,8 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         textLngPonto.setEditable(true);
         textNomeLinha.setEditable(true);
         textNumeroLinha.setEditable(true);
-            
+        carregarTablePontoView();
+
         
     }
     
@@ -188,37 +212,45 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         Linha linha;
         LinhaPonto linhaPonto ;
         switch(select){
+            // Alterar
+            case 1:
+                // Ponto
+                if(toggleButtonSelect.isSelected()){
+                    ponto = tableViewLinhaPonto.getSelectionModel().getSelectedItem().getIdPonto();
+                    ponto.setLatitude(Float.parseFloat(textLatPonto.getText()));
+                    ponto.setLongitude(Float.parseFloat(textLngPonto.getText()));
+                    pontoDAO.update(ponto);
+                }
+                // Linha
+                else{
+                    linhaPonto = new LinhaPonto();
+                    linhaPonto.setId(null);                 
+                    tableViewPonto.requestFocus();
+                    tableViewPonto.getSelectionModel().clearAndSelect(0);
+                    tableViewPonto.getFocusModel().focus(0);   
+                    linhaPonto.setIdPonto(tableViewPonto.getSelectionModel().getSelectedItem());   
+
+                    linhaPonto.setNumLinha(tableViewLinhaPonto.getSelectionModel().getSelectedItem().getNumLinha());
+                    linhaPontoDAO.add(linhaPonto);
+                }
+                break;                
+            //Adicionar
             case 2:
                 //Ponto
-                if(textNomeLinha.getText().equals("")){
-
+                if(toggleButtonSelect.isSelected()){
                     ponto = new Ponto();
                     ponto.setId(null);
                     ponto.setLatitude(Float.parseFloat(textLatPonto.getText()));
                     ponto.setLongitude(Float.parseFloat(textLngPonto.getText()));
-                    pontoDAO.add(ponto);
-                    carregarTablePontoView();
-                    carregarComboBox();
-                    tableColumnPonto2.getColumns().get(0).setVisible(false);
-                    tableColumnPonto2.getColumns().get(0).setVisible(true);                    
+                    pontoDAO.add(ponto);                 
                 }   
                 //Linha
                 else{
                     linha = new Linha();
                     linha.setNome(textNomeLinha.getText());
                     linha.setNumero(Integer.parseInt(textNumeroLinha.getText()));
-//                    List<Ponto> listPontoAux = new ArrayList<>();
-//                    System.out.println("aaa");
-//                    System.out.println(observableListPonto.size());
-//                    for (int i = 0; i < observableListPonto.size(); i++){
-//                        System.out.println(observableListPonto.get(i).toString());
-//                        listPontoAux.add(observableListPonto.get(i));
-//                    }
-//                    linha.setPontoList(listPontoAux);
-                    linhaDAO.add(linha);
-                    
-                    //LinhaPonto
-                    
+                    linhaDAO.add(linha);                    
+                    //LinhaPonto                    
                     for (int i = 0; i < observableListPonto.size(); i++){
                         linhaPonto = new LinhaPonto();
                         linhaPonto.setId(null);
@@ -227,9 +259,32 @@ public class UIDesktopCRUDLinhaController implements Initializable {
                         linhaPontoDAO.add(linhaPonto);
 
                     }
-                    carregarTablePontoLinhaView();
                 }
+                break;
+                case(3):
+                    // Ponto
+                    if(toggleButtonSelect.isSelected()){
+                        ponto = tableViewLinhaPonto.getSelectionModel().getSelectedItem().getIdPonto();
+
+                        pontoDAO.remove(ponto.getId());
+                    }
+                    //
+                    else{
+                        linhaPonto = tableViewLinhaPonto.getSelectionModel().getSelectedItem();
+                        linhaPontoDAO.remove(linhaPonto.getId());
+                    }
+                    
+   
+
         }
+        // Atualiza tudo
+        carregarTablePontoView();
+        carregarComboBox();
+        carregarTablePontoLinhaView();
+        tableColumnLinha.getColumns().get(0).setVisible(false);
+        tableColumnLinha.getColumns().get(0).setVisible(true);        
+        tableColumnPonto2.getColumns().get(0).setVisible(false);
+        tableColumnPonto2.getColumns().get(0).setVisible(true);
         
     }
     public void carregarComboBox(){
@@ -262,6 +317,7 @@ public class UIDesktopCRUDLinhaController implements Initializable {
         carregarTablePontoLinhaView();
         carregarTablePontoView();
         carregarComboBox();
+        handleSelect();
     }
     
 //    @FXML

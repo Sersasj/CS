@@ -36,7 +36,7 @@ public class Ponto implements Serializable {
     @Basic(optional = false)
     @Column(name = "longitude")
     private float longitude;
-    @ManyToMany(mappedBy = "pontoList",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "pontoList",cascade = CascadeType.MERGE)
     private List<Linha> linhaList;
 
     public Ponto() {

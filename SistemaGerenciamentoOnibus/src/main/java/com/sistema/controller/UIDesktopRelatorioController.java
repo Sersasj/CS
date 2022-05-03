@@ -98,9 +98,21 @@ public class UIDesktopRelatorioController implements Initializable {
         observableListLinhas = FXCollections.observableArrayList(listLinhas);
         comboBoxLinhas.setItems(observableListLinhas);
     }
-
+    
     @FXML
-    public void handleComboBox(MouseEvent event) {
+    public void handleSelect(MouseEvent event){
+        if(!toggleButton.isSelected()){
+            toggleButton.setStyle(null);        
+        }
+        else{
+            toggleButton.setStyle("-fx-background-color: #98f296");
+
+        }
+
+    }
+    
+    @FXML
+    public void handleComboBox(ActionEvent e) {
         lucroChart();
         passageiroChart();
     }
@@ -184,10 +196,11 @@ public class UIDesktopRelatorioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregarComboBoxLinhas() ;
+        carregarComboBoxLinhas();
         
         barChart.setAnimated(false);
-        //lucroChart();
+        lucroChart();
+        passageiroChart();
     }
 
 }

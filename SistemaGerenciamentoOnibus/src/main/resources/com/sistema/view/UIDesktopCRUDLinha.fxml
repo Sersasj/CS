@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,11 +28,10 @@
                         <WebView fx:id="webView" prefHeight="360.0" prefWidth="653.0" />
                         <TableView fx:id="tableViewLinhaPonto" onMouseClicked="#handleMouseAction" prefHeight="330.0" prefWidth="537.0">
                           <columns>
-                            <TableColumn fx:id="tableColumnNumero" prefWidth="126.0" text="Número" />
-                            <TableColumn fx:id="tableColumnNome" prefWidth="126.0" text="Nome" />
-                              <TableColumn fx:id="tableColumnPonto" prefWidth="126.0" text="Ponto" />
-                              <TableColumn fx:id="tableColumnPontoLat" prefWidth="126.0" text="Lat" />
-                              <TableColumn fx:id="tableColumnPontoLng" prefWidth="127.99997558593748" text="Lng" />
+                            <TableColumn fx:id="tableColumnLinha" prefWidth="183.99999696016312" text="Linha" />
+                              <TableColumn fx:id="tableColumnPonto" prefWidth="142.40000915527344" text="Ponto" />
+                              <TableColumn fx:id="tableColumnPontoLat" prefWidth="140.79998779296875" text="Lat" />
+                              <TableColumn fx:id="tableColumnPontoLng" prefWidth="167.20001220703125" text="Lng" />
                           </columns>
                         </TableView>
                      </children>
@@ -47,9 +47,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="371.0" spacing="10.0">
                                  <children>
+                                    <ToggleButton fx:id="toggleButtonSelect" mnemonicParsing="false" onMouseClicked="#handleSelect" prefHeight="47.0" prefWidth="88.0" styleClass="button" text="Linha/Ponto" />
                                     <Button fx:id="buttonAdicionar" mnemonicParsing="false" onMouseClicked="#handleAdicionar" prefHeight="46.0" prefWidth="76.0" styleClass="buttonNovo" text="Novo" />
                                     <Button fx:id="buttonAlterar" mnemonicParsing="false" onMouseClicked="#handleAlterar" prefHeight="45.0" prefWidth="76.0" styleClass="buttonAlterar" text="Alterar" />
-                                    <Button fx:id="buttonRemover" mnemonicParsing="false" prefHeight="46.0" prefWidth="76.0" styleClass="buttonRemover" text="Remover" />
+                                    <Button fx:id="buttonRemover" mnemonicParsing="false" onMouseClicked="#handleRemover" prefHeight="46.0" prefWidth="76.0" styleClass="buttonRemover" text="Remover" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
@@ -61,13 +62,13 @@
                                  </font>
                               </Text>
                               <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude" />
-                              <TextField fx:id="textLatPonto" editable="false" onKeyPressed="#handleBlockLinha" prefHeight="30.0" prefWidth="139.0">
+                              <TextField fx:id="textLatPonto" editable="false" prefHeight="30.0" prefWidth="139.0">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
                               </TextField>
                               <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude" />
-                              <TextField fx:id="textLngPonto" editable="false" onKeyPressed="#handleBlockLinha" prefHeight="30.0" prefWidth="139.0" />
+                              <TextField fx:id="textLngPonto" editable="false" prefHeight="30.0" prefWidth="139.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="530.0" prefWidth="503.0">
@@ -78,12 +79,12 @@
                                  </font>
                               </Text>
                               <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                              <TextField fx:id="textNomeLinha" editable="false" onKeyPressed="#handleBlockPonto" prefHeight="30.0" prefWidth="139.0">
+                              <TextField fx:id="textNomeLinha" editable="false" prefHeight="30.0" prefWidth="139.0">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin></TextField>
                               <Text fill="#383838" strokeType="OUTSIDE" strokeWidth="0.0" text="Número" />
-                              <TextField fx:id="textNumeroLinha" editable="false" onKeyPressed="#handleBlockPonto" prefHeight="30.0" prefWidth="139.0">
+                              <TextField fx:id="textNumeroLinha" editable="false" prefHeight="30.0" prefWidth="139.0">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin></TextField>
