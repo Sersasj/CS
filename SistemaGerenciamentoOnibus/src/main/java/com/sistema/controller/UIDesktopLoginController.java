@@ -40,6 +40,7 @@ public class UIDesktopLoginController implements Initializable {
     @FXML
     Label lblLoginIncorreto;
     private final AdministradorDAO administradorDAO = new AdministradorDAO();
+    
 
     /**
      * Initializes the controller class.
@@ -84,6 +85,21 @@ public class UIDesktopLoginController implements Initializable {
             }
         } else {
             lblLoginIncorreto.setText("Usuário não registrado");
+        }
+    }
+    
+    public void handleCadastrar() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/sistema/view/UIDesktopCadastroAdmin.fxml"));
+            AnchorPane paneMain = (AnchorPane) fxmlLoader.load();
+            paneRoot.getChildren().setAll(paneMain);
+            AnchorPane.setTopAnchor(paneMain, 0.0);
+            AnchorPane.setLeftAnchor(paneMain, 0.0);
+            AnchorPane.setRightAnchor(paneMain, 0.0);
+            AnchorPane.setBottomAnchor(paneMain, 0.0);
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
 }

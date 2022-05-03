@@ -49,7 +49,7 @@ CREATE TABLE Linha (
 );
 
 CREATE TABLE Ponto (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     PRIMARY KEY (id)

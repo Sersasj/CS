@@ -6,17 +6,15 @@ package com.sistema.controller;
 
 import com.sistema.model.dao.FuncionarioDAO;
 import com.sistema.model.dao.MotoristaDAO;
-import com.sistema.model.pojo.Funcionario;
 import com.sistema.model.pojo.Motorista;
+import com.sistema.util.StringFormatter;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,9 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 
 /**
  * FXML Controller class
@@ -78,6 +74,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
     private ObservableList<Motorista> observableListMotorista;
     private final MotoristaDAO motoristaDAO = new MotoristaDAO();
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private StringFormatter stringFormatter = new StringFormatter();
     
     
      
@@ -114,11 +111,11 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
             case 2:
                 motorista = new Motorista();
                 motorista.setCnh(textCNH.getText());
-                motorista.setCpf(textCPF.getText());
+                motorista.setCpf(stringFormatter.formatarCPF(textCPF.getText()));
                 motorista.setNome(textNome.getText());
-                motorista.setTelefone(textTelefone.getText());
+                motorista.setTelefone(stringFormatter.formatarTelefone(textTelefone.getText()));
                 motorista.setEndereco(textEndereco.getText()); 
-                motorista.setRg(textRG.getText());
+                motorista.setRg(stringFormatter.formatarRG(textRG.getText()));
         
   
                 motoristaDAO.add(motorista);

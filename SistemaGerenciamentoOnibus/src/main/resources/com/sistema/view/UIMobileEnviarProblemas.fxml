@@ -1,41 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="844.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="844.0" prefWidth="391.0" style="-fx-background-color: #F0F8FF;" stylesheets="@../../../styles/UIMobile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="2.0" layoutY="2.0" prefHeight="844.0" prefWidth="381.0" style="-fx-background-color: #F0F8FF;">
+      <VBox prefHeight="844.0" prefWidth="391.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutY="-5.0" prefHeight="663.0" prefWidth="394.0" style="-fx-background-color: #3486eb;">
+            <AnchorPane prefHeight="50.0" prefWidth="392.0" styleClass="header" VBox.vgrow="NEVER">
                <children>
-                  <Text fill="WHITE" layoutX="19.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile Corrida">
+                  <Text fill="WHITE" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema de Gerenciamento de Ônibus" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </AnchorPane>
+            <VBox alignment="TOP_CENTER" prefHeight="406.0" prefWidth="412.0" spacing="10.0" styleClass="body" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" prefHeight="32.0" text="Submeter Problemas" textFill="DIMGRAY" VBox.vgrow="NEVER">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>
-                  </Text>
-                  <Text fx:id="placaOnibus" fill="WHITE" layoutX="19.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informe no campo abaixo o ocorrido:">
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="textFieldProblema" alignment="TOP_LEFT" layoutX="19.0" layoutY="143.0" prefHeight="490.0" prefWidth="354.0" style="-fx-background-color: #F0F8FF;" />
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox prefHeight="519.0" prefWidth="361.0" styleClass="wrapperConteudo" VBox.vgrow="NEVER">
+                     <children>
+                        <Label styleClass="texto" text="Informe o ocorrido no campo abaixo:" textFill="RED">
+                           <font>
+                              <Font name="Calibri" size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldProblema" alignment="TOP_LEFT" prefHeight="490.0" prefWidth="354.0" styleClass="txtField" />
+                     </children>
+                  </VBox>
+                  <AnchorPane prefHeight="0.0" prefWidth="361.0" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#handleCancelar" prefWidth="120.0" style="-fx-background-color: #FF0000;" styleClass="btnVermelho" text="Cancelar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#handleEnviar" prefWidth="120.0" style="-fx-background-color: #3486eb;" styleClass="btnNormal" text="Enviar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </AnchorPane>
-            <Button layoutX="142.0" layoutY="761.0" mnemonicParsing="false" onMouseClicked="#handleCancelar" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #FF0000;" text="Cancelar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
-            <Button layoutX="123.0" layoutY="698.0" mnemonicParsing="false" onMouseClicked="#handleEnviar" prefHeight="45.0" prefWidth="149.0" style="-fx-background-color: #3486eb;" text="Enviar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
+               <padding>
+                  <Insets bottom="40.0" left="15.0" right="15.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </AnchorPane>

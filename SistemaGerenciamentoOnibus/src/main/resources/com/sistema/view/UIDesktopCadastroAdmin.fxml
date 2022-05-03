@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="paneRoot" maxHeight="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@../../../styles/UIDesktopLogin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.controller.UIDesktopCadastroAdminController">
+   <children>
+      <HBox alignment="CENTER" fillHeight="false" layoutX="7.0" maxHeight="1.7976931348623157E308" prefHeight="685.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="525.0" prefWidth="684.0" styleClass="paneLogin">
+               <children>
+                  <VBox alignment="CENTER" layoutY="-57.0" prefHeight="525.0" prefWidth="681.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="Registrar novo usuário" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="Nome" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldNome" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu nome" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="CPF" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldCPF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu CPF" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="RG" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldRG" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu RG" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="Endereço" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldEndereco" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu endereço" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="Telefone" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldTelefone" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu telefone" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="226.0" prefWidth="2.0">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin></Separator>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="503.0" text="Usuário" textFill="WHITE" />
+                                    <TextField fx:id="txtFieldUsuario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira seu nome de usuário" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="506.0" text="Senha" textFill="WHITE" />
+                                    <PasswordField fx:id="txtFieldSenha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Insira sua senha" styleClass="txtField">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </PasswordField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="506.0" text="Confirme sua Senha" textFill="WHITE" />
+                                    <PasswordField fx:id="txtFieldConfirmarSenha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Confirme sua senha" styleClass="txtField" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lblLoginIncorreto" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="506.0" styleClass="lblErroLogin" textFill="#ff7474">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="btnRegistrar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCadastrar" prefHeight="39.0" prefWidth="413.0" styleClass="btnLogin" text="Registrar" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleVoltar" styleClass="btnRegistrar" text="Voltar" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

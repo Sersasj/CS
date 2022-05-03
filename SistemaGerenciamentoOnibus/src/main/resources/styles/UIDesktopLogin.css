@@ -20,8 +20,31 @@
     -fx-cursor: hand;
 } 
 
+.lblErroLogin{
+    -fx-text-fill: #ff7474;
+}
+
+.btnCancelar{
+    -fx-background-color: #de4747;
+    -fx-background-radius: 6px;
+}
+.btnCancelar:hover 
+{
+    -fx-cursor: hand;
+} 
+
 .btnRegistrar{
     -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+}
+.btnRegistrar:hover{
+    -fx-background-color: #5d5f61;
+    -fx-background-radius: 4px;
+}
+
+.separator .line{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: whitesmoke ;
 }
 
 .txtField{
