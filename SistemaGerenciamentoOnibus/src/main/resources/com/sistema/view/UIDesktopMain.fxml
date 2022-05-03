@@ -62,6 +62,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonLinha" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonLinha" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-mapa-de-localização-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonProblemas" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB2">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonProblemas" pickOnBounds="true" preserveRatio="true">
@@ -156,6 +165,15 @@
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/icons8-bus-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonLinha" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Linha">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-mapa-de-localização-50.png" />
                            </image>
                         </ImageView>
                      </graphic>

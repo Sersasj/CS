@@ -7,6 +7,7 @@ package com.sistema.model.pojo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Ponto implements Serializable {
     @Basic(optional = false)
     @Column(name = "longitude")
     private float longitude;
-    @ManyToMany(mappedBy = "pontoList")
+    @ManyToMany(mappedBy = "pontoList",cascade = CascadeType.MERGE)
     private List<Linha> linhaList;
 
     public Ponto() {
@@ -106,7 +107,7 @@ public class Ponto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sistema.model.pojo.Ponto[ id=" + id + " ]";
+        return "id = " + id;
     }
     
 }

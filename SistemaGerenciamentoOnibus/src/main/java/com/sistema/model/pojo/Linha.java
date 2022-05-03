@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -37,7 +38,7 @@ public class Linha implements Serializable {
     private String nome;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "linha")
     private List<Corrida> corridaList;
-    @ManyToMany(targetEntity = Ponto.class, cascade = { CascadeType.ALL })
+    @ManyToMany(targetEntity = Ponto.class, cascade = CascadeType.ALL)
     @JoinTable(name = "linhaponto",   
             joinColumns = { @JoinColumn(name = "num_Linha") },   
             inverseJoinColumns = { @JoinColumn(name = "id_ponto") })  
