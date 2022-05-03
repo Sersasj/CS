@@ -5,7 +5,9 @@
 package com.sistema.controller;
 
 import com.sistema.model.dao.CorridaDAO;
+import com.sistema.model.dao.LinhaDAO;
 import com.sistema.model.pojo.Corrida;
+import com.sistema.model.pojo.Linha;
 import com.sistema.util.Mediator;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,6 +60,7 @@ public class UIMobileCorridaController implements Initializable {
     private Corrida corrida;
 
     private final CorridaDAO corridaDAO = new CorridaDAO();
+    private final LinhaDAO linhaDAO = new LinhaDAO();
 
     /**
      * Initializes the controller class.
@@ -164,6 +168,10 @@ public class UIMobileCorridaController implements Initializable {
     String linha = corrida.getLinha().toString();
     String lat = Float.toString(corrida.getLatitude());
     String lng = Float.toString(corrida.getLongitude());
+    Linha linhaComPontos = linhaDAO.getComPontos(corrida.getLinha().getNumero());
+    
+    System.out.println("Aqui");
+    System.out.println(linhaComPontos.getPontoList());
     
     // Lê Json
     JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626d7b3538be296761fa43b5");

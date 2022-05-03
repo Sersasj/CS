@@ -40,4 +40,25 @@ public class LinhaDAO extends GenericDAO<Linha, Integer>{
 
         return listaRetorno;
     }
+    
+    public Linha getComPontos(Integer id) {
+        EntityManager entityManager = super.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        Linha listaRetorno = new Linha();
+        try {
+            System.out.println(entityManager.toString());
+            transaction.begin();
+            listaRetorno = (Linha) entityManager.createQuery("SELECT p FROM Linha p JOIN FETCH p.pontoList WHERE p.numero = :id").setParameter("id", id).getSingleResult();            
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        return listaRetorno;
+    }    
 }
