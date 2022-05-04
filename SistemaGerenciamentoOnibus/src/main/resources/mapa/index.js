@@ -63,7 +63,7 @@ function randomWalk(){
    };
 
 
-    $.getJSON('https://api.jsonbin.io/b/626d7b3538be296761fa43b5', function(json1) {
+    $.getJSON('https://api.jsonbin.io/b/6271c19425069545a32cf906', function(json1) {
 
 
     jsonStr = JSON.stringify(json1);
@@ -84,9 +84,9 @@ function randomWalk(){
       json1['marcadores'][i].lng = lngNova.toString();
 
     }
-    req.open("PUT", "https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5", true);
+    req.open("PUT", "https://api.jsonbin.io/v3/b/6271c19425069545a32cf906", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.setRequestHeader("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+    req.setRequestHeader("X-Master-Key", "$2b$10$Jn.s9m9qjc8TzU4e5hT6l./50kdb39Hja59kP43K/EvGGpVwEBIY6");
     jsonStr = JSON.stringify(json1);
 
     req.send(jsonStr);
@@ -95,7 +95,7 @@ function randomWalk(){
 }
   
 function showMarkers(){
-        $.getJSON('https://api.jsonbin.io/b/626d7b3538be296761fa43b5', function(json1) {
+        $.getJSON('https://api.jsonbin.io/b/6271c19425069545a32cf906', function(json1) {
 
 
     for(var i = 0; i < json1.marcadores.length; i++){

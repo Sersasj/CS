@@ -44,15 +44,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonAdmin" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB5">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonAdmin" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/icons8-homem-de-negócios-50.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleButtonOnibus" prefHeight="64.0" prefWidth="64.0" styleClass="btn" text="imgB2">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#handleButtonOnibus" pickOnBounds="true" preserveRatio="true">
@@ -139,7 +130,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Motorista" VBox.vgrow="NEVER">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonMotorista" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Motoristas" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -147,15 +138,6 @@
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/icons8-driver-50.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonAdmin" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Administrador">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/icons8-homem-de-negócios-50.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -169,7 +151,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonLinha" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Linha">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#handleButtonLinha" prefHeight="64.0" prefWidth="300.0" styleClass="btn" text="Linhas">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -11,6 +11,7 @@ function initMap() {
     center: myLatlng,
     mapTypeControl: false,
     streetViewControl: false    
+    
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({

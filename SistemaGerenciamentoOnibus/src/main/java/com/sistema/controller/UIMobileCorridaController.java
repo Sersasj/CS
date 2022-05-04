@@ -31,11 +31,14 @@ import javafx.scene.input.MouseEvent;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +59,10 @@ public class UIMobileCorridaController implements Initializable {
     private Label labelLinha, labelPlaca, labelMotorista;
     @FXML
     private Button buttonEmergencia, buttonIniciar, buttonFinalizar, btnVoltar;
+    @FXML
+    private WebView webView;
+    @FXML
+    private WebEngine webEngine;  
     
     private Corrida corrida;
 
@@ -101,7 +108,7 @@ public class UIMobileCorridaController implements Initializable {
         urlConnection.setRequestMethod("PUT"); 
 
         urlConnection.setRequestProperty("Content-Type", "application/json");
-        urlConnection.setRequestProperty("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+        urlConnection.setRequestProperty("X-Master-Key", "$2b$10$Jn.s9m9qjc8TzU4e5hT6l./50kdb39Hja59kP43K/EvGGpVwEBIY6");
 
         urlConnection.setDoInput(true);
         urlConnection.setDoOutput(true);
@@ -111,19 +118,12 @@ public class UIMobileCorridaController implements Initializable {
         OutputStream os = urlConnection.getOutputStream();
         os.write(input.getBytes("UTF-8"));
         os.flush();
-            if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                    + urlConnection.getResponseCode());
-            }
+
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (urlConnection.getInputStream())));
 
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
+
 
             urlConnection.disconnect(); 
     }
@@ -131,7 +131,7 @@ public class UIMobileCorridaController implements Initializable {
     public void finalizarLocalizacao() throws Exception{
     String placa = corrida.getOnibus().getPlaca();
     // Le Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626d7b3538be296761fa43b5"); 
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6271c19425069545a32cf906"); 
     
     JSONObject jsonAux = new JSONObject();
     JSONArray jsonArray = json.getJSONArray("marcadores");
@@ -154,7 +154,7 @@ public class UIMobileCorridaController implements Initializable {
     } 
     
     
-    putText(jsonAux.toString(),"https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5");
+    putText(jsonAux.toString(),"https://api.jsonbin.io/v3/b/6271c19425069545a32cf906");
     
     
     }
@@ -174,7 +174,7 @@ public class UIMobileCorridaController implements Initializable {
     System.out.println(linhaComPontos.getPontoList());
     
     // Lê Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626d7b3538be296761fa43b5");
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6271c19425069545a32cf906");
     //System.out.println(json.toString());
     // Cria novo objeto
     JSONObject jsonNew = new JSONObject();
@@ -188,7 +188,7 @@ public class UIMobileCorridaController implements Initializable {
     jsonNew.put("distancia", "0.0");
     // Adiciona novo objeto no json
     json.accumulate("marcadores", jsonNew);
-    putText(json.toString(),"https://api.jsonbin.io/v3/b/626d7b3538be296761fa43b5"); 
+    putText(json.toString(),"https://api.jsonbin.io/v3/b/6271c19425069545a32cf906"); 
 
     
 
@@ -269,6 +269,7 @@ public class UIMobileCorridaController implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(UIMobileCorridaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(corrida.getOnibus().getPlaca());
     }
     
     @FXML
@@ -284,7 +285,7 @@ public class UIMobileCorridaController implements Initializable {
     String lng = Float.toString(corrida.getLongitude());
     
     // Lê Json
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626db70c019db4679693e10e");
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6271c0a738be296761fbf3ca");
     //System.out.println(json.toString());
     // Cria novo objeto
     JSONObject jsonNew = new JSONObject();
@@ -299,7 +300,7 @@ public class UIMobileCorridaController implements Initializable {
     // Adiciona novo objeto no json
     json.accumulate("emergencias", jsonNew);
     System.out.println(jsonNew.toString());
-    putText(json.toString(),"https://api.jsonbin.io/v3/b/626db70c019db4679693e10e");         
+    putText(json.toString(),"https://api.jsonbin.io/v3/b/6271c0a738be296761fbf3ca");         
         
     }
 
@@ -315,6 +316,16 @@ public class UIMobileCorridaController implements Initializable {
         labelMotorista.setText(corrida.getMotorista().getNome());
         
         Mediator.getInstance().registerControllerMobile(this);
+        
+        webEngine =  webView.getEngine();
+        webEngine.getLoadWorker().stateProperty()
+        .addListener((obs, oldValue, newValue) -> {
+          if (newValue == Worker.State.SUCCEEDED) {
+            System.out.println("finished loading");
+          }
+        });
+        //webEngine.load("http://html5test.com");
+        webEngine.load(getClass().getResource("/mapa/mapaMobile/indexMobile.html").toString());        
     }
 
     public void startConnection() {

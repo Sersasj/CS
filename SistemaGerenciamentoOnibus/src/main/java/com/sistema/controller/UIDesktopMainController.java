@@ -61,7 +61,7 @@ public class UIDesktopMainController implements Initializable {
     private AnchorPane anchorPaneConteudo;
     
     private Boolean existeEmergencia = false;
-    private Corrida corridaEmergencia = null;
+    private Corrida corridaEmergencia;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -135,11 +135,6 @@ public class UIDesktopMainController implements Initializable {
     }
 
     @FXML
-    void handleButtonAdmin(MouseEvent event) {
-        carregarTela("/com/sistema/view/UIDesktopCRUDAdmin.fxml");
-    }
-
-    @FXML
     public void handleButtonOnibus(MouseEvent event) {
         carregarTela("/com/sistema/view/UIDesktopCRUDOnibus.fxml");
     }
@@ -169,7 +164,7 @@ public class UIDesktopMainController implements Initializable {
         urlConnection.setRequestMethod("PUT"); 
 
         urlConnection.setRequestProperty("Content-Type", "application/json");
-        urlConnection.setRequestProperty("X-Master-Key", "$2b$10$I/.wsfiIExM9YArP5Hz55uQc5L.0l80Cb4Nt865TxeT39uPSd4Q5S");
+        urlConnection.setRequestProperty("X-Master-Key", "$2b$10$Jn.s9m9qjc8TzU4e5hT6l./50kdb39Hja59kP43K/EvGGpVwEBIY6");
 
         urlConnection.setDoInput(true);
         urlConnection.setDoOutput(true);
@@ -179,19 +174,12 @@ public class UIDesktopMainController implements Initializable {
         OutputStream os = urlConnection.getOutputStream();
         os.write(input.getBytes("UTF-8"));
         os.flush();
-            if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                    + urlConnection.getResponseCode());
-            }
+    
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (urlConnection.getInputStream())));
 
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
+
 
             urlConnection.disconnect(); 
     }
@@ -199,7 +187,7 @@ public class UIDesktopMainController implements Initializable {
 
     
     public void verifyEmergencia() throws Exception{
-    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/626db70c019db4679693e10e");     
+    JSONObject json = readJsonFromUrl("https://api.jsonbin.io/b/6271c0a738be296761fbf3ca");     
     JSONObject jsonAux = new JSONObject();
     JSONArray jsonArray = json.getJSONArray("emergencias");
     // Ativa popup se placa != teste e remove ele   
@@ -208,6 +196,7 @@ public class UIDesktopMainController implements Initializable {
             Motorista motorista = new Motorista();
             Onibus onibus = new Onibus();
             Linha linha = new Linha();
+            corridaEmergencia = new Corrida();
             motorista.setCpf(jsonArray.getJSONObject(i).get("cpf").toString());
             motorista.setNome(jsonArray.getJSONObject(i).get("motorista").toString());
             motorista.setTelefone(jsonArray.getJSONObject(i).get("telefone").toString());
@@ -233,7 +222,7 @@ public class UIDesktopMainController implements Initializable {
     } 
     
     
-    putText(jsonAux.toString(),"https://api.jsonbin.io/v3/b/626db70c019db4679693e10e");
+    putText(jsonAux.toString(),"https://api.jsonbin.io/v3/b/6271c0a738be296761fbf3ca");
     
     
     }

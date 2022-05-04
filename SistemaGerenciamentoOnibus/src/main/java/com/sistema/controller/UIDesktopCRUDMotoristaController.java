@@ -113,7 +113,7 @@ public class UIDesktopCRUDMotoristaController implements Initializable {
                 motorista.setCnh(textCNH.getText());
                 motorista.setCpf(stringFormatter.formatarCPF(textCPF.getText()));
                 motorista.setNome(textNome.getText());
-                motorista.setTelefone(stringFormatter.formatarTelefone(textTelefone.getText()));
+                motorista.setTelefone(textTelefone.getText());
                 motorista.setEndereco(textEndereco.getText()); 
                 motorista.setRg(stringFormatter.formatarRG(textRG.getText()));
         
